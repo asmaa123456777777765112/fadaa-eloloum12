@@ -1,0 +1,2122 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1d2a42">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>فضاء العلوم</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Tajawal:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow reading column (max 720px) and a sticky top bar. The brand's boldness lives in one place: the navy "space" (onboarding, student picker, home hero) with Nawwar the bulb guide. */
+:root{
+  --bg:#fff8f2; --surface:#ffffff; --surface-2:#fdebdd;
+  --ink:#1f2633; --muted:#5b6476; --line:#f0dccb;
+  --blue:#0b5cc9; --blue-strong:#08479c; --on-blue:#ffffff; --blue-soft:#e4eefc;
+  --orange:#f08a2e; --orange-soft:#fff0e1; --orange-ink:#9a4a06;
+  --coral:#f07f55; --navy:#2c3e5c; --navy-deep:#1d2a42; --on-navy:#fff8f2; --star:#fff4c9;
+  --good:#1d7447; --good-soft:#e2f4ea; --bad:#b0281f; --bad-soft:#fbe9e7;
+  --cup:#eef3f9; --cup-line:#9fb3cc; --cotton:#ffffff; --water:#8cc2f2;
+  --seed:#b88a4a; --seed-wet:#d4a564; --seed-rot:#6f5a3a; --root-line:#a88a50; --leaf:#3f9a4b;
+  --f-body:"Baloo Bhaijaan 2",Tajawal,"Segoe UI",Tahoma,Arial,sans-serif;
+  --r-sm:10px; --r-md:18px; --r-lg:28px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141b27; --surface:#1b2433; --surface-2:#222d40;
+  --ink:#f5efe8; --muted:#b4bcc9; --line:#2f3b52;
+  --blue:#5a9bf0; --blue-strong:#86b6f5; --on-blue:#0e1726; --blue-soft:#1b2d4a;
+  --orange:#f59a45; --orange-soft:#3a2614; --orange-ink:#ffc48c;
+  --coral:#e8754b; --navy:#24344f; --navy-deep:#0b1220; --on-navy:#f5efe8; --star:#fff4c9;
+  --good:#6fd39b; --good-soft:#163526; --bad:#ff9a8f; --bad-soft:#3d1c1a;
+  --cup:#1f2c42; --cup-line:#5d7393; --cotton:#dfe6ef; --water:#2f6aa8;
+  --seed:#c49656; --seed-wet:#ddb072; --seed-rot:#7d6848; --root-line:#c9ab6c; --leaf:#5cc06a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b27; --surface:#1b2433; --surface-2:#222d40;
+  --ink:#f5efe8; --muted:#b4bcc9; --line:#2f3b52;
+  --blue:#5a9bf0; --blue-strong:#86b6f5; --on-blue:#0e1726; --blue-soft:#1b2d4a;
+  --orange:#f59a45; --orange-soft:#3a2614; --orange-ink:#ffc48c;
+  --coral:#e8754b; --navy:#24344f; --navy-deep:#0b1220; --on-navy:#f5efe8; --star:#fff4c9;
+  --good:#6fd39b; --good-soft:#163526; --bad:#ff9a8f; --bad-soft:#3d1c1a;
+  --cup:#1f2c42; --cup-line:#5d7393; --cotton:#dfe6ef; --water:#2f6aa8;
+  --seed:#c49656; --seed-wet:#ddb072; --seed-rot:#7d6848; --root-line:#c9ab6c; --leaf:#5cc06a;
+  color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font:18px/1.7 var(--f-body);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3{font-family:var(--f-body);line-height:1.3;text-wrap:balance;margin:0}
+h1{font-size:32px;font-weight:800;color:var(--blue)} h2{font-size:25px;font-weight:800;color:var(--blue)} h3{font-size:20px;font-weight:700}
+p{margin:0}
+a{color:var(--blue)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:4px 10px;flex-wrap:wrap;padding-block:8px}
+.brand{display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;font-size:22px;font-weight:800;color:var(--blue)}
+.me{margin-inline-start:auto;display:flex;gap:6px;align-items:center}
+.me-chip{display:flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 12px 3px 4px;min-height:44px;font-weight:700;font-size:16px;cursor:pointer;max-width:170px}
+.me-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.me-chip svg{width:34px;height:34px;flex:none}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--blue)}
+.icon-btn svg{width:22px;height:22px}
+.nav{display:flex;gap:2px;order:3;width:100%;overflow-x:auto}
+.nav button{flex:1;background:none;border:0;border-radius:var(--r-sm);padding:6px 8px;min-height:44px;font-weight:700;font-size:15px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.nav button[aria-current="page"]{color:var(--blue);background:var(--blue-soft)}
+@media (min-width:700px){.nav{order:2;width:auto;margin-inline-start:auto}.nav button{flex:none}.me{margin-inline-start:0}}
+
+main{padding-block:20px 48px}
+@media (prefers-reduced-motion:no-preference){
+  .enter{animation:enter .28s ease-out}
+  @keyframes enter{from{opacity:.2;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .btn,.opt,.grade,.lesson-item,.who-card{transition:transform .12s ease,background-color .15s,border-color .15s}
+  .btn:active,.opt:active:not([disabled]),.grade:active,.lesson-item:active,.who-card:active{transform:scale(.97)}
+}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.muted{color:var(--muted)} .small{font-size:15px}
+.note{font-size:15px;color:var(--muted);background:var(--surface-2);border-radius:var(--r-sm);padding:8px 12px}
+.flag{display:flex;gap:8px;align-items:flex-start;font-size:15px;line-height:1.6;background:var(--orange-soft);color:var(--ink);border-radius:var(--r-sm);padding:8px 12px}
+.flag b{color:var(--orange-ink)}
+.eyebrow{font-size:15px;font-weight:800;color:var(--orange-ink);letter-spacing:.02em}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 20px;border-radius:var(--r-md);border:2px solid var(--blue);background:var(--blue);color:var(--on-blue);font-weight:800;font-size:17px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--blue-strong);border-color:var(--blue-strong)}
+.btn.ghost{background:transparent;color:var(--blue)}
+.btn.ghost:hover{background:var(--blue-soft)}
+.btn.soft{background:var(--orange-soft);border-color:var(--orange);color:var(--ink)}
+.btn.danger{background:transparent;border-color:var(--bad);color:var(--bad)}
+.btn.sm{min-height:40px;padding:4px 14px;font-size:15px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.block{width:100%}
+.say{display:inline-flex;align-items:center;gap:4px;border:0;background:var(--blue-soft);color:var(--blue);border-radius:999px;padding:4px 12px;min-height:36px;font-weight:700;font-size:14px;cursor:pointer;vertical-align:middle}
+.say svg{width:18px;height:18px}
+.say.on{background:var(--orange);color:#1f2633}
+
+/* space: the brand's navy sky */
+.space{background-color:var(--navy-deep);color:var(--on-navy);background-image:
+  radial-gradient(circle at 12% 18%,var(--star) 0 1.6px,transparent 2.4px),radial-gradient(circle at 30% 70%,var(--star) 0 1.2px,transparent 2px),
+  radial-gradient(circle at 48% 12%,var(--star) 0 1px,transparent 1.8px),radial-gradient(circle at 62% 82%,var(--star) 0 1.6px,transparent 2.4px),
+  radial-gradient(circle at 78% 30%,var(--star) 0 1.2px,transparent 2px),radial-gradient(circle at 90% 64%,var(--star) 0 1px,transparent 1.8px),
+  radial-gradient(circle at 22% 44%,var(--star) 0 .9px,transparent 1.6px),radial-gradient(circle at 70% 52%,var(--star) 0 .9px,transparent 1.6px)}
+.hero{border:0;position:relative;overflow:hidden;padding:22px}
+.hero::after{content:"";position:absolute;width:96px;height:96px;border-radius:50%;background:var(--coral);left:-40px;bottom:-44px;box-shadow:inset -16px -12px 0 rgba(0,0,0,.14)}
+.hero::before{content:"";position:absolute;width:150px;height:34px;border:3px solid var(--orange);border-radius:50%;left:-66px;bottom:-4px;transform:rotate(-18deg);opacity:.6;z-index:1}
+.hero-in{position:relative;z-index:2;display:flex;gap:14px;align-items:center;padding-inline-end:40px}
+.hero-in > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.hero-in .mascot{width:88px;flex:none}
+.hero h1{color:var(--on-navy);font-size:30px}
+.hero .eyebrow{color:var(--orange)}
+
+/* Nawwar, the bulb guide */
+.mascot{display:block;height:auto;overflow:visible}
+@media (prefers-reduced-motion:no-preference){
+  .mascot.glow .rays{animation:glow 1.1s ease-out 2;transform-origin:50px 46px}
+  @keyframes glow{0%{opacity:.15;transform:scale(.8)}60%{opacity:1;transform:scale(1.1)}100%{opacity:1;transform:none}}
+  .bob{animation:bob 3s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-8px)}}
+  .onb-slide{animation:enter .35s ease-out}
+}
+
+/* onboarding: shown on every launch */
+.onb{position:fixed;inset:0;z-index:30;overflow-y:auto;display:flex;flex-direction:column;
+  padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.onb::after{content:"";position:fixed;width:220px;height:220px;border-radius:50%;background:var(--coral);left:-90px;bottom:-110px;box-shadow:inset -22px -16px 0 rgba(0,0,0,.14);pointer-events:none}
+.onb-top{display:flex;justify-content:space-between;align-items:center;max-width:560px;width:100%;margin:0 auto}
+.onb-brand{font-weight:800;font-size:20px;color:var(--on-navy)}
+.onb-skip{background:none;border:2px solid rgba(255,248,242,.35);color:var(--on-navy);border-radius:999px;padding:6px 16px;min-height:44px;font-weight:700;cursor:pointer}
+.onb-slide{flex:1;max-width:560px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding-block:16px;position:relative;z-index:1}
+.onb-slide .mascot{width:150px}
+.onb-slide h1{color:var(--on-navy);font-size:40px;line-height:1.2}
+.onb-slide h1 .o{color:var(--orange)}
+.onb-slide p{font-size:19px;max-width:30em}
+.onb-slide .eyebrow{color:var(--orange);font-size:16px}
+.planets{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 6px;max-width:440px}
+.planet{display:flex;flex-direction:column;align-items:center;gap:2px;width:58px;font-size:14px;font-weight:700}
+.planet i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;color:#1f2633;box-shadow:inset -6px -5px 0 rgba(0,0,0,.14)}
+.planet:nth-child(3n+1) i{background:var(--orange)} .planet:nth-child(3n+2) i{background:var(--coral)} .planet:nth-child(3n) i{background:#8fbcf8}
+.onb-foot{max-width:560px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
+.dots{display:flex;justify-content:center;gap:8px}
+.dots i{width:10px;height:10px;border-radius:999px;background:rgba(255,248,242,.35);transition:width .2s}
+.dots i.on{width:28px;background:var(--orange)}
+.onb .btn,.who .btn{background:var(--orange);border-color:var(--orange);color:#1f2633}
+.onb .btn:hover,.who .btn:hover{background:#ffa255;border-color:#ffa255}
+.onb .btn.ghost,.who .btn.ghost{background:transparent;border-color:rgba(255,248,242,.5);color:var(--on-navy)}
+.onb-foot .row > .btn{flex:1}
+
+/* who is studying */
+.who{border-radius:var(--r-lg);padding:24px 20px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.who h1{color:var(--on-navy)}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.who-card{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;border-radius:var(--r-md);border:2px solid rgba(255,248,242,.18);background:rgba(255,248,242,.06);color:var(--on-navy);cursor:pointer;font-weight:800;font-size:18px;min-width:0}
+.who-card:hover{border-color:var(--orange)}
+.who-card svg{width:64px;height:64px}
+.who-card .nm{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who-card .sub{font-size:13px;font-weight:500;opacity:.8}
+.who-card.add{border-style:dashed}
+.who-card .plus{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(255,248,242,.12);font-size:36px;line-height:1}
+.field{display:flex;flex-direction:column;gap:6px}
+.field > .lb{font-weight:800}
+.who input[type=text]{background:var(--surface);color:var(--ink);border:2px solid transparent;border-radius:var(--r-md);padding:10px 14px;font-size:20px;width:100%}
+.who .err{color:#ffb4a8;font-weight:700;font-size:15px}
+.av-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.av-grid label{display:grid;place-items:center;cursor:pointer;border-radius:50%;padding:3px;border:3px solid transparent}
+.av-grid label svg{width:100%;max-width:58px;height:auto}
+.av-grid input,.seg input{position:absolute;opacity:0;pointer-events:none}
+.av-grid input:checked + label{border-color:var(--orange)}
+.av-grid input:focus-visible + label,.seg input:focus-visible + label{outline:3px solid var(--orange);outline-offset:2px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.seg label{display:grid;place-items:center;min-height:48px;border-radius:var(--r-md);border:2px solid rgba(255,248,242,.3);font-weight:800;cursor:pointer}
+.seg input:checked + label{background:var(--orange);border-color:var(--orange);color:#1f2633}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* grade picker */
+.grades{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grade{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:16px;white-space:nowrap;padding:16px 8px;border-radius:var(--r-md);border:2px solid var(--line);background:var(--surface);cursor:pointer;min-height:96px}
+.grade .n{font-size:30px;font-weight:800;line-height:1;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#1f2633;box-shadow:inset -8px -6px 0 rgba(0,0,0,.14)}
+.p4{background:var(--coral)} .p5{background:var(--orange)} .p6{background:#8fbcf8}
+.grade[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 12px;font-size:14px;font-weight:700;background:var(--surface-2);color:var(--ink);white-space:nowrap}
+.chip.ok{background:var(--good-soft);color:var(--good)}
+.chip.go{background:var(--orange-soft);color:var(--orange-ink)}
+.chip.info{background:var(--blue-soft);color:var(--blue)}
+
+.lesson-item{display:flex;gap:14px;align-items:center;text-align:right;width:100%;background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:14px;cursor:pointer}
+.lesson-item:hover{border-color:var(--blue)}
+.lesson-item .t{font-weight:800;font-size:19px}
+.lesson-item .grow{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.unit-h{font-size:17px;color:var(--muted);font-weight:800;margin-top:4px}
+.continue{border-color:var(--blue)}
+
+/* journey rail */
+.rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.rail button{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;padding:4px 0;cursor:pointer;font-size:13px;font-weight:700;color:var(--muted)}
+.rail .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--line);background:var(--surface);font-weight:800;font-size:15px;color:var(--muted)}
+.rail button.done .dot{background:var(--orange);border-color:var(--orange);color:#1f1300}
+.rail button.cur .dot{border-color:var(--blue);color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.rail button.cur{color:var(--blue)}
+.rail button[disabled]{cursor:default;opacity:.6}
+.meter{display:block;height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--orange);border-radius:999px}
+
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{display:flex;gap:12px;align-items:flex-start}
+.steps .k{flex:none;width:30px;height:30px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:15px}
+.steps li.hl .k{background:var(--orange);color:#1f1300}
+.term{font-weight:800;color:var(--blue)}
+
+/* questions */
+.q{display:flex;flex-direction:column;gap:12px}
+.q .stem{font-weight:700;font-size:20px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;text-align:right;width:100%;min-height:54px;padding:8px 14px;border-radius:var(--r-md);border:2px solid var(--line);background:var(--surface);cursor:pointer;font-size:18px}
+.opt:hover:not([disabled]){border-color:var(--blue)}
+.opt .l{flex:none;width:30px;height:30px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-weight:800;font-size:15px}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.picked{border-color:var(--blue);background:var(--blue-soft)}
+.opt[disabled]{cursor:default}
+.fb{display:flex;flex-direction:column;gap:10px}
+.fb:empty{display:none}
+.box{border-radius:var(--r-md);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.box.hint{background:var(--orange-soft)}
+.box.good{background:var(--good-soft)}
+.box.good b.h{color:var(--good)}
+.box.think{background:var(--surface-2);border:2px dashed var(--line)}
+.box .h{font-weight:800}
+.box.talk{flex-direction:row;align-items:flex-start;gap:12px}
+.box.talk > .mascot{flex:none;width:52px}
+.box.talk > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vs > div{border-radius:var(--r-sm);padding:10px;background:var(--surface);min-width:0}
+.vs .x{color:var(--bad);font-weight:800;font-size:14px}
+.vs .y{color:var(--good);font-weight:800;font-size:14px}
+
+/* simulation */
+.cups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cup{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;min-width:0}
+.cup svg{width:100%;max-width:150px;height:auto}
+.cup .lab{font-weight:800;font-size:16px}
+.cup .obs{font-size:14px;color:var(--muted);line-height:1.5;min-height:3em}
+.day{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.day input[type=range]{flex:1;min-width:160px;accent-color:var(--blue);height:32px}
+.day output{font-weight:800;font-size:19px;color:var(--blue);min-width:5em;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border:1px solid var(--line);padding:8px;text-align:right;vertical-align:top}
+th{background:var(--surface-2)}
+
+.video{border-radius:var(--r-md);overflow:hidden;background:var(--surface-2);aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;text-align:center;padding:16px}
+.video iframe{width:100%;height:100%;border:0}
+.video.has{padding:0}
+
+/* profile */
+.skills{display:grid;gap:10px}
+.skill{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px}
+.skill .nm{font-weight:800}
+.skill .sg{grid-column:1/-1;font-size:15px;color:var(--muted)}
+.skill .mt{grid-column:1/-1}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:14px 10px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line)}
+.badge svg{width:54px;height:54px}
+.badge.locked{opacity:.5}
+.badge .bn{font-weight:800;font-size:16px}
+.badge .bd{font-size:13px;color:var(--muted);line-height:1.5}
+.person{display:flex;gap:12px;align-items:center}
+.person > svg{width:60px;height:60px;flex:none}
+
+/* modal + toast */
+.overlay{position:fixed;inset:0;background:rgba(10,20,40,.55);display:grid;place-items:center;z-index:20;padding:16px}
+.reward{background:var(--surface);border-radius:var(--r-lg);padding:24px;max-width:420px;width:100%;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.reward .row svg{width:80px;height:80px}
+@media (prefers-reduced-motion:no-preference){.reward{animation:pop .35s ease-out}@keyframes pop{from{transform:scale(.9);opacity:.4}to{transform:none;opacity:1}}}
+.toast{position:fixed;left:0;right:0;margin-inline:auto;width:fit-content;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--navy-deep);color:var(--on-navy);padding:10px 20px;border-radius:999px;font-weight:700;z-index:40;max-width:calc(100% - 32px);text-align:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+
+/* teacher */
+.tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:8px 14px;min-height:44px;font-weight:800;font-size:16px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--blue);border-color:var(--blue)}
+label.f{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:15px}
+input[type=text],input[type=url],input[type=number],input[type=password],textarea,select{width:100%;border:2px solid var(--line);border-radius:var(--r-sm);background:var(--surface);padding:8px 10px;font-weight:400}
+textarea.json{font:13px/1.5 Consolas,"Courier New",monospace;direction:ltr;text-align:left;min-height:280px}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:700}
+.check input{width:22px;height:22px;flex:none;margin-top:4px;accent-color:var(--blue)}
+.msg{font-weight:700;font-size:15px}
+.msg.ok{color:var(--good)} .msg.err{color:var(--bad)}
+.lrow{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+.lrow .t{font-weight:800}
+.pin{font-size:28px;letter-spacing:.4em;text-align:center;direction:ltr;max-width:220px}
+.mini-av{display:inline-block;width:30px;height:30px;flex:none}
+.mini-av svg{width:30px;height:30px}
+footer{font-size:13px;color:var(--muted);text-align:center;padding-block:16px 32px}
+/* home tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-radius:var(--r-md);border:2px solid var(--line);background:var(--surface);cursor:pointer;text-align:center;min-width:0}
+.tile:hover{border-color:var(--blue)}
+.tile .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue)}
+.tile .ic svg{width:26px;height:26px}
+.tile .tt{font-weight:800;font-size:16px;line-height:1.3}
+.tile .ts{font-size:13px;color:var(--muted);line-height:1.4}
+.tile.done .ic{background:var(--good-soft);color:var(--good)}
+@media (max-width:340px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.tile{padding:12px 6px}.tile .tt{font-size:15px}.tile .ts{font-size:12px}}
+/* camera */
+.pick{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px;border:3px dashed var(--line);border-radius:var(--r-md);background:var(--surface-2);cursor:pointer;text-align:center;font-weight:800;color:var(--blue)}
+.pick svg{width:44px;height:44px}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick:focus-within{outline:3px solid var(--orange);outline-offset:2px}
+.preview{max-width:100%;max-height:340px;border-radius:var(--r-md);display:block;margin:0 auto;border:1px solid var(--line)}
+.ai-tag{display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--orange-ink);background:var(--orange-soft);border-radius:999px;padding:2px 10px}
+.spin{width:22px;height:22px;border:3px solid var(--blue-soft);border-top-color:var(--blue);border-radius:50%;display:inline-block;vertical-align:middle}
+@media (prefers-reduced-motion:no-preference){.spin{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}}
+/* flashcards */
+.flash{perspective:1000px;background:none;border:0;padding:0;width:100%;cursor:pointer;display:block}
+.flash-in{display:block;position:relative;min-height:220px;transform-style:preserve-3d}
+@media (prefers-reduced-motion:no-preference){.flash-in{transition:transform .45s ease}}
+.flash.flipped .flash-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;border-radius:var(--r-lg);backface-visibility:hidden;-webkit-backface-visibility:hidden;font-size:22px;font-weight:800;text-align:center;line-height:1.5}
+.face.front{background:var(--navy-deep);color:var(--on-navy)}
+.face.back{background:var(--orange-soft);color:var(--ink);transform:rotateY(180deg);font-weight:700;font-size:20px}
+.face small{font-size:13px;font-weight:700;opacity:.8}
+/* certificate */
+.cert-img{width:100%;height:auto;border-radius:var(--r-md);border:1px solid var(--line);display:block}
+/* editor */
+.qrow{display:flex;gap:8px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.qrow .qs{flex:1;min-width:0;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.optrow{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,160px);gap:8px;align-items:center}
+.optrow input[type=radio]{width:22px;height:22px;accent-color:var(--good)}
+@media (max-width:520px){.optrow{grid-template-columns:auto minmax(0,1fr)}.optrow select{grid-column:2}}
+.grp-h{font-size:15px;font-weight:800;color:var(--muted);margin-top:6px}
+/* QR poster: always light, so it prints and screenshots the same in both themes */
+.poster{background:#ffffff;color:#1f2633;border-radius:var(--r-lg);border:3px solid #1d2a42;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;max-width:420px;width:100%;margin:0 auto}
+.poster .pt{font-size:30px;font-weight:800;color:#0b5cc9;line-height:1.2}
+.poster .pt span{color:#f08a2e}
+.poster .qr{width:100%;max-width:280px;height:auto}
+.poster .cap{font-weight:800;font-size:18px}
+.poster .code{font-size:30px;font-weight:800;letter-spacing:.12em;direction:ltr;background:#fff0e1;border:2px dashed #f08a2e;border-radius:14px;padding:4px 18px;color:#1f2633}
+.poster ol{text-align:right;margin:0;padding-inline-start:22px;font-size:17px;align-self:stretch;list-style:arabic-indic}
+.poster .lnk{font-size:13px;color:#5b6476;direction:ltr;word-break:break-all}
+@media print{
+  body *{visibility:hidden}
+  #poster,#poster *{visibility:visible}
+  #poster{position:absolute;inset:0 0 auto 0;margin:0 auto;border-width:2px}
+}
+
+@media (max-width:520px){
+  body{font-size:17px}
+  h1{font-size:27px} .hero h1{font-size:26px}
+  .rail .lb{font-size:11px}
+  .rail .dot{width:30px;height:30px}
+  .vs{grid-template-columns:1fr}
+  .av-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <button class="brand" type="button" data-go="home" aria-label="فضاء العلوم — الرئيسية">
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--navy)"/><path d="M16 7a6.5 6.5 0 0 0-3.8 11.8c.6.5 1 1.2 1 2V22h5.6v-1.2c0-.8.4-1.5 1-2A6.5 6.5 0 0 0 16 7z" fill="#f08a2e"/><rect x="13" y="23.2" width="6" height="2.4" rx="1.2" fill="#f08a2e"/></svg>
+      فضاء العلوم
+    </button>
+    <nav class="nav" aria-label="الأقسام">
+      <button type="button" data-go="home">الرئيسية</button>
+      <button type="button" data-go="profile">ملف فهمي</button>
+      <button type="button" data-go="parent">ولي الأمر</button>
+      <button type="button" data-go="teacher">المعلمة</button>
+    </nav>
+    <div class="me" id="me"></div>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer class="wrap">فضاء العلوم · نموذج تجريبي. لا يستخدم ذكاءً اصطناعيًا متصلًا: الشرح والتلميحات مكتوبة مسبقًا. الأسماء والتقدم محفوظة على هذا الجهاز فقط. <a href="privacy.html" target="_blank" rel="noopener">سياسة الخصوصية</a></footer>
+<div id="layer"></div>
+<div id="onb"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="text/plain" id="gs-code">
+/**
+ * فضاء العلوم: كود جدول Google Sheets.
+ * بيستقبل 3 حاجات من التطبيق:
+ *   1) تقدم الطلاب  -> شيت «الطلاب»
+ *   2) صور حلول الطلاب -> فولدر في Google Drive بتاعك + شيت «الحلول»
+ *   3) «صوّر سؤال»   -> بيسأل Gemini ويرجّع تلميحات (مقفول لحد ما تفتحيه)
+ *
+ * الإعداد:
+ * 1) غيّري أكواد الفصول تحت (حروف إنجليزي وأرقام، من 4 لـ 12).
+ * 2) Deploy > New deployment > Web app: Execute as "Me"، Who has access "Anyone".
+ *    (لو بتحدّثي كود قديم: Deploy > Manage deployments > تعديل > Version: New version)
+ * 3) لتشغيل «صوّر سؤال»: Project Settings > Script Properties وضيفي:
+ *      GEMINI_API_KEY = مفتاحك (ما تكتبيهوش في الكود ولا تبعتيه لحد)
+ *      AI_ENABLED     = true
+ *    وبعدين شغّلي الدالة testAI من فوق علشان تتأكدي إنه شغال.
+ * الجدول بيستقبل بس، ومش بيرجّع أسماء الطلاب ولا صورهم لأي حد.
+ */
+var CLASS_CODES = ["FADAA5A"];
+var SHEET_NAME = "الطلاب";
+var HEADERS = ["معرّف الطالب", "الاسم", "الصف", "كود الفصل", "الدروس اللي خلّصها", "الدرس الحالي", "المحطة", "مهارات أتقنها", "مهارات محتاجة تدريب", "أفكار محتاجة مراجعة", "عدد الشارات", "آخر نشاط", "موافقة ولي الأمر", "آخر تحديث"];
+var SOLUTIONS_SHEET = "الحلول";
+var SOLUTIONS_HEADERS = ["التاريخ", "معرّف الطالب", "الاسم", "كود الفصل", "الدرس", "ملاحظة الطالب", "رابط الصورة", "الحالة"];
+var ASKS_SHEET = "أسئلة الكاميرا";
+var ASKS_HEADERS = ["التاريخ", "الاسم", "كود الفصل", "المفهوم", "ملخص الرد"];
+var FOLDER_NAME = "فضاء العلوم - حلول الطلاب";
+var MAX_IMAGE_CHARS = 2800000;   // حوالي 2 ميجا
+var ASK_LIMIT = 8;               // أقصى عدد أسئلة بالكاميرا لكل طالب كل 6 ساعات
+var DEFAULT_MODEL = "gemini-flash-latest";
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  try {
+    var d = JSON.parse(e.postData.contents);
+    var code = String(d.classCode || "").trim().toUpperCase();
+    var allowed = CLASS_CODES.map(function (c) { return String(c).trim().toUpperCase(); });
+    if (allowed.indexOf(code) < 0) return reply({ ok: false, error: "bad_code" });
+    if (d.consent !== true) return reply({ ok: false, error: "no_consent" });
+    var id = String(d.id || "");
+    if (!/^s[a-z0-9]{4,30}$/.test(id)) return reply({ ok: false, error: "bad_id" });
+
+    if (d.type === "ask") return handleAsk(d, id, code);
+
+    lock.waitLock(10000);
+    if (d.type === "solution") return handleSolution(d, id, code);
+    return handleProgress(d, id, code);
+  } catch (err) {
+    return reply({ ok: false, error: "server" });
+  } finally {
+    try { lock.releaseLock(); } catch (_) {}
+  }
+}
+
+function doGet() {
+  return reply({ ok: true, app: "fadaa", ai: aiEnabled() });
+}
+
+/* ---------- 1) التقدم ---------- */
+function handleProgress(d, id, code) {
+  var row = [id, clean(d.name, 20), clean(d.grade, 20), code, clean(d.lessonsDone, 400), clean(d.current, 120), clean(d.stage, 30),
+    clean(d.mastered, 300), clean(d.practice, 300), clean(d.ideas, 600), Number(d.badges) || 0, clean(d.lastActive, 40), clean(d.consentAt, 40), new Date()];
+  var sh = getSheet(SHEET_NAME, HEADERS);
+  var last = sh.getLastRow();
+  var ids = last > 1 ? sh.getRange(2, 1, last - 1, 1).getValues() : [];
+  for (var i = 0; i < ids.length; i++) {
+    if (ids[i][0] === id) { sh.getRange(i + 2, 1, 1, row.length).setValues([row]); return reply({ ok: true }); }
+  }
+  sh.appendRow(row);
+  return reply({ ok: true });
+}
+
+/* ---------- 2) صورة الحل للمعلمة ---------- */
+function handleSolution(d, id, code) {
+  if (d.photoConsent !== true) return reply({ ok: false, error: "no_consent" });
+  var img = String(d.image || "");
+  if (!img || img.length > MAX_IMAGE_CHARS || !/^[A-Za-z0-9+/=]+$/.test(img)) return reply({ ok: false, error: "too_big" });
+  var name = clean(d.name, 20), lesson = clean(d.lesson, 120);
+  var stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd HH-mm");
+  var blob = Utilities.newBlob(Utilities.base64Decode(img), "image/jpeg", name + " - " + lesson + " - " + stamp + ".jpg");
+  var file = getFolder().createFile(blob);   // الملف خاص بيكِ؛ مش بيتشارك مع حد
+  getSheet(SOLUTIONS_SHEET, SOLUTIONS_HEADERS).appendRow([new Date(), id, name, code, lesson, clean(d.note, 300), file.getUrl(), "لسه ما اتراجعش"]);
+  return reply({ ok: true });
+}
+
+function getFolder() {
+  var props = PropertiesService.getScriptProperties();
+  var fid = props.getProperty("FOLDER_ID");
+  if (fid) { try { return DriveApp.getFolderById(fid); } catch (_) {} }
+  var folder = DriveApp.createFolder(FOLDER_NAME);
+  props.setProperty("FOLDER_ID", folder.getId());
+  return folder;
+}
+
+/* ---------- 3) «صوّر سؤال» مع Gemini ---------- */
+var SYSTEM_PROMPT = [
+  "إنت «نوّور»، مساعد علوم في تطبيق «فضاء العلوم» لطلاب الصف الرابع والخامس والسادس الابتدائي في مصر (من 9 لـ 12 سنة).",
+  "الطالب صوّر سؤال أو جزء من كتاب. مهمتك تساعده يفهم ويفكّر، مش تدّيله الإجابة النهائية.",
+  "اكتب بالعامية المصرية البسيطة، والمصطلحات العلمية بالفصحى. جمل قصيرة. من غير إيموجي.",
+  "ممنوع تكتب الإجابة النهائية أو تختار الاختيار الصح. اشرح الفكرة اللي السؤال بيقيسها، وادّي تلميحات متدرجة.",
+  "لو الصورة مش سؤال علوم، أو مش واضحة، أو فيها وشوش أو بيانات شخصية: is_science=false واكتب رسالة لطيفة في message، وما توصفش الأشخاص.",
+  "لو مش متأكد من معلومة علمية: unsure=true، وما تخترعش معلومات، وقول له يسأل المعلمة.",
+  "رد بـ JSON بس بالشكل ده بالظبط:",
+  '{"is_science":true,"unsure":false,"question":"السؤال بكلامك في سطر","concept":"اسم المفهوم","explain":"شرح الفكرة في 2-3 جمل من غير الإجابة","hint1":"تلميح أول","hint2":"تلميح أقرب للحل من غير ما تقوله","check":"سؤال صغير يتأكد بيه إنه فهم","message":""}'
+].join("\n");
+
+function handleAsk(d, id, code) {
+  if (!aiEnabled()) return reply({ ok: false, error: "ai_off" });
+  if (d.photoConsent !== true) return reply({ ok: false, error: "no_consent" });
+  var img = String(d.image || "");
+  if (!img || img.length > MAX_IMAGE_CHARS || !/^[A-Za-z0-9+/=]+$/.test(img)) return reply({ ok: false, error: "too_big" });
+  var cache = CacheService.getScriptCache(), ck = "ask_" + id, used = Number(cache.get(ck) || 0);
+  if (used >= ASK_LIMIT) return reply({ ok: false, error: "too_many" });
+  cache.put(ck, String(used + 1), 21600);
+  var userText = "صف الطالب: " + clean(d.grade, 20) + (d.text ? ("\nالطالب كتب: " + clean(d.text, 300)) : "");
+  var out = callGemini(img, userText);   // الصورة مش بتتحفظ في أي مكان
+  if (!out) return reply({ ok: false, error: "ai_error" });
+  try {
+    getSheet(ASKS_SHEET, ASKS_HEADERS).appendRow([new Date(), clean(d.name, 20), code, clean(out.concept, 80), clean(out.question || out.message, 200)]);
+  } catch (_) {}
+  return reply({ ok: true, answer: out });
+}
+
+function aiEnabled() {
+  var p = PropertiesService.getScriptProperties();
+  return p.getProperty("AI_ENABLED") === "true" && !!p.getProperty("GEMINI_API_KEY");
+}
+
+function callGemini(imageB64, userText) {
+  var p = PropertiesService.getScriptProperties();
+  var model = p.getProperty("GEMINI_MODEL") || DEFAULT_MODEL;
+  var url = "https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(model) + ":generateContent";
+  var parts = [{ text: userText }];
+  if (imageB64) parts.unshift({ inline_data: { mime_type: "image/jpeg", data: imageB64 } });
+  var res = UrlFetchApp.fetch(url, {
+    method: "post", contentType: "application/json", muteHttpExceptions: true,
+    headers: { "x-goog-api-key": p.getProperty("GEMINI_API_KEY") },
+    payload: JSON.stringify({
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: [{ role: "user", parts: parts }],
+      generationConfig: { temperature: 0.4, maxOutputTokens: 800, responseMimeType: "application/json" }
+    })
+  });
+  if (res.getResponseCode() !== 200) { console.log("Gemini " + res.getResponseCode() + ": " + res.getContentText().slice(0, 300)); return null; }
+  try {
+    var body = JSON.parse(res.getContentText());
+    var text = body.candidates[0].content.parts.map(function (x) { return x.text || ""; }).join("");
+    var o = JSON.parse(text.replace(/^```(json)?|```$/g, "").trim());
+    var keys = ["question", "concept", "explain", "hint1", "hint2", "check", "message"], safe = { is_science: o.is_science !== false, unsure: !!o.unsure };
+    keys.forEach(function (k) { safe[k] = clean(o[k], 500); });
+    return safe;
+  } catch (err) { console.log("parse: " + err); return null; }
+}
+
+/** شغّليها من المحرر (Run) علشان تتأكدي إن المفتاح والموديل شغالين. */
+function testAI() {
+  var out = callGemini("", "صف الطالب: الخامس\nالطالب كتب: ليه البذرة الناشفة ما بتنبتش؟");
+  console.log(out ? "شغال: " + JSON.stringify(out) : "مش شغال. بصّي على السطر اللي فوق علشان تعرفي السبب.");
+}
+
+/* ---------- أدوات ---------- */
+function getSheet(name, headers) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(name) || ss.insertSheet(name);
+  if (sh.getLastRow() === 0) { sh.appendRow(headers); sh.setFrozenRows(1); sh.setRightToLeft(true); }
+  return sh;
+}
+
+function clean(v, max) {
+  var s = String(v == null ? "" : v).replace(/[\u0000-\u001f]/g, " ").slice(0, max);
+  return /^[=+\-@]/.test(s) ? "'" + s : s;
+}
+
+function reply(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+</script>
+<script>
+(function(){
+"use strict";
+
+/* ================= المحتوى الافتراضي (قابل للتعديل من لوحة المعلمة) ================= */
+var SEED_LESSON = {
+  id: "g5-seed-water",
+  published: true, reviewed: false, curriculumVerified: false, curriculumSource: "",
+  grade: "5", term: "الفصل الدراسي الأول", unit: "احتياجات النبات",
+  title: "أهمية الماء لإنبات البذور",
+  phenomenon: {
+    text: "مها لقت كيس فول ناشف في المطبخ. الفول ده بقاله شهور في الكيس ومطلعش منه ولا نبتة. لما حطت شوية منه على قطنة مبلولة، بعد كام يوم ظهر من كل حباية جزء أبيض صغير!",
+    question: "في رأيك، ليه الفول اللي في الكيس ما نبتش؟",
+    options: ["مفيش تربة في الكيس", "مفيش ماء في الكيس", "مفيش ضوء شمس في الكيس", "الفول الناشف ميت"]
+  },
+  prediction: {
+    question: "هنحط حبات فول في 3 أكواب: قطن ناشف، قطن مبلول، وكوب مليان ماء والفول غرقان فيه. أنهي كوب هيظهر فيه الجذير الأول؟",
+    options: ["كوب القطن الناشف", "كوب القطن المبلول", "الكوب المليان ماء", "الثلاثة زي بعض"],
+    expected: 1
+  },
+  explanation: {
+    steps: [
+      "البذرة الناشفة <b>مش ميتة</b>. جواها نبات صغير جدًا اسمه <span class=\"term\">الجنين</span>، ومعاه <span class=\"term\">غذاء مخزّن</span> (في الفول بيكون في الفلقتين).",
+      "لما البذرة تلاقي ماء، <b>بتمتصه</b> فتنتفخ ويكبر حجمها، والغلاف الخارجي (القصرة) يلين.",
+      "الماء بيساعد البذرة تبدأ تستخدم الغذاء المخزن جواها، فيبدأ الجنين ينمو. ده اسمه <span class=\"term\">الإنبات</span>.",
+      "أول جزء يطلع هو <span class=\"term\">الجذير</span> ويتجه لتحت، وبعده <span class=\"term\">الريشة</span> وتتجه لفوق.",
+      "الإنبات محتاج <b>ماء</b> و<b>هواء</b> و<b>درجة حرارة مناسبة</b>. معظم البذور مش محتاجة تربة ولا ضوء علشان تنبت، لأن غذاءها جواها. لكن لما النبات يكبر بيحتاج الضوء علشان يصنع غذاءه."
+    ],
+    hint: "فكّر: إيه الحاجة اللي كانت موجودة في القطنة المبلولة ومش موجودة في الكيس؟",
+    alternatives: [
+      {title: "تعالى نشبّهها", text: "تخيّل البذرة مسافر نايم جوه شنطة، ومعاه أكله في الشنطة. هو مش ميت، هو نايم بس. <b>الماء زي المنبّه</b>: لما يوصل للبذرة، المسافر يصحى ويبدأ ياكل من أكله ويكبر. ولو مفيش هواء خالص، مش هيقدر يتنفس ويكمل."},
+      {title: "من مطبخ البيت", text: "قبل ما ماما تعمل الفول المدمّس بتنقعه في الماء. الصبح بتلاقي الحباية <b>أكبر وأطرى</b>، لأنها امتصت الماء. البذرة اللي هنزرعها بتعمل نفس الحاجة: تمتص الماء الأول، وبعدين تبدأ تنمو ويطلع الجذير."}
+    ],
+    checkQuestion: "c1"
+  },
+  video: {url: "", title: "", summary: "البذرة الجافة فيها جنين وغذاء مخزن. لما تمتص الماء تنتفخ وتبدأ تنمو: يطلع الجذير لتحت، وبعده الريشة لفوق. الإنبات محتاج ماء وهواء وحرارة مناسبة."},
+  videoTimes: {},
+  homeActivity: {
+    title: "جرّبها في البيت (مع شخص كبير)",
+    materials: ["3 أكواب بلاستيك شفافة", "قطن", "6 حبات فول أو عدس", "ماء"],
+    steps: [
+      "اكتب على الأكواب: ناشف، مبلول، غرقان.",
+      "كوب «ناشف»: قطن ناشف وحبتين فول.",
+      "كوب «مبلول»: قطن مبلول (مش غرقان) وحبتين فول. بلّ القطن كل يوم.",
+      "كوب «غرقان»: حبتين فول وماء يغطيهم خالص.",
+      "حط الأكواب الثلاثة جنب بعض في نفس المكان، وسجّل اللي بتشوفه كل يوم لمدة أسبوع."
+    ],
+    safety: "متاكلش البذور، واغسل إيدك بعد التجربة. مفيش نار ولا كهرباء ولا مواد كيميائية. لو الكوب الغرقان طلعت منه ريحة وحشة، خلّي الشخص الكبير يرميه."
+  },
+  simulation: {
+    cups: [
+      {id: "dry", label: "قطن ناشف", stages: [0,0,0,0,0,0,0,0], rotFrom: -1},
+      {id: "moist", label: "قطن مبلول", stages: [0,1,2,3,4,5,6,6], rotFrom: -1},
+      {id: "flooded", label: "غرقان في الماء", stages: [0,1,1,1,1,1,1,1], rotFrom: 5}
+    ],
+    stageText: ["بذرة ناشفة، مفيش تغيير", "البذرة انتفخت لأنها امتصت الماء", "الغلاف (القصرة) اتشقّ", "ظهر الجذير", "الجذير طوِل واتجه لتحت", "ظهرت الريشة واتجهت لفوق", "ظهرت أول أوراق صغيرة"],
+    rotText: "البذرة لونها غمق وبدأت تعفن",
+    disclaimer: "دي محاكاة مبسطة لتوضيح الفكرة. في التجربة الحقيقية الأيام بتختلف حسب نوع البذور ودرجة الحرارة. وفيه بذور زي الأرز تقدر تنبت والماء حواليها."
+  },
+  interpretQuestions: ["i1", "i2"],
+  applyQuestions: ["a1"],
+  quiz: ["q1", "q2", "q3", "q4", "q5"],
+  recallQuestions: ["q1", "q2"],
+  flashcards: [
+    {f: "إيه هو الإنبات؟", b: "بداية نمو الجنين اللي جوه البذرة لما تلاقي ماء وهواء وحرارة مناسبة."},
+    {f: "أول جزء بيطلع من البذرة؟", b: "الجذير، وبيتجه لتحت."},
+    {f: "الريشة", b: "الجزء اللي بيطلع بعد الجذير ويتجه لفوق، ومنه الساق والأوراق."},
+    {f: "البذرة بتاخد غذاء الإنبات منين؟", b: "من الغذاء المخزن جواها (في الفلقتين في الفول)."},
+    {f: "شروط الإنبات", b: "ماء + هواء + درجة حرارة مناسبة."},
+    {f: "هل البذرة محتاجة تربة علشان تنبت؟", b: "لأ. معظم البذور تنبت على قطن مبلول، لأن غذاءها جواها."},
+    {f: "ليه البذرة الغرقانة في الماء ما بتنبتش كويس؟", b: "لأن الماء الكتير بيمنع عنها الهواء."}
+  ],
+  parentQuestions: [
+    "لو عندنا فول ناشف في المطبخ، ليه ما بيطلعش منه نبات؟",
+    "تفتكر الفول ممكن ينبت على قطنة من غير تربة؟ ليه؟",
+    "لو غرّقنا البذرة في ماء كتير خالص، هيحصل إيه؟ وليه؟"
+  ]
+};
+
+var DEFAULT_CONTENT = {
+  version: 2,
+  grades: [{id: "4", name: "الصف الرابع"}, {id: "5", name: "الصف الخامس"}, {id: "6", name: "الصف السادس"}],
+  lessons: [SEED_LESSON],
+  skills: [
+    {id: "concept", name: "فهم المفهوم العلمي", activity: "ارجع لخطوات الشرح، وجرّب زر «لسه مش فاهم» علشان تشوف طريقة تانية."},
+    {id: "interpret", name: "تفسير نتائج التجارب", activity: "شغّل المحاكاة تاني، وقارن الأكواب الثلاثة يوم بيوم."},
+    {id: "infer", name: "الاستنتاج العلمي", activity: "اسأل نفسك: إيه الفرق الوحيد بين الكوبين؟ وإيه اللي حصل بسببه؟"},
+    {id: "apply", name: "التطبيق في موقف جديد", activity: "فكّر في مكان في البيت أو الغيط: البذور هناك عندها ماء وهواء وحرارة مناسبة؟"},
+    {id: "recall", name: "التذكر بعد فترة", activity: "ارجع للمراجعة لما يظهر لك «مراجعة اليوم» في الرئيسية."}
+  ],
+  misconceptions: {
+    soil:      {idea: "البذرة لازم تكون في تربة علشان تنبت.", correct: "معظم البذور تنبت على قطن مبلول من غير تربة، لأن غذاء الإنبات جواها.", step: 4},
+    light:     {idea: "البذرة لازم ضوء علشان تنبت.", correct: "معظم البذور تنبت في الضلمة كمان. الضوء مهم للنبات بعد ما يكبر علشان يصنع غذاءه.", step: 4},
+    morewater: {idea: "كل ما الماء يزيد، الإنبات يبقى أحسن.", correct: "البذرة محتاجة ماء وهواء مع بعض. الماء الكتير جدًا بيغطي البذرة ويمنع عنها الهواء، فممكن تعفن.", step: 4},
+    soilfood:  {idea: "البذرة بتاخد غذاء الإنبات من التربة أو من الماء.", correct: "البذرة بتاخد غذاء الإنبات من الغذاء المخزن جواها (في الفلقتين في الفول). الماء بيساعدها تستخدمه.", step: 0},
+    dead:      {idea: "البذرة الناشفة ميتة.", correct: "البذرة الناشفة حية بس «نايمة». لما تلاقي الماء والهواء والحرارة المناسبة تبدأ تنمو.", step: 0},
+    skip:      {idea: "البذرة يطلع لها ورق أخضر على طول.", correct: "الإنبات بيحصل على مراحل: البذرة تمتص الماء وتنتفخ، وبعدين يطلع الجذير، وبعدين الريشة والأوراق.", step: 3}
+  },
+  questions: {
+    c1: {skill: "concept", stem: "إيه أول حاجة بتحصل لحباية الفول لما نحطها على قطنة مبلولة؟",
+      options: [{t: "تمتص الماء وتنتفخ", ok: true}, {t: "يطلع لها ورق أخضر على طول", m: "skip"}, {t: "يصغر حجمها وتنشف", m: ""}, {t: "مش هيحصل لها حاجة لأنها ميتة", m: "dead"}],
+      hints: ["افتكر الفول اللي بيتنقع قبل التدميس: شكله بيبقى عامل إزاي الصبح؟", "قبل ما أي جزء يطلع من البذرة، لازم الماء يدخلها الأول."],
+      explain: "البذرة بتمتص الماء الأول فتنتفخ وتلين، وبعدين تبدأ تنمو.", twin: "c1b"},
+    c1b: {skill: "concept", stem: "حطّينا حباية فول في ماء ليلة كاملة. الصبح هنلاقيها:",
+      options: [{t: "أكبر وأطرى من الأول", ok: true}, {t: "أصغر وأنشف", m: ""}, {t: "طلع لها ورقتين خضر", m: "skip"}, {t: "زي ما هي بالظبط", m: "dead"}],
+      hints: ["الماء راح فين؟", "البذرة امتصت الماء، فحجمها اتغير إزاي؟"],
+      explain: "امتصت الماء فكبر حجمها ولانت. دي أول خطوة في الإنبات."},
+    i1: {skill: "interpret", stem: "في المحاكاة، الفول اللي على القطن الناشف ما نبتش، واللي على القطن المبلول نبت. النتيجة دي بتدل على إيه؟",
+      options: [{t: "البذور محتاجة ماء علشان تنبت", ok: true}, {t: "البذور محتاجة تربة علشان تنبت", m: "soil"}, {t: "البذور محتاجة ضوء علشان تنبت", m: "light"}, {t: "القطن الناشف كان قليل", m: ""}],
+      hints: ["الكوبين كان فيهم قطن، ومفيش فيهم تربة. إيه الفرق الوحيد بينهم؟", "الفرق الوحيد: كوب فيه ماء وكوب مفيهوش."],
+      explain: "لما نغيّر حاجة واحدة بس (الماء) والنتيجة تتغير، نعرف إن الحاجة دي مهمة للإنبات.", twin: "i1b"},
+    i1b: {skill: "interpret", stem: "علي حط بذور على قطن ناشف وبذور على قطن مبلول، وكل حاجة تانية زي بعض. اللي على المبلول بس نبتت. السبب هو:",
+      options: [{t: "وجود الماء", ok: true}, {t: "وجود التربة", m: "soil"}, {t: "وجود الضوء", m: "light"}, {t: "نوع القطن", m: ""}],
+      hints: ["قال إن كل حاجة تانية زي بعض.", "يعني الفرق الوحيد هو الماء."],
+      explain: "الفرق الوحيد كان الماء، فهو السبب في الإنبات هنا."},
+    i2: {skill: "infer", stem: "الفول اللي كان غرقان خالص في الماء ما نبتش كويس، مع إن عنده ماء كتير. نستنتج إيه؟",
+      options: [{t: "البذرة محتاجة هواء كمان، والماء الكتير بيمنع عنها الهواء", ok: true}, {t: "كل ما الماء يزيد، البذرة تنبت أسرع", m: "morewater"}, {t: "الماء بيضر البذور دايمًا", m: ""}, {t: "البذرة كانت محتاجة شمس", m: "light"}],
+      hints: ["الكوب المبلول كان فيه ماء وهواء. الكوب الغرقان كان فيه إيه بس؟", "البذرة الغرقانة مش لاقية تتنفس."],
+      explain: "الإنبات محتاج ماء وهواء مع بعض. الماء الكتير جدًا بيغطي البذرة ويمنع الهواء.", twin: "i2b"},
+    i2b: {skill: "infer", stem: "منى روت أصيص بذور ماء كتير كل يوم لحد ما الطين بقى غرقان. البذور ما نبتتش وريحتها بقت وحشة. ليه غالبًا؟",
+      options: [{t: "الماء الزيادة منع الهواء عن البذور فعفنت", ok: true}, {t: "الماء كان قليل", m: ""}, {t: "البذور كانت محتاجة ماء أكتر", m: "morewater"}, {t: "البذور كانت محتاجة ضوء أكتر", m: "light"}],
+      hints: ["الطين كان غرقان، يعني الماء كتير ولا قليل؟", "افتكر الكوب الغرقان في المحاكاة."],
+      explain: "زيادة الماء منعت الهواء، فالبذور ما قدرتش تنبت وعفنت."},
+    a1: {skill: "apply", stem: "فلاح عايز يزرع بذور قمح في أرض ناشفة جدًا. تنصحه بإيه علشان البذور تنبت؟",
+      options: [{t: "يروي الأرض بكمية مناسبة تخليها رطبة", ok: true}, {t: "يغرق الأرض بالماء ويسيبها غرقانة أيام", m: "morewater"}, {t: "يسيب البذور في الشمس من غير ماء", m: "light"}, {t: "مش محتاج يعمل حاجة، البذور هتنبت لوحدها", m: "dead"}],
+      hints: ["البذور محتاجة ماء، بس محتاجة كمان حاجة تانية الماء الكتير بيمنعها.", "رطبة يعني فيها ماء وهواء مع بعض."],
+      explain: "الري المناسب بيدّي البذور الماء ويسيب الهواء يوصلها.", twin: "a1b"},
+    a1b: {skill: "apply", stem: "عايز تنبّت بذور عدس في البيت لمشروع المدرسة. تعمل إيه؟",
+      options: [{t: "تحطها على قطنة مبلولة وتبلها كل يوم من غير ما تغرقها", ok: true}, {t: "تحطها في كوب مليان ماء للآخر", m: "morewater"}, {t: "تحطها ناشفة في الشمس", m: "light"}, {t: "تحطها في الفريزر", m: ""}],
+      hints: ["محتاجين ماء وهواء وحرارة مناسبة.", "الفريزر برد جدًا، والكوب المليان مفيهوش هواء."],
+      explain: "قطنة مبلولة في مكان مناسب فيها ماء وهواء وحرارة مناسبة."},
+    q1: {skill: "concept", stem: "الجزء اللي بيطلع الأول من البذرة وقت الإنبات هو:",
+      options: [{t: "الجذير", ok: true}, {t: "الريشة", m: "skip"}, {t: "الورقة", m: "skip"}, {t: "الزهرة", m: "skip"}],
+      hints: ["الجزء ده بيتجه لتحت.", "اسمه قريب من كلمة «جذر»."],
+      explain: "الجذير بيطلع الأول ويتجه لتحت، وبعده الريشة."},
+    q2: {skill: "concept", stem: "البذرة بتاخد الغذاء اللي محتاجاه وقت الإنبات من:",
+      options: [{t: "الغذاء المخزن جواها", ok: true}, {t: "التربة", m: "soilfood"}, {t: "ضوء الشمس", m: "light"}, {t: "الماء بس", m: "soilfood"}],
+      hints: ["الفول نبت على قطن من غير تربة. جاب أكله منين؟", "افتكر الفلقتين في حباية الفول."],
+      explain: "الغذاء المخزن في البذرة (في الفلقتين في الفول) هو اللي بيغذّي الجنين وقت الإنبات."},
+    q3: {skill: "interpret", stem: "سارة حطت بذور على قطن مبلول في دولاب ضلمة، وبذور على قطن مبلول جنب الشباك. الاتنين نبتوا. النتيجة دي بتقول إيه؟",
+      options: [{t: "الضوء مش شرط لإنبات البذور دي", ok: true}, {t: "الضوء ضروري للإنبات", m: "light"}, {t: "الدولاب كان فيه تربة", m: "soil"}, {t: "النتيجة أكيد غلط", m: ""}],
+      hints: ["البذور اللي في الضلمة نبتت ولا لأ؟", "لو نبتت من غير ضوء، يبقى الضوء كان لازم ولا مش لازم؟"],
+      explain: "البذور نبتت في الضلمة، يعني الضوء مش شرط لإنباتها."},
+    q4: {skill: "apply", stem: "عندك بذور عايز تحفظها شهور من غير ما تنبت. أحسن مكان:",
+      options: [{t: "برطمان ناشف في مكان ناشف", ok: true}, {t: "كوب ماء", m: "morewater"}, {t: "قطنة مبلولة", m: ""}, {t: "جنب حوض المطبخ وهو مبلول", m: ""}],
+      hints: ["علشان البذرة ما تنبتش، نمنع عنها إيه؟", "زي كيس الفول اللي في المطبخ."],
+      explain: "من غير ماء البذرة ما تنبتش، فالمكان الناشف بيحفظها."},
+    q5: {skill: "infer", stem: "حطّينا بذرتين على قطن مبلول: واحدة في التلاجة (برد جدًا) وواحدة في أوضة دافية. اللي في الأوضة نبتت أسرع. نستنتج إيه؟",
+      options: [{t: "درجة الحرارة المناسبة مهمة للإنبات زي الماء", ok: true}, {t: "البرد بيسرّع الإنبات", m: ""}, {t: "التلاجة مفيهاش ماء", m: ""}, {t: "البذرة اللي في الأوضة كانت في تربة", m: "soil"}],
+      hints: ["الاتنين كان عندهم ماء. إيه اللي كان مختلف؟", "الفرق بين التلاجة والأوضة هو درجة الحرارة."],
+      explain: "الماء موجود في الحالتين، والفرق كان الحرارة. يبقى الحرارة المناسبة كمان شرط للإنبات."}
+  },
+  badges: [
+    {id: "explorer", name: "مستكشف العلوم", desc: "شغّلت التجربة لآخرها وفسّرت نتيجتها صح.", color: "orange"},
+    {id: "concept", name: "خبير المفاهيم", desc: "أتقنت مهارة فهم المفهوم في أكتر من سؤال.", color: "blue"},
+    {id: "comeback", name: "بطل المحاولة", desc: "غلطت، فكّرت، وحليت سؤال شبيه صح.", color: "orange"},
+    {id: "detective", name: "محقق العلوم", desc: "خلصت رحلة درس كاملة وأتقنت مهارتين على الأقل فيه.", color: "blue"},
+    {id: "riddler", name: "حلّال الألغاز", desc: "حليت ٣ ألغاز علمية.", color: "orange"}
+  ],
+  riddles: [
+    {id: "r1", q: "أنا حواليك في كل مكان ومش بتشوفني. من غيري النار تطفى والكائنات ما تتنفسش. أنا مين؟", options: ["الهواء", "الماء", "الضوء", "التراب"], answer: 0, hint: "بتاخدني في كل نَفَس.", explain: "الهواء فيه غاز الأكسجين اللي الكائنات بتتنفسه، والنار محتاجاه علشان تفضل والعة."},
+    {id: "r2", q: "حطيت مكعب تلج في كوباية، وبعد شوية اختفى وفضل ماء. التلج راح فين؟", options: ["انصهر وبقى ماء", "اتبخر في الهوا على طول", "الكوباية شربته", "اختفى خالص"], answer: 0, hint: "التلج هو ماء في الحالة الصلبة.", explain: "التلج اكتسب حرارة فانصهر وتحوّل من الحالة الصلبة للحالة السائلة. نفس المادة، بس حالتها اتغيرت."},
+    {id: "r3", q: "ليه بنشوف البرق قبل ما نسمع صوت الرعد، مع إنهم بيحصلوا في نفس اللحظة؟", options: ["لأن الضوء أسرع من الصوت", "لأن الرعد بيحصل بعد البرق بساعة", "لأن ودانّا بطيئة", "لأن البرق أقرب لينا"], answer: 0, hint: "فكّر مين أسرع: الضوء ولا الصوت؟", explain: "الضوء بيتحرك أسرع بكتير جدًا من الصوت، فبيوصل لعينينا قبل ما الصوت يوصل لودانّا."},
+    {id: "r4", q: "أنهي حاجة من دول المغناطيس يشدها؟", options: ["مسمار حديد", "ورقة", "قلم خشب", "ملعقة بلاستيك"], answer: 0, hint: "المغناطيس بيشد بعض المعادن.", explain: "المغناطيس بيجذب الحديد وبعض المعادن التانية، لكن مش بيجذب الورق والخشب والبلاستيك."},
+    {id: "r5", q: "النبات الأخضر بيعمل أكله بنفسه. محتاج إيه علشان يعمل كده؟", options: ["ضوء الشمس والماء وثاني أكسيد الكربون", "سكر من التربة", "لبن وعيش", "ضلمة وبرد"], answer: 0, hint: "العملية دي اسمها البناء الضوئي.", explain: "في البناء الضوئي النبات بيستخدم ضوء الشمس والماء وغاز ثاني أكسيد الكربون علشان يصنع غذاءه، ويطلّع أكسجين."},
+    {id: "r6", q: "ليه ضلّك بيبقى طويل الصبح بدري وقصير وقت الضهر؟", options: ["لأن مكان الشمس في السما بيتغير", "لأنك بتطول وتقصر", "لأن الضل بيتعب", "لأن الأرض بتقف الضهر"], answer: 0, hint: "الشمس الضهر بتبقى عالية فوق راسك.", explain: "لما الشمس تكون واطية قريب من الأفق بيطلع ضل طويل، ولما تكون عالية وقت الضهر بيطلع ضل قصير."}
+  ],
+  certificate: {teacher: ""},
+  discovery: {
+    title: "اكتشاف إضافي: بذرة عمرها 2000 سنة!",
+    text: "سنة 2005، علماء زرعوا بذرة نخلة بلح كانت محفوظة ناشفة حوالي 2000 سنة، والبذرة نبتت! الجفاف بيخلي البذرة «نايمة» مدة طويلة جدًا."
+  },
+  parentTips: [
+    "اسأل وما تجاوبش. لو قال إجابة غلط، قول: «تعالى نجرّب ونشوف» بدل «غلط».",
+    "اطلب منه يشرح لك بكلامه هو، كأنه المدرس.",
+    "امدح المحاولة والتفكير، مش السرعة.",
+    "لو اتلخبط، ارجعوا سوا لشرح «لسه مش فاهم» في الدرس."
+  ]
+};
+
+/* ================= التخزين ================= */
+var KEY_CONTENT = "moallem.content.v1", KEY_DB = "fadaa.students.v1", KEY_OLD = "moallem.state.v1", KEY_PIN = "fadaa.teacher.v1";
+function load(k){ try { var r = localStorage.getItem(k); return r ? JSON.parse(r) : null; } catch(e){ return null; } }
+function store(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch(e){ return false; } }
+function drop(k){ try { localStorage.removeItem(k); } catch(e){} }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function now(){ return Date.now(); }
+var DAY = 864e5;
+
+/* نقل محتوى النسخة الأولى (درس واحد) لشكل الدروس المتعددة */
+function migrateContent(c){
+  if (!c || c.lessons || !c.lesson) return c;
+  var l = c.lesson, meta = c.meta || {};
+  l.published = true; l.reviewed = !!meta.reviewed; l.curriculumVerified = !!meta.curriculumVerified; l.curriculumSource = meta.curriculumSource || "";
+  l.videoTimes = {};
+  for (var k in (c.misconceptions || {})) { var vt = c.misconceptions[k].videoTime; if (vt !== "" && vt != null) l.videoTimes[k] = vt; delete c.misconceptions[k].videoTime; }
+  l.parentQuestions = (c.parent && c.parent.questions) || [];
+  c.parentTips = (c.parent && c.parent.tips) || DEFAULT_CONTENT.parentTips;
+  c.lessons = [l]; delete c.lesson; delete c.meta; delete c.parent; c.version = 2;
+  return c;
+}
+var stored = migrateContent(load(KEY_CONTENT));
+var C = stored && contentErrors(stored).length === 0 ? stored : clone(DEFAULT_CONTENT);
+/* المحتوى المحفوظ من نسخة أقدم ياخد الإضافات الجديدة */
+(function(){
+  if (!C.riddles) C.riddles = clone(DEFAULT_CONTENT.riddles);
+  if (!C.certificate) C.certificate = {teacher: ""};
+  if (!C.badges.some(function(b){ return b.id === "riddler"; })) C.badges.push(clone(DEFAULT_CONTENT.badges.filter(function(b){ return b.id === "riddler"; })[0]));
+  C.lessons.forEach(function(l){ if (!l.flashcards) l.flashcards = l.id === SEED_LESSON.id ? clone(SEED_LESSON.flashcards) : []; });
+})();
+
+function freshProgress(){ return {stage: 0, done: [], explore: null, predict: null, simDay: 0, simDone: false, quizIdx: 0, quizDone: false, alt: 0, last: now()}; }
+function newStudent(name, avatarIdx, grade){
+  return {id: "s" + now().toString(36) + Math.floor(Math.random()*1e4).toString(36), name: name, avatar: avatarIdx, grade: grade, created: now(), last: now(), sound: true,
+    lastLesson: null, progress: {}, evidence: [], misc: {}, review: {}, badges: [], discovery: false, lastSeen: {},
+    classCode: "", consent: false, consentAt: null, syncDirty: false, syncedAt: null, syncError: "", riddles: {}};
+}
+var DB = load(KEY_DB);
+if (!DB || !DB.list) DB = {active: null, list: []};
+/* تقدم النسخة الأولى (قبل الأسماء) يتنقل لطالب باسم مؤقت */
+(function(){
+  var old = load(KEY_OLD);
+  if (!old || DB.list.length) return;
+  var st = newStudent("طالب", 0, old.grade || "5");
+  ["evidence","misc","review","badges","discovery","lastSeen"].forEach(function(k){ if (old[k] != null) st[k] = old[k]; });
+  st.evidence.forEach(function(e){ e.lesson = SEED_LESSON.id; });
+  for (var q in st.review) st.review[q].lesson = SEED_LESSON.id;
+  var pg = freshProgress(); ["stage","done","explore","predict","simDay","simDone","quizIdx","quizDone","alt"].forEach(function(k){ if (old[k] != null) pg[k] = old[k]; });
+  st.progress[SEED_LESSON.id] = pg; st.lastLesson = SEED_LESSON.id;
+  DB.list.push(st); store(KEY_DB, DB); drop(KEY_OLD);
+})();
+var S = null;
+function save(){ if (S) S.last = now(); store(KEY_DB, DB); if (typeof queueSync === "function") queueSync(); }
+function setActive(id){ DB.active = id; S = DB.list.filter(function(s){ return s.id === id; })[0] || null; save(); renderMe(); }
+
+var view = "who", curLessonId = null, reviewSession = null, teacherTab = "lessons", teacherEdit = null, teacherOpen = false, viewStudentId = null;
+
+/* ================= أدوات ================= */
+var $app = document.getElementById("app"), $layer = document.getElementById("layer");
+function esc(t){ return String(t == null ? "" : t).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+/* نصوص الشرح فيها تنسيق بسيط (<b> و span.term)؛ نسمح بالوسوم دي بس */
+function rich(t){ return esc(t).replace(/&lt;(\/?)b&gt;/g, "<$1b>").replace(/&lt;span class=&quot;term&quot;&gt;/g, '<span class="term">').replace(/&lt;\/span&gt;/g, "</span>"); }
+function plain(t){ return String(t || "").replace(/<[^>]+>/g, ""); }
+var AR = "٠١٢٣٤٥٦٧٨٩";
+function n(x){ return String(x).replace(/[0-9]/g, function(d){ return AR[+d]; }); }
+var LET = ["أ","ب","ج","د","هـ","و"];
+function ytId(url){ var m = String(url||"").match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/); return m ? m[1] : null; }
+function inClaude(){ return /claude|anthropic/i.test(location.hostname); }
+function lessonById(id){ for (var i=0;i<C.lessons.length;i++) if (C.lessons[i].id === id) return C.lessons[i]; return null; }
+function L(){ return lessonById(curLessonId) || C.lessons[0]; }
+function G(lid){ lid = lid || L().id; if (!S.progress[lid]) S.progress[lid] = freshProgress(); return S.progress[lid]; }
+function gradeName(id){ for (var i=0;i<C.grades.length;i++) if (C.grades[i].id === id) return C.grades[i].name; return "الصف " + id; }
+function ago(t){ var d = Math.floor((now() - t) / DAY); return d <= 0 ? "النهارده" : d === 1 ? "إمبارح" : "من " + n(d) + " أيام"; }
+var toastT;
+function toast(t){ var el = document.getElementById("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function(){ el.classList.remove("show"); }, 2600); }
+function lessonQuestionIds(l){ var ids = [l.explanation.checkQuestion].concat(l.interpretQuestions || [], l.applyQuestions || [], l.quiz || []); var out = []; ids.forEach(function(id){ if (out.indexOf(id) < 0) out.push(id); var q = C.questions[id]; if (q && q.twin && out.indexOf(q.twin) < 0) out.push(q.twin); }); return out; }
+function sized(svg, w){ return svg.replace('<svg ', '<svg style="width:' + w + 'px" '); }
+
+function contentErrors(c){
+  var errs = [];
+  if (!c || typeof c !== "object") return ["المحتوى لازم يكون كائن JSON."];
+  ["lessons","questions","skills","misconceptions","badges","grades"].forEach(function(k){ if (!c[k]) errs.push("ناقص الجزء: " + k); });
+  if (errs.length) return errs;
+  if (!c.lessons.length) errs.push("لازم يكون فيه درس واحد على الأقل.");
+  var seen = {};
+  c.lessons.forEach(function(l, li){
+    var nm = "الدرس «" + (l.title || li) + "»";
+    if (!l.id || seen[l.id]) errs.push(nm + ": رقم الدرس (id) فاضي أو مكرر"); seen[l.id] = 1;
+    if (!l.title) errs.push(nm + ": ناقص العنوان");
+    if (!c.grades.some(function(g){ return g.id === l.grade; })) errs.push(nm + ": الصف غير معروف");
+    var ids = [];
+    try { ids = [l.explanation.checkQuestion].concat(l.interpretQuestions||[], l.applyQuestions||[], l.quiz||[], l.recallQuestions||[]); } catch(e){ errs.push(nm + ": ناقص explanation.checkQuestion"); }
+    if (!l.explanation || !l.explanation.steps || !l.explanation.steps.length) errs.push(nm + ": ناقص خطوات الشرح");
+    if (!l.phenomenon || !l.prediction) errs.push(nm + ": ناقص phenomenon أو prediction");
+    ids.forEach(function(id){
+      var q = c.questions[id];
+      if (!q) { errs.push(nm + ": السؤال " + id + " مش موجود في questions"); return; }
+      if (!q.options || q.options.length < 2) errs.push("السؤال " + id + " محتاج خيارين على الأقل");
+      else if (!q.options.some(function(o){ return o.ok; })) errs.push("السؤال " + id + " مفيهوش إجابة صح (ok: true)");
+      if (q.twin && !c.questions[q.twin]) errs.push("السؤال الشبيه " + q.twin + " مش موجود");
+      if (!c.skills.some(function(s){ return s.id === q.skill; })) errs.push("مهارة السؤال " + id + " غير معروفة: " + q.skill);
+      (q.options||[]).forEach(function(o){ if (o.m && !c.misconceptions[o.m]) errs.push("تصور خاطئ غير معروف في " + id + ": " + o.m); });
+    });
+  });
+  return errs;
+}
+function saveContent(){ return store(KEY_CONTENT, C); }
+
+/* ================= الصور الرمزية ================= */
+var AV = [
+  {n: "صاروخ", c: "#f08a2e", d: '<path d="M32 11c7 6 9.5 15 7.3 24.5L32 42l-7.3-6.5C22.5 26 25 17 32 11z" fill="#fff8f2"/><circle cx="32" cy="25" r="4.2" fill="#0b5cc9"/><path d="M25 34l-6 9 7.5-2.5M39 34l6 9-7.5-2.5" fill="#1d2a42"/><path d="M28.5 44l3.5 9 3.5-9z" fill="#fff4c9"/>'},
+  {n: "كوكب", c: "#f07f55", d: '<circle cx="32" cy="32" r="12" fill="#fff4c9"/><ellipse cx="32" cy="33" rx="21" ry="6.5" fill="none" stroke="#1d2a42" stroke-width="3" transform="rotate(-20 32 33)"/>'},
+  {n: "نجمة", c: "#0b5cc9", d: '<path d="M32 12l5.8 11.8 13 1.9-9.4 9.2 2.2 12.9L32 41.7l-11.6 6.1 2.2-12.9-9.4-9.2 13-1.9z" fill="#fff4c9"/>'},
+  {n: "قمر", c: "#2c3e5c", d: '<path d="M38 13a19 19 0 1 0 13 31A16 16 0 0 1 38 13z" fill="#fff4c9"/><circle cx="20" cy="18" r="1.6" fill="#fff4c9"/><circle cx="48" cy="16" r="1.2" fill="#fff4c9"/>'},
+  {n: "ذرة", c: "#08479c", d: '<g fill="none" stroke="#fff8f2" stroke-width="2.6"><ellipse cx="32" cy="32" rx="19" ry="7"/><ellipse cx="32" cy="32" rx="19" ry="7" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="19" ry="7" transform="rotate(-60 32 32)"/></g><circle cx="32" cy="32" r="4.5" fill="#f08a2e"/>'},
+  {n: "لمبة", c: "#1d2a42", d: '<path d="M32 12a13 13 0 0 0-7.6 23.6c1.2 1 2 2.4 2 4V42h11.2v-2.4c0-1.6.8-3 2-4A13 13 0 0 0 32 12z" fill="#f08a2e"/><rect x="26.4" y="44" width="11.2" height="4" rx="2" fill="#8a9bb8"/><rect x="28.5" y="49.5" width="7" height="3.5" rx="1.75" fill="#8a9bb8"/>'}
+];
+function avatar(i){ var a = AV[(+i || 0) % AV.length]; return '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="' + a.c + '"/>' + a.d + '</svg>'; }
+
+/* ================= نوّور: الشخصية المرشدة ================= */
+var RAY = [200, 235, 270, 305, 340];
+function mascot(mood, extra){
+  var ink = "#1f2633", cx = 50, cy = 46, long = mood === "cheer" ? 50 : 45;
+  var rays = '<g class="rays">' + RAY.map(function(a){ var r = a*Math.PI/180; return '<line x1="' + (cx+38*Math.cos(r)).toFixed(1) + '" y1="' + (cy+38*Math.sin(r)).toFixed(1) + '" x2="' + (cx+long*Math.cos(r)).toFixed(1) + '" y2="' + (cy+long*Math.sin(r)).toFixed(1) + '" stroke="#f08a2e" stroke-width="5" stroke-linecap="round"/>'; }).join("") + '</g>';
+  var eyes = '<ellipse cx="40" cy="44" rx="4" ry="5" fill="' + ink + '"/><ellipse cx="60" cy="44" rx="4" ry="5" fill="' + ink + '"/><circle cx="41.4" cy="42.2" r="1.4" fill="#fff"/><circle cx="61.4" cy="42.2" r="1.4" fill="#fff"/>';
+  var face;
+  if (mood === "think") face = eyes.replace(/cy="44"/g, 'cy="42"').replace(/cy="42.2"/g, 'cy="40"') + '<path d="M44 59q5-3 11 0" stroke="' + ink + '" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M33 33l9-2M58 31l9 2" stroke="' + ink + '" stroke-width="2.6" stroke-linecap="round"/>';
+  else if (mood === "cheer") face = '<path d="M35 46q5-7 10 0M55 46q5-7 10 0" stroke="' + ink + '" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M38 55q12 15 24 0z" fill="' + ink + '"/><path d="M44 61q6 3 12 0" stroke="#f07f55" stroke-width="3" fill="none" stroke-linecap="round"/>';
+  else face = eyes + '<path d="M40 56q10 9 20 0" stroke="' + ink + '" stroke-width="3.2" fill="none" stroke-linecap="round"/>';
+  return '<svg class="mascot' + (extra ? " " + extra : "") + '" viewBox="-6 -10 112 126" aria-hidden="true">' + rays +
+    '<path d="M50 14a32 32 0 0 0-18.4 58.2c3 2.3 4.9 5.8 4.9 9.5V86h27v-4.3c0-3.7 1.9-7.2 4.9-9.5A32 32 0 0 0 50 14z" fill="#f08a2e"/>' +
+    '<path d="M31 36a20 20 0 0 1 13-13" stroke="#fff" stroke-width="4" opacity=".65" fill="none" stroke-linecap="round"/>' +
+    '<circle cx="32" cy="54" r="4.6" fill="#f07f55" opacity=".7"/><circle cx="68" cy="54" r="4.6" fill="#f07f55" opacity=".7"/>' + face +
+    '<rect x="36" y="88" width="28" height="7" rx="3.5" fill="#5b6f92"/><rect x="39" y="97" width="22" height="7" rx="3.5" fill="#5b6f92"/><rect x="45" y="106" width="10" height="5" rx="2.5" fill="#5b6f92"/></svg>';
+}
+function talk(cls, mood, inner, extra){ return '<div class="box talk ' + cls + '">' + mascot(mood, extra) + '<div>' + inner + '</div></div>'; }
+function cheer(){ var name = S ? S.name : ""; var c = ["نوّرت يا " + name + "!", "الفكرة ولّعت!", "برافو عليك يا " + name + "!", "فهمتها صح!"]; return c[Math.floor(Math.random()*c.length)]; }
+
+/* ================= الأصوات (هادية، وتتقفل من زرار السماعة) ================= */
+var actx = null;
+function tone(freqs, dur, gap){
+  if (!S || !S.sound) return;
+  try {
+    if (!actx) { var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; actx = new AC(); }
+    var t0 = actx.currentTime;
+    freqs.forEach(function(f, i){
+      var o = actx.createOscillator(), g = actx.createGain(), t = t0 + i * (gap || 0.11), d = dur || 0.22;
+      o.type = "sine"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.07, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t + d + 0.02);
+    });
+  } catch(e){}
+}
+var SND = {ok: function(){ tone([784, 1047]); }, hint: function(){ tone([440], 0.18); }, reward: function(){ tone([523, 659, 784, 1047], 0.28, 0.12); }};
+
+/* ================= القراءة بصوت ================= */
+var SPK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+var SPK_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function sayBtn(text){ return '<button type="button" class="say" data-say="' + esc(plain(text)) + '">' + SPK + 'اسمعني</button>'; }
+var speakingBtn = null;
+function stopSpeak(){ try { if ("speechSynthesis" in window) window.speechSynthesis.cancel(); } catch(e){} if (speakingBtn) speakingBtn.classList.remove("on"); speakingBtn = null; }
+document.addEventListener("click", function(ev){
+  var b = ev.target.closest ? ev.target.closest("[data-say]") : null;
+  if (!b) return;
+  if (!("speechSynthesis" in window)) { toast("القراءة بصوت مش متاحة في المتصفح ده."); return; }
+  if (speakingBtn === b) { stopSpeak(); return; }
+  stopSpeak();
+  var voices = window.speechSynthesis.getVoices() || [];
+  var ar = voices.filter(function(x){ return /^ar/i.test(x.lang); });
+  if (voices.length && !ar.length) { toast("الجهاز ده مفيهوش صوت عربي للقراءة."); return; }
+  var u = new SpeechSynthesisUtterance(b.getAttribute("data-say"));
+  u.lang = "ar-EG"; u.rate = 0.9;
+  if (ar.length) u.voice = ar.filter(function(x){ return /EG/i.test(x.lang); })[0] || ar[0];
+  u.onend = u.onerror = function(){ if (speakingBtn === b) { b.classList.remove("on"); speakingBtn = null; } };
+  speakingBtn = b; b.classList.add("on");
+  window.speechSynthesis.speak(u);
+});
+try { if ("speechSynthesis" in window) window.speechSynthesis.getVoices(); } catch(e){}
+
+/* ================= الأدلة والمهارات ================= */
+function addEvidence(qid, score, ctx, lid){
+  var q = C.questions[qid]; if (!q || !S) return;
+  var t = now();
+  S.evidence.push({q: qid, skill: q.skill, score: score, t: t, ctx: ctx, lesson: lid});
+  if (ctx === "review" && S.lastSeen[qid] && t - S.lastSeen[qid] >= 20*3600*1000) S.evidence.push({q: qid, skill: "recall", score: score, t: t, ctx: "recall", lesson: lid});
+  S.lastSeen[qid] = t;
+}
+function skillStatus(id, st, lid){
+  st = st || S;
+  var ev = st.evidence.filter(function(e){ return e.skill === id && (!lid || e.lesson === lid); });
+  var cnt = ev.length, avg = cnt ? ev.reduce(function(a,e){ return a + e.score; }, 0) / cnt : 0;
+  var r;
+  if (cnt < 2) r = {k: "few", label: id === "recall" ? "هتتقاس في المراجعة بعد يوم" : "لسه محتاجين أدلة أكتر", cls: ""};
+  else if (avg >= 0.75) r = {k: "mastered", label: "أتقنتها", cls: "ok"};
+  else if (avg >= 0.45) r = {k: "growing", label: "في الطريق", cls: "info"};
+  else r = {k: "practice", label: "محتاجة تدريب كمان", cls: "go"};
+  r.count = cnt; r.avg = avg; return r;
+}
+function countMastered(st, lid){ return C.skills.filter(function(s){ return skillStatus(s.id, st, lid).k === "mastered"; }).length; }
+function schedule(qid, delayDays, isRecall, lid){
+  var r = S.review[qid];
+  if (r && !isRecall) { r.step = 0; r.due = now() + DAY; return; }
+  if (r && isRecall) return;
+  S.review[qid] = {step: 0, due: now() + delayDays*DAY, recall: !!isRecall, lesson: lid};
+}
+function dueList(){ var t = now(), out = []; if (!S) return out; for (var id in S.review) if (S.review[id].due <= t && C.questions[id]) out.push(id); return out; }
+function reviewAnswered(qid, score){
+  var r = S.review[qid]; if (!r) return;
+  var gaps = [3, 7];
+  if (score === 1) { if (r.step >= gaps.length) { delete S.review[qid]; return; } r.due = now() + gaps[r.step]*DAY; r.step++; }
+  else { r.step = 0; r.due = now() + DAY; }
+}
+
+/* ================= المكافآت ================= */
+function hasBadge(id, st){ return (st || S).badges.indexOf(id) >= 0; }
+function badgeById(id){ for (var i=0;i<C.badges.length;i++) if (C.badges[i].id===id) return C.badges[i]; return null; }
+function award(id){
+  if (hasBadge(id) || !badgeById(id)) return;
+  S.badges.push(id); save(); SND.reward();
+  var b = badgeById(id), extra = "";
+  if (!S.discovery && (id === "concept" || id === "detective")) {
+    S.discovery = true; save();
+    extra = '<div class="box hint" style="text-align:right"><span class="h">' + esc(C.discovery.title) + '</span><p>' + esc(C.discovery.text) + '</p></div>';
+  }
+  $layer.innerHTML = '<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="rw-t"><div class="reward"><div class="row" style="justify-content:center">' + mascot("cheer", "glow") + badgeSVG(b) + '</div>' +
+    '<p class="eyebrow">مكافأة على الإتقان</p><h2 id="rw-t">' + esc(b.name) + '</h2><p>' + esc(b.desc) + '</p><p class="muted small">نوّور فخور بيك يا ' + esc(S.name) + '.</p>' + extra +
+    '<button class="btn" type="button" id="rw-ok">كمّل</button></div></div>';
+  var ok = document.getElementById("rw-ok"); ok.focus();
+  ok.onclick = function(){ $layer.innerHTML = ""; };
+}
+function checkBadges(){
+  if (!S) return;
+  if (skillStatus("concept").k === "mastered") award("concept");
+  for (var lid in S.progress) if (S.progress[lid].done.length >= 7 && countMastered(S, lid) >= 2) { award("detective"); break; }
+}
+function badgeSVG(b, locked){
+  var c = b.color === "blue" ? "var(--blue)" : "var(--orange)";
+  return '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="28" r="22" fill="' + (locked ? "var(--surface-2)" : c) + '"/>' +
+    '<path d="M22 46l-4 14 14-6 14 6-4-14" fill="' + (locked ? "var(--line)" : "var(--blue-soft)") + '"/>' +
+    '<path d="M32 15a9 9 0 0 0-5.3 16.3c.8.6 1.3 1.6 1.3 2.6V36h8v-2.1c0-1 .5-2 1.3-2.6A9 9 0 0 0 32 15z" fill="' + (locked ? "var(--line)" : "var(--surface)") + '"/>' +
+    '<rect x="28" y="37.5" width="8" height="3" rx="1.5" fill="' + (locked ? "var(--line)" : "var(--surface)") + '"/></svg>';
+}
+
+/* ================= الترحيب: يظهر مع كل فتح للتطبيق ================= */
+var ONB = [
+  {mood: "happy", html: '<p class="eyebrow">أهلًا بيك في</p><h1><span class="o">فضاء</span> العلوم</h1><p>أنا <b>نوّور</b>، لمبة بتنوّر لما الفكرة توصل. هنا مش بنحفظ الإجابة وبس، إحنا بنفهم <b>ليه</b>.</p>'},
+  {mood: "think", html: '<p class="eyebrow">كل درس رحلة</p><h1>رحلة محقق العلوم</h1><p>هنلف على ٧ كواكب مع بعض:</p><div class="planets">' +
+    ["لاحِظ","توقّع","افهم","جرّب","فسّر","طبّق","أتقِن"].map(function(t, i){ return '<span class="planet"><i>' + "١٢٣٤٥٦٧"[i] + '</i>' + t + '</span>'; }).join("") + '</div>'},
+  {mood: "cheer", html: '<p class="eyebrow">اتفقنا؟</p><h1>الغلط أول خطوة للفهم</h1><p>لو غلطت، هديك تلميح ونكتشف تفكيرك سوا. والشارات بتيجي لما تفهم وتتحسن، مش لما تفتح التطبيق.</p>'}
+];
+function showOnboarding(){
+  var host = document.getElementById("onb"), i = 0;
+  document.body.style.overflow = "hidden";
+  function close(){ host.innerHTML = ""; document.body.style.overflow = ""; go("who"); }
+  function draw(){
+    var last = i === ONB.length - 1;
+    host.innerHTML = '<div class="onb space" role="dialog" aria-modal="true" aria-label="مرحبًا في فضاء العلوم">' +
+      '<div class="onb-top"><span class="onb-brand">فضاء العلوم</span>' + (last ? "<span></span>" : '<button type="button" class="onb-skip" id="onb-skip">تخطّي</button>') + '</div>' +
+      '<div class="onb-slide" aria-live="polite">' + mascot(ONB[i].mood, "bob" + (last ? " glow" : "")) + ONB[i].html + '</div>' +
+      '<div class="onb-foot"><div class="dots" aria-label="صفحة ' + (i+1) + ' من ' + ONB.length + '">' + ONB.map(function(_, k){ return '<i class="' + (k === i ? "on" : "") + '"></i>'; }).join("") + '</div>' +
+      '<div class="row">' + (i > 0 ? '<button type="button" class="btn ghost" id="onb-prev">رجوع</button>' : "") +
+      '<button type="button" class="btn" id="onb-next">' + (last ? "يلا نبدأ" : "التالي") + '</button></div></div></div>';
+    document.getElementById("onb-next").onclick = function(){ if (last) close(); else { i++; draw(); } };
+    var pv = document.getElementById("onb-prev"); if (pv) pv.onclick = function(){ i--; draw(); };
+    var sk = document.getElementById("onb-skip"); if (sk) sk.onclick = close;
+    document.getElementById("onb-next").focus();
+  }
+  draw();
+}
+
+/* ================= سؤال مع «اكشف تفكيرك» ================= */
+/* opts: {ctx, onDone(score), allowTwin, lid} */
+function mountQuestion(host, qid, opts){
+  opts = opts || {};
+  var lid = opts.lid || L().id;
+  var q = C.questions[qid], tries = 0, finished = false, lastWrongM = null;
+  host.innerHTML = '<div class="q"><p class="stem">' + esc(q.stem) + ' ' + sayBtn(q.stem + "، " + q.options.map(function(o, k){ return LET[k] + "، " + o.t; }).join("، ")) + '</p><div class="opts" role="group" aria-label="الاختيارات">' +
+    q.options.map(function(o, i){ return '<button type="button" class="opt" data-i="' + i + '"><span class="l">' + LET[i] + '</span><span>' + esc(o.t) + '</span></button>'; }).join("") +
+    '</div><div class="fb" aria-live="polite"></div><div class="twin"></div></div>';
+  var fb = host.querySelector(".fb"), twinHost = host.querySelector(".twin");
+  var btns = host.querySelectorAll(".opt");
+  Array.prototype.forEach.call(btns, function(b){ b.onclick = function(){ pick(+b.getAttribute("data-i"), b); }; });
+
+  function lock(){ Array.prototype.forEach.call(btns, function(b){ b.disabled = true; if (q.options[+b.getAttribute("data-i")].ok) b.classList.add("right"); }); }
+  function pick(i, b){
+    if (finished) return;
+    stopSpeak();
+    var o = q.options[i];
+    if (o.ok) {
+      finished = true; lock(); SND.ok();
+      finish(tries === 0 ? 1 : (tries === 1 ? 0.5 : 0), tries === 0 ? cheer() : "برافو! فكّرت تاني ووصلت.");
+      return;
+    }
+    tries++;
+    b.classList.add("wrong"); b.disabled = true;
+    if (o.m) { lastWrongM = o.m; S.misc[o.m] = (S.misc[o.m] || 0) + 1; save(); }
+    if (tries <= 2 && q.hints && q.hints[tries-1]) {
+      SND.hint();
+      fb.innerHTML = talk("hint", "think", '<span class="h">قرّبت! خد تلميح ' + n(tries) + ' وجرّب تاني</span><p>' + esc(q.hints[tries-1]) + '</p>');
+    } else { finished = true; lock(); finish(0, null, o); }
+  }
+  function finish(score, okText, wrongOpt){
+    addEvidence(qid, score, opts.ctx || "lesson", lid);
+    if (score < 1 && opts.ctx !== "review") schedule(qid, 1, false, lid);
+    save();
+    var html = okText
+      ? talk("good", "cheer", '<b class="h">' + esc(okText) + '</b><p>' + esc(q.explain) + '</p>', "glow")
+      : talk("good", "happy", '<b class="h">ولا يهمك، تعالى نفهمها سوا. الإجابة الصح: ' + esc(q.options.filter(function(o){return o.ok;})[0].t) + '</b><p>' + esc(q.explain) + '</p>');
+    /* «اكشف تفكيرك»: التصور المحتمل يظهر كفرضية، مش حكم */
+    var mid = wrongOpt && wrongOpt.m ? wrongOpt.m : lastWrongM;
+    if (score < 1 && mid && C.misconceptions[mid]) {
+      var mc = C.misconceptions[mid], les = lessonById(lid) || L();
+      var vid = ytId(les.video && les.video.url), tsec = parseInt((les.videoTimes || {})[mid], 10);
+      var link = (vid && tsec >= 0) ? ' <a href="https://www.youtube.com/watch?v=' + vid + '&t=' + tsec + 's" target="_blank" rel="noopener">شوف الجزء ده في الفيديو</a>' : "";
+      html += '<div class="box think"><span class="h">اكشف تفكيرك</span><p class="small muted">ده احتمال من إجابة واحدة، مش حكم عليك.</p><div class="vs"><div><div class="x">ممكن تكون فكّرت إن</div>' + esc(mc.idea) + '</div><div><div class="y">العلم بيقول</div>' + esc(mc.correct) + '</div></div>' +
+        '<p class="small"><button type="button" class="btn ghost sm" data-step="' + mc.step + '">ارجع لخطوة الشرح</button>' + link + '</p></div>';
+    }
+    fb.innerHTML = html;
+    var sb = fb.querySelector("[data-step]");
+    if (sb) sb.onclick = function(){ curLessonId = lid; var g = G(lid); g.stage = 2; g.highlight = +sb.getAttribute("data-step"); save(); go("lesson"); };
+    if (score < 1 && q.twin && opts.allowTwin !== false && C.questions[q.twin]) {
+      twinHost.innerHTML = '<div class="card" style="margin-top:8px;background:var(--surface-2)"><p class="eyebrow">سؤال شبيه نتأكد بيه</p><div class="tq"></div></div>';
+      mountQuestion(twinHost.querySelector(".tq"), q.twin, {ctx: "twin", allowTwin: false, lid: lid, onDone: function(s2){
+        if (s2 === 1) award("comeback");
+        if (opts.onDone) opts.onDone(score);
+      }});
+    } else if (opts.onDone) opts.onDone(score);
+    checkBadges();
+  }
+}
+
+/* ================= الربط مع جدول المعلمة (Google Sheets) ================= */
+/* رابط الجدول بيتحط هنا في نسخة GitHub Pages؛ المعلمة كمان تقدر تحطه من اللوحة على جهازها للتجربة */
+var SYNC_URL = "";
+var KEY_SYNC = "fadaa.sync.v1";
+function syncUrl(){ var o = load(KEY_SYNC); return (o && o.url) || SYNC_URL; }
+var SYNC_ERR = {bad_code: "كود الفصل مش صح. اسأل المعلمة عن الكود.", no_consent: "محتاجين موافقة ولي الأمر الأول.", bad_id: "فيه مشكلة في الحساب. كلّم المعلمة.", server: "الجدول مش راضي يستقبل دلوقتي. هنحاول تاني بعدين.", offline: "مفيش إنترنت دلوقتي. هنبعت لما النت يرجع."};
+function canSync(st){ return !!(st && syncUrl() && st.classCode && st.consent && st.syncError !== "bad_code" && st.syncError !== "no_consent"); }
+function syncPayload(st){
+  var pub = C.lessons.filter(function(l){ return l.published; });
+  var done = pub.filter(function(l){ return st.progress[l.id] && st.progress[l.id].quizDone; }).map(function(l){ return l.title; });
+  var cur = st.lastLesson && lessonById(st.lastLesson), g = cur ? st.progress[cur.id] : null;
+  var mastered = [], practice = [];
+  C.skills.forEach(function(s){ var r = skillStatus(s.id, st); if (r.k === "mastered") mastered.push(s.name); else if (r.k !== "few") practice.push(s.name); });
+  var ideas = Object.keys(st.misc).filter(function(k){ return st.misc[k] >= 2 && C.misconceptions[k]; }).map(function(k){ return C.misconceptions[k].idea; });
+  return {id: st.id, name: st.name, grade: gradeName(st.grade), classCode: st.classCode, consent: true, consentAt: st.consentAt || "",
+    lessonsDone: done.length + " من " + pub.length + (done.length ? ": " + done.join("، ") : ""), current: cur ? cur.title : "",
+    stage: g ? (g.quizDone ? "خلّص الدرس" : STAGES[Math.min(g.stage, 6)]) : "", mastered: mastered.join("، "), practice: practice.join("، "),
+    ideas: ideas.join(" | "), badges: st.badges.length, lastActive: new Date(st.last).toISOString()};
+}
+var syncTimer = null, syncBusy = false;
+function queueSync(){
+  if (!canSync(S)) return;
+  S.syncDirty = true;
+  clearTimeout(syncTimer);
+  var st = S; syncTimer = setTimeout(function(){ runSync(st); }, 3000);
+}
+function runSync(st, cb){
+  if (!canSync(st) || syncBusy) { if (cb) cb(false); return; }
+  if (navigator.onLine === false) { st.syncError = "offline"; store(KEY_DB, DB); if (cb) cb(false); return; }
+  syncBusy = true;
+  fetch(syncUrl(), {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(syncPayload(st))})
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      syncBusy = false;
+      if (res && res.ok) { st.syncDirty = false; st.syncedAt = now(); st.syncError = ""; } else st.syncError = (res && SYNC_ERR[res.error]) ? res.error : "server";
+      store(KEY_DB, DB); if (cb) cb(!!(res && res.ok));
+    })
+    .catch(function(){ syncBusy = false; st.syncError = "offline"; store(KEY_DB, DB); if (cb) cb(false); });
+}
+function syncAllDirty(){ DB.list.forEach(function(st){ if (st.syncDirty && canSync(st)) runSync(st); }); }
+window.addEventListener("online", syncAllDirty);
+function syncStatusText(st){
+  if (!st.classCode) return "";
+  if (st.syncError && st.syncError !== "offline") return SYNC_ERR[st.syncError] || SYNC_ERR.server;
+  if (st.syncDirty) return st.syncError === "offline" ? SYNC_ERR.offline : "فيه تقدم جديد هيتبعت للمعلمة بعد شوية.";
+  return st.syncedAt ? "المعلمة شايفة تقدمك. آخر إرسال: " + ago(st.syncedAt) + "." : "لسه ما اتبعتش حاجة.";
+}
+function validCode(c){ return /^[A-Za-z0-9]{4,12}$/.test(c); }
+
+/* ================= بلاطات الرئيسية ================= */
+var IC = {
+  cam: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+  send: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13l2 2 4-4"/></svg>',
+  puzzle: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>',
+  dl: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>'
+};
+function weekRiddle(){ var r = C.riddles || []; if (!r.length) return null; var wk = Math.floor((now() / DAY + 3) / 7); return r[wk % r.length]; }
+function homeTiles(){
+  var rd = weekRiddle(), solved = rd && S.riddles && S.riddles[rd.id];
+  return '<div class="tiles">' +
+    (rd ? '<button type="button" class="tile' + (solved ? " done" : "") + '" id="t-riddle"><span class="ic">' + IC.puzzle + '</span><span class="tt">لغز الأسبوع</span><span class="ts">' + (solved ? "حليته! استنى لغز الأسبوع الجاي" : "اختياري، ومن غير ما تخسر حاجة") + '</span></button>' : '') +
+    '<button type="button" class="tile" id="t-ask"><span class="ic">' + IC.cam + '</span><span class="tt">صوّر سؤال</span><span class="ts">نوّور يساعدك تفهمه</span></button>' +
+    '<button type="button" class="tile" id="t-sol"><span class="ic">' + IC.send + '</span><span class="tt">ابعت حلّك</span><span class="ts">صورة حلّك توصل للمعلمة</span></button></div>';
+}
+function bindHomeTiles(){
+  var r = document.getElementById("t-riddle"); if (r) r.onclick = function(){ go("riddle"); };
+  document.getElementById("t-ask").onclick = function(){ camMode = "ask"; camState = null; go("camera"); };
+  document.getElementById("t-sol").onclick = function(){ camMode = "solution"; camState = null; go("camera"); };
+  var ib = document.getElementById("t-install"); if (ib) ib.onclick = function(){ if (!deferredInstall) return; deferredInstall.prompt(); deferredInstall.userChoice.then(function(){ deferredInstall = null; render(); }); };
+}
+
+/* ================= التثبيت على الموبايل ================= */
+var deferredInstall = null;
+window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); deferredInstall = e; if (view === "home") render(); });
+function installCard(){
+  if (!deferredInstall) return "";
+  return '<section class="card" style="border-color:var(--blue)"><div class="row"><div style="flex:1;min-width:0"><h3>ثبّت فضاء العلوم على موبايلك</h3><p class="small muted">يفتح من الشاشة الرئيسية زي أي تطبيق، ويشتغل من غير نت ما عدا الفيديو.</p></div><button class="btn" type="button" id="t-install">ثبّت</button></div></section>';
+}
+if ("serviceWorker" in navigator && location.protocol === "https:" && !inClaude()) {
+  window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+}
+
+/* ================= الكاميرا: صوّر سؤال / ابعت حلّك ================= */
+var camMode = "ask", camState = null, aiStatus = null;
+var CAM_ERR = {ai_off: "المعلمة لسه ما شغّلتش «صوّر سؤال». جرّب بعدين، أو ابعت حلّك للمعلمة.", too_many: "سألت كتير النهارده. استريح شوية وجرّب بعدين.", too_big: "الصورة كبيرة أوي. جرّب تصوّر تاني أقرب للسؤال.", ai_error: "نوّور ما عرفش يقرا الصورة دلوقتي. جرّب صورة أوضح، أو اسأل المعلمة."};
+function checkAI(cb){
+  if (!syncUrl()) { cb(false); return; }
+  if (aiStatus !== null) { cb(aiStatus); return; }
+  fetch(syncUrl()).then(function(r){ return r.json(); }).then(function(res){ aiStatus = !!(res && res.ai); cb(aiStatus); }).catch(function(){ cb(false); });
+}
+function compressImage(file, cb){
+  var fr = new FileReader();
+  fr.onerror = function(){ cb(null); };
+  fr.onload = function(){
+    var img = new Image();
+    img.onerror = function(){ cb(null); };
+    img.onload = function(){
+      var max = 1280, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+      var cv = document.createElement("canvas"); cv.width = Math.round(w * k); cv.height = Math.round(h * k);
+      var cx = cv.getContext("2d"); cx.fillStyle = "#ffffff"; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height);
+      var q = 0.72, url = cv.toDataURL("image/jpeg", q);
+      while (url.length > 2600000 && q > 0.35) { q -= 0.12; url = cv.toDataURL("image/jpeg", q); }
+      cb(url);
+    };
+    img.src = fr.result;
+  };
+  fr.readAsDataURL(file);
+}
+function postSheet(payload, cb){
+  var ctl = ("AbortController" in window) ? new AbortController() : null, done = false;
+  var t = setTimeout(function(){ if (ctl) ctl.abort(); }, 60000);
+  fetch(syncUrl(), {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined})
+    .then(function(r){ return r.json(); })
+    .then(function(res){ clearTimeout(t); if (!done) { done = true; cb(res || {ok: false, error: "server"}); } })
+    .catch(function(){ clearTimeout(t); if (!done) { done = true; cb({ok: false, error: "offline"}); } });
+}
+function vCamera(){
+  var ask = camMode === "ask";
+  var head = '<div class="row"><button class="btn ghost" type="button" id="back">رجوع</button><div style="flex:1;min-width:0"><p class="eyebrow">' + (ask ? "صوّر سؤال" : "ابعت حلّك للمعلمة") + '</p><h1 style="font-size:25px">' + (ask ? "صوّر السؤال اللي مش فاهمه" : "صوّر حلّك وابعته") + '</h1></div></div>';
+  var html = '<div class="stack">' + head;
+  if (!syncUrl()) {
+    html += talk("hint", "think", '<span class="h">الميزة دي لسه مش شغالة</span><p>بتشتغل لما المعلمة تربط التطبيق بجدولها. لحد كده، اسأل المعلمة في الحصة أو في جروب الفصل.</p>');
+  } else if (!S.classCode || !S.consent) {
+    html += talk("hint", "think", '<span class="h">اربط حسابك بالمعلمة الأول</span><p>اكتب كود الفصل من «ملف فهمي». بعدها تقدر ' + (ask ? "تصوّر أسئلتك" : "تبعت حلولك") + '.</p><p><button class="btn sm" type="button" id="toprof2">افتح ملف فهمي</button></p>');
+  } else {
+    html += '<section class="card">' +
+      (ask ? '<p class="small muted">نوّور هيشرح لك الفكرة ويديك تلميحات، ومش هيقولك الإجابة على طول. ده ذكاء اصطناعي، فممكن يغلط؛ راجع مع المعلمة.</p><div id="ai-st"></div>' : '<p class="small muted">الصورة بتروح للمعلمة بس، في فولدر خاص بيها.</p>') +
+      '<label class="pick" for="cam-file">' + IC.cam + '<span id="pick-t">اضغط هنا وصوّر' + (ask ? " السؤال" : " حلّك") + '</span><input type="file" id="cam-file" accept="image/*" capture="environment"></label>' +
+      '<div id="cam-prev"></div>' +
+      (ask ? '<label class="f" for="cam-text">عايز تسأل عن إيه بالظبط؟ (اختياري)<textarea id="cam-text" rows="2" maxlength="300"></textarea></label>'
+           : '<label class="f" for="cam-lesson">الدرس<select id="cam-lesson">' + C.lessons.filter(function(l){ return l.published; }).map(function(l){ return '<option value="' + esc(l.title) + '"' + (S.lastLesson === l.id ? " selected" : "") + '>' + esc(l.title) + '</option>'; }).join("") + '<option value="سؤال تاني">حاجة تانية</option></select></label>' +
+             '<label class="f" for="cam-note">رسالة للمعلمة (اختياري)<textarea id="cam-note" rows="2" maxlength="300"></textarea></label>') +
+      '<p class="flag"><span><b>قبل ما تصوّر:</b> صوّر الورقة بس. ما تصوّرش وشوش ولا أسماء ولا عناوين.</span></p>' +
+      '<label class="check"><input type="checkbox" id="cam-ok"> ولي أمري جنبي وموافق إني أبعت الصورة دي</label>' +
+      '<div class="row"><button class="btn" type="button" id="cam-send" disabled>' + (ask ? "اسأل نوّور" : "ابعت للمعلمة") + '</button><span class="msg" id="cam-msg" aria-live="polite"></span></div></section>' +
+      '<div id="cam-out" aria-live="polite"></div>';
+  }
+  $app.innerHTML = html + '</div>';
+  document.getElementById("back").onclick = function(){ go("home"); };
+  var tp = document.getElementById("toprof2"); if (tp) tp.onclick = function(){ go("profile"); };
+  var file = document.getElementById("cam-file"); if (!file) return;
+  var sendB = document.getElementById("cam-send"), okB = document.getElementById("cam-ok");
+  function msg(t, ok){ var m = document.getElementById("cam-msg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  function ready(){ sendB.disabled = !(camState && camState.data); }
+  if (ask) checkAI(function(on){ var st = document.getElementById("ai-st"); if (st && !on) { st.innerHTML = '<p class="flag"><span>' + esc(CAM_ERR.ai_off) + '</span></p>'; sendB.dataset.off = "1"; } });
+  file.onchange = function(){
+    var f = file.files && file.files[0]; if (!f) return;
+    msg("بنجهّز الصورة...", true);
+    compressImage(f, function(url){
+      if (!url) { msg("الصورة دي مش راضية تفتح. جرّب تصوّر تاني.", false); return; }
+      camState = {data: url};
+      document.getElementById("cam-prev").innerHTML = '<img class="preview" src="' + url + '" alt="الصورة اللي هتتبعت">';
+      document.getElementById("pick-t").textContent = "صوّر تاني";
+      msg("", true); ready();
+    });
+  };
+  sendB.onclick = function(){
+    if (sendB.dataset.off) { msg(CAM_ERR.ai_off, false); return; }
+    if (!camState || !camState.data) { msg("صوّر الأول.", false); return; }
+    if (!okB.checked) { msg("علّم على موافقة ولي الأمر الأول.", false); return; }
+    var payload = {type: ask ? "ask" : "solution", id: S.id, name: S.name, grade: gradeName(S.grade), classCode: S.classCode, consent: true, photoConsent: true, image: camState.data.split(",")[1]};
+    if (ask) payload.text = document.getElementById("cam-text").value.trim();
+    else { payload.lesson = document.getElementById("cam-lesson").value; payload.note = document.getElementById("cam-note").value.trim(); }
+    sendB.disabled = true;
+    document.getElementById("cam-out").innerHTML = '<div class="card"><p><span class="spin"></span> ' + (ask ? "نوّور بيفكّر..." : "بنبعت للمعلمة...") + '</p></div>';
+    msg("", true);
+    postSheet(payload, function(res){
+      sendB.disabled = false;
+      var out = document.getElementById("cam-out"); if (!out) return;
+      if (!res.ok) { out.innerHTML = talk("hint", "think", '<span class="h">ما اتبعتش</span><p>' + esc(CAM_ERR[res.error] || SYNC_ERR[res.error] || SYNC_ERR.server) + '</p>'); return; }
+      if (!ask) {
+        camState = null; file.value = ""; document.getElementById("cam-prev").innerHTML = ""; okB.checked = false; ready();
+        out.innerHTML = talk("good", "cheer", '<b class="h">اتبعت للمعلمة!</b><p>المعلمة هتشوف حلّك. شاطر إنك حليت وبعتّ.</p>', "glow"); SND.ok(); return;
+      }
+      renderAI(out, res.answer || {});
+    });
+  };
+}
+function renderAI(out, a){
+  if (a.is_science === false) { out.innerHTML = talk("hint", "think", '<span class="h">نوّور مش شايف سؤال علوم واضح</span><p>' + esc(a.message || "جرّب تصوّر السؤال بس، قريب ومنوّر.") + '</p>'); return; }
+  out.innerHTML = '<section class="card"><span class="ai-tag">رد من ذكاء اصطناعي، ممكن يغلط. راجع مع المعلمة.</span>' +
+    (a.unsure ? '<p class="flag"><span><b>نوّور مش متأكد</b> من الإجابة دي. اسأل المعلمة.</span></p>' : '') +
+    (a.question ? '<p><b>السؤال:</b> ' + esc(a.question) + '</p>' : '') +
+    (a.concept ? '<p><span class="chip info">' + esc(a.concept) + '</span></p>' : '') +
+    talk("hint", "happy", '<span class="h">الفكرة</span><p>' + esc(a.explain) + '</p>' + (a.explain ? sayBtn(a.explain) : '')) +
+    (a.hint1 ? talk("hint", "think", '<span class="h">تلميح ١</span><p>' + esc(a.hint1) + '</p>') : '') +
+    (a.hint2 ? '<div id="h2"><button class="btn soft" type="button" id="more">لسه مش عارف؟ تلميح تاني</button></div>' : '') +
+    (a.check ? '<div class="box think"><span class="h">جرّب تجاوب في دماغك</span><p>' + esc(a.check) + '</p></div>' : '') +
+    '<div class="row"><button class="btn ghost" type="button" id="to-sol">حليت؟ ابعت حلّك للمعلمة</button></div></section>';
+  var mb = document.getElementById("more"); if (mb) mb.onclick = function(){ document.getElementById("h2").innerHTML = talk("hint", "think", '<span class="h">تلميح ٢</span><p>' + esc(a.hint2) + '</p>'); };
+  document.getElementById("to-sol").onclick = function(){ camMode = "solution"; camState = null; go("camera"); };
+}
+
+/* ================= لغز الأسبوع ================= */
+function vRiddle(){
+  var rd = weekRiddle(); S.riddles = S.riddles || {};
+  var solved = !!S.riddles[rd.id], tries = 0;
+  $app.innerHTML = '<div class="stack"><div class="row"><button class="btn ghost" type="button" id="back">رجوع</button><div style="flex:1;min-width:0"><p class="eyebrow">لغز الأسبوع · اختياري</p><h1 style="font-size:25px">فكّر زي العلماء</h1></div></div>' +
+    '<section class="card space" style="border:0">' + sized(mascot("think", "bob"), 64) + '<p style="font-size:21px;font-weight:800">' + esc(rd.q) + ' ' + sayBtn(rd.q) + '</p></section>' +
+    '<section class="card"><div id="ropts"></div><div class="fb" id="rfb" aria-live="polite"></div></section>' +
+    '<p class="small muted">حليت ' + n(Object.keys(S.riddles).length) + ' لغز لحد دلوقتي. كل أسبوع فيه لغز جديد.</p></div>';
+  document.getElementById("back").onclick = function(){ go("home"); };
+  var ro = document.getElementById("ropts"), fb = document.getElementById("rfb");
+  ro.innerHTML = '<div class="opts">' + rd.options.map(function(t, i){ return '<button type="button" class="opt' + (solved && i === rd.answer ? " right" : "") + '" data-i="' + i + '"' + (solved ? " disabled" : "") + '><span class="l">' + LET[i] + '</span><span>' + esc(t) + '</span></button>'; }).join("") + '</div>';
+  if (solved) { fb.innerHTML = talk("good", "cheer", '<b class="h">حليت اللغز ده!</b><p>' + esc(rd.explain) + '</p>'); return; }
+  ro.querySelectorAll(".opt").forEach(function(b){ b.onclick = function(){
+    var i = +b.getAttribute("data-i");
+    if (i === rd.answer) {
+      S.riddles[rd.id] = now(); save(); SND.ok();
+      ro.querySelectorAll(".opt").forEach(function(x){ x.disabled = true; }); b.classList.add("right");
+      fb.innerHTML = talk("good", "cheer", '<b class="h">' + esc(cheer()) + '</b><p>' + esc(rd.explain) + '</p>', "glow");
+      if (Object.keys(S.riddles).length >= 3) award("riddler");
+    } else {
+      tries++; b.classList.add("wrong"); b.disabled = true; SND.hint();
+      fb.innerHTML = talk("hint", "think", '<span class="h">قرّبت! فكّر تاني</span><p>' + esc(tries === 1 ? rd.hint : "جرّب الاختيارات اللي فاضلة. مفيش حاجة هتضيع.") + '</p>');
+    }
+  }; });
+}
+
+/* ================= بطاقات المراجعة ================= */
+var cardsSession = null;
+function vCards(){
+  var l = L(), cards = l.flashcards || [];
+  if (!cardsSession || cardsSession.lid !== l.id) cardsSession = {lid: l.id, order: cards.map(function(_, i){ return i; }), i: 0, flipped: false, again: 0};
+  var cs = cardsSession;
+  var head = '<div class="row"><button class="btn ghost" type="button" id="back">الدرس</button><div style="flex:1;min-width:0"><p class="eyebrow">بطاقات المراجعة · ' + esc(l.title) + '</p><h1 style="font-size:25px">اقلب البطاقة</h1></div></div>';
+  if (cs.i >= cs.order.length) {
+    $app.innerHTML = '<div class="stack">' + head + talk("good", "cheer", '<b class="h">راجعت كل البطاقات!</b><p>' + (cs.again ? "رجعت لـ " + n(cs.again) + " بطاقة أكتر من مرة، وده اللي بيثبّت المعلومة." : "عرفتها كلها من أول مرة. برافو!") + '</p>', "glow") +
+      '<div class="row"><button class="btn" type="button" id="again">راجعها تاني</button><button class="btn ghost" type="button" id="tol">ارجع للدرس</button></div></div>';
+    document.getElementById("back").onclick = document.getElementById("tol").onclick = function(){ go("lesson"); };
+    document.getElementById("again").onclick = function(){ cardsSession = null; vCards(); };
+    return;
+  }
+  var c = cards[cs.order[cs.i]];
+  $app.innerHTML = '<div class="stack">' + head +
+    '<div class="row"><span class="small muted">بطاقة ' + n(cs.i + 1) + ' من ' + n(cs.order.length) + '</span><span class="meter" style="flex:1"><i style="width:' + Math.round(cs.i / cs.order.length * 100) + '%"></i></span></div>' +
+    '<button type="button" class="flash' + (cs.flipped ? " flipped" : "") + '" id="flash" aria-label="' + (cs.flipped ? "الإجابة: " + esc(c.b) : "السؤال: " + esc(c.f) + ". اضغط علشان تشوف الإجابة") + '"><span class="flash-in"><span class="face front">' + esc(c.f) + '<small>اضغط علشان تقلبها</small></span><span class="face back">' + esc(c.b) + '</span></span></button>' +
+    '<div class="row" style="justify-content:center">' + sayBtn(cs.flipped ? c.b : c.f) + '</div>' +
+    (cs.flipped ? '<div class="row"><button class="btn" type="button" id="knew" style="flex:1">عرفتها</button><button class="btn soft" type="button" id="notyet" style="flex:1">لسه، رجّعها تاني</button></div>' : '<p class="note">فكّر في الإجابة الأول، وبعدين اقلب البطاقة.</p>') + '</div>';
+  document.getElementById("back").onclick = function(){ go("lesson"); };
+  document.getElementById("flash").onclick = function(){ cs.flipped = !cs.flipped; vCards(); };
+  var k = document.getElementById("knew"); if (k) k.onclick = function(){ cs.i++; cs.flipped = false; vCards(); };
+  var ny = document.getElementById("notyet"); if (ny) ny.onclick = function(){ cs.order.push(cs.order[cs.i]); cs.again++; cs.i++; cs.flipped = false; vCards(); };
+}
+
+/* ================= الشهادة ================= */
+function vCert(){
+  var l = L(), g = G();
+  var head = '<div class="row"><button class="btn ghost" type="button" id="back">الدرس</button><div style="flex:1;min-width:0"><p class="eyebrow">شهادتي</p><h1 style="font-size:25px">' + esc(l.title) + '</h1></div></div>';
+  if (!g.quizDone) {
+    $app.innerHTML = '<div class="stack">' + head + talk("hint", "think", '<span class="h">الشهادة بتيجي في آخر الرحلة</span><p>خلّص المحطات السبعة والاختبار القصير، وشهادتك هتستناك هنا.</p>') + '</div>';
+    document.getElementById("back").onclick = function(){ go("lesson"); }; return;
+  }
+  $app.innerHTML = '<div class="stack">' + head + '<div id="cert-box" class="card"><p><span class="spin"></span> بنجهّز شهادتك...</p></div></div>';
+  document.getElementById("back").onclick = function(){ go("lesson"); };
+  drawCertificate(l, function(url){
+    var box = document.getElementById("cert-box"); if (!box) return;
+    var fname = "fadaa-certificate.png";
+    box.innerHTML = '<img class="cert-img" src="' + url + '" alt="شهادة إتمام رحلة درس ' + esc(l.title) + ' باسم ' + esc(S.name) + '">' +
+      (inClaude() ? '<p class="small muted">اعمل سكرين شوت للشهادة ووريها لأهلك.</p>' : '<div class="row"><a class="btn" href="' + url + '" download="' + esc(fname) + '">' + IC.dl + ' حمّل الشهادة</a><p class="small muted">أو اعمل سكرين شوت ووريها لأهلك.</p></div>');
+  });
+}
+function drawCertificate(l, cb){
+  var W = 1200, H = 850, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+  var x = cv.getContext("2d"), F = '"Baloo Bhaijaan 2", Tajawal, Tahoma, sans-serif';
+  var mastered = countMastered(S, l.id), date = new Date().toLocaleDateString("ar-EG", {year: "numeric", month: "long", day: "numeric"});
+  var img = new Image();
+  function paint(withImg){
+    x.clearRect(0, 0, W, H);
+    x.fillStyle = "#fff8f2"; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "#1d2a42"; x.lineWidth = 14; roundRect(x, 20, 20, W - 40, H - 40, 34); x.stroke();
+    x.strokeStyle = "#f08a2e"; x.lineWidth = 4; roundRect(x, 44, 44, W - 88, H - 88, 24); x.stroke();
+    x.fillStyle = "#1d2a42"; for (var i = 0; i < 26; i++) { x.beginPath(); x.arc(70 + (i * 397) % (W - 140), 70 + (i * 173) % 110, (i % 3) + 1.5, 0, 7); x.fill(); }
+    x.beginPath(); x.fillStyle = "#f07f55"; x.arc(110, H - 110, 70, 0, 7); x.fill();
+    x.strokeStyle = "#f08a2e"; x.lineWidth = 5; x.beginPath(); x.ellipse(110, H - 110, 120, 26, -0.3, 0, 7); x.stroke();
+    x.direction = "rtl"; x.textAlign = "center"; x.textBaseline = "alphabetic";
+    function t(str, y, size, color, weight){ x.font = (weight || 800) + " " + size + "px " + F; x.fillStyle = color; x.fillText(str, W / 2, y, W - 260); }
+    t("فضاء العلوم", 150, 44, "#0b5cc9");
+    t("شهادة إتمام رحلة", 240, 64, "#1d2a42");
+    t("الشهادة دي لـ", 315, 30, "#5b6476", 600);
+    t(S.name, 420, 96, "#0b5cc9");
+    t("خلّص رحلة محقق العلوم في درس", 495, 32, "#1f2633", 600);
+    t("«" + l.title + "»", 565, 46, "#9a4a06");
+    t("وأتقن " + n(mastered) + " من " + n(C.skills.length) + " مهارات علمية", 635, 32, "#1d7447", 700);
+    t(date, 720, 26, "#5b6476", 600);
+    if (C.certificate && C.certificate.teacher) t("المعلمة: " + C.certificate.teacher, 765, 26, "#1d2a42", 700);
+    if (withImg) x.drawImage(img, W - 260, H - 300, 180, 202);
+  }
+  function exportIt(retry){
+    try { cv.toBlob(function(b){ cb(b ? URL.createObjectURL(b) : cv.toDataURL("image/png")); }, "image/png"); }
+    catch(e){ if (retry) { paint(false); exportIt(false); } }
+  }
+  var fontReady = (document.fonts && document.fonts.load) ? document.fonts.load('800 40px "Baloo Bhaijaan 2"').catch(function(){}) : Promise.resolve();
+  var imgReady = new Promise(function(res){ img.onload = function(){ res(true); }; img.onerror = function(){ res(false); }; });
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(mascot("cheer").replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="225" '));
+  Promise.all([fontReady, imgReady]).then(function(r){ paint(r[1]); exportIt(true); });
+}
+function roundRect(x, X, Y, w, h, r){ x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+
+/* ================= التنقل ================= */
+function go(v){ stopSpeak(); view = v; render(); window.scrollTo(0, 0); }
+document.querySelectorAll("[data-go]").forEach(function(b){ b.onclick = function(){ go(b.getAttribute("data-go")); }; });
+var NEEDS_STUDENT = {home: 1, lessons: 1, lesson: 1, profile: 1, parent: 1, review: 1, camera: 1, riddle: 1, cards: 1, cert: 1};
+function render(){
+  if (NEEDS_STUDENT[view] && !S) view = "who";
+  if (view !== "teacher") teacherOpen = false;
+  document.querySelectorAll(".nav [data-go]").forEach(function(b){
+    var g = b.getAttribute("data-go"), on = g === view || (/^(lessons|lesson|review|camera|riddle|cards|cert)$/.test(view) && g === "home");
+    if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+  ({who: vWho, newStudent: vNewStudent, home: vHome, lessons: vLessons, lesson: vLesson, profile: vProfile, parent: vParent, teacher: vTeacher, review: vReview, camera: vCamera, riddle: vRiddle, cards: vCards, cert: vCert}[view] || vHome)();
+  var first = $app.firstElementChild; if (first) { first.classList.remove("enter"); void first.offsetWidth; first.classList.add("enter"); }
+  renderMe();
+}
+function renderMe(){
+  var me = document.getElementById("me");
+  if (!S) { me.innerHTML = ""; return; }
+  me.innerHTML = '<button type="button" class="icon-btn" id="snd" aria-pressed="' + !!S.sound + '" aria-label="الأصوات">' + (S.sound ? SPK : SPK_OFF) + '</button>' +
+    '<button type="button" class="me-chip" id="mechip" aria-label="بتذاكر باسم ' + esc(S.name) + '، غيّر الطالب">' + avatar(S.avatar) + '<span>' + esc(S.name) + '</span></button>';
+  document.getElementById("snd").onclick = function(){ S.sound = !S.sound; save(); renderMe(); toast(S.sound ? "الأصوات اشتغلت" : "الأصوات اتقفلت"); };
+  document.getElementById("mechip").onclick = function(){ go("who"); };
+}
+
+/* ================= مين بيذاكر؟ ================= */
+function vWho(){
+  if (!DB.list.length) { view = "newStudent"; vNewStudent(); return; }
+  var list = DB.list.slice().sort(function(a, b){ return b.last - a.last; });
+  $app.innerHTML = '<section class="who space"><div class="row">' + sized(mascot("happy", "bob"), 64) + '<div style="flex:1;min-width:0"><p class="eyebrow" style="color:var(--orange)">أهلًا بيك</p><h1>مين بيذاكر دلوقتي؟</h1></div></div>' +
+    '<div class="who-grid">' + list.map(function(s){ return '<button type="button" class="who-card" data-sid="' + esc(s.id) + '">' + avatar(s.avatar) + '<span class="nm">' + esc(s.name) + '</span><span class="sub">' + esc(gradeName(s.grade)) + ' · ' + ago(s.last) + '</span></button>'; }).join("") +
+    '<button type="button" class="who-card add" id="addst"><span class="plus" aria-hidden="true">+</span><span class="nm">طالب جديد</span><span class="sub">ضيف اسمك</span></button></div></section>';
+  $app.querySelectorAll("[data-sid]").forEach(function(b){ b.onclick = function(){ setActive(b.getAttribute("data-sid")); toast("أهلًا يا " + S.name + "!"); go("home"); }; });
+  document.getElementById("addst").onclick = function(){ go("newStudent"); };
+}
+function vNewStudent(){
+  var g0 = S ? S.grade : "5";
+  $app.innerHTML = '<form class="who space" id="nsf" novalidate><div class="row">' + sized(mascot("cheer", "bob"), 64) + '<div style="flex:1;min-width:0"><p class="eyebrow" style="color:var(--orange)">طالب جديد</p><h1>عرّفنا بنفسك</h1></div></div>' +
+    '<div class="field"><label class="lb" for="ns-name">اسمك الأول أو اسم الدلع</label><input type="text" id="ns-name" maxlength="20" autocomplete="off" placeholder="مثلًا: ملك" aria-describedby="ns-help ns-err"><span class="small" id="ns-help" style="opacity:.85">من غير اسم العيلة، علشان خصوصيتك. الاسم بيتحفظ على الجهاز ده بس.</span><span class="err" id="ns-err" role="alert"></span></div>' +
+    (syncUrl() ? '<div class="field"><label class="lb" for="ns-code">كود الفصل (من المعلمة)</label><input type="text" id="ns-code" maxlength="12" autocomplete="off" dir="ltr" placeholder="مثلًا: FADAA5A" aria-describedby="ns-code-help"><span class="small" id="ns-code-help" style="opacity:.85">لو معاك كود، المعلمة هتشوف اسمك وتقدمك. لو مش معاك، سيبه فاضي.</span>' +
+      '<label class="check" style="margin-top:4px"><input type="checkbox" id="ns-consent"> ولي أمري موافق إن اسمي الأول وتقدمي يتبعتوا للمعلمة</label></div>' : '') +
+    '<fieldset class="field" style="border:0;padding:0;margin:0"><legend class="lb" style="margin-bottom:6px">اختار صورتك</legend><div class="av-grid">' +
+    AV.map(function(a, i){ return '<span><input type="radio" name="av" id="av' + i + '" value="' + i + '"' + (i === 0 ? " checked" : "") + '><label for="av' + i + '">' + avatar(i) + '<span class="sr">' + a.n + '</span></label></span>'; }).join("") + '</div></fieldset>' +
+    '<fieldset class="field" style="border:0;padding:0;margin:0"><legend class="lb" style="margin-bottom:6px">إنت في سنة كام؟</legend><div class="seg">' +
+    C.grades.map(function(g){ return '<span><input type="radio" name="gr" id="gr' + esc(g.id) + '" value="' + esc(g.id) + '"' + (g.id === g0 ? " checked" : "") + '><label for="gr' + esc(g.id) + '">' + esc(g.name.replace("الصف ", "")) + '</label></span>'; }).join("") + '</div></fieldset>' +
+    '<div class="row">' + (DB.list.length ? '<button type="button" class="btn ghost" id="ns-back">رجوع</button>' : "") + '<button type="submit" class="btn" style="flex:1">يلا بينا</button></div></form>';
+  var nm = document.getElementById("ns-name");
+  var bk = document.getElementById("ns-back"); if (bk) bk.onclick = function(){ go("who"); };
+  document.getElementById("nsf").onsubmit = function(e){
+    e.preventDefault();
+    var name = nm.value.replace(/\s+/g, " ").trim(), err = document.getElementById("ns-err");
+    if (name.length < 2) { err.textContent = "اكتب اسمك (حرفين على الأقل)."; nm.focus(); return; }
+    if (!/^[ء-يـً-ْa-zA-Z ]+$/.test(name)) { err.textContent = "اكتب حروف بس، من غير أرقام أو رموز."; nm.focus(); return; }
+    if (DB.list.some(function(s){ return s.name === name; })) { err.textContent = "الاسم ده موجود. اختاره من القائمة، أو زوّد حرف يميّزك."; nm.focus(); return; }
+    var av = +(document.querySelector('input[name="av"]:checked') || {value: 0}).value;
+    var gr = (document.querySelector('input[name="gr"]:checked') || {value: "5"}).value;
+    var codeEl = document.getElementById("ns-code"), code = codeEl ? codeEl.value.trim().toUpperCase() : "";
+    var consent = !!(document.getElementById("ns-consent") || {}).checked;
+    if (code && !validCode(code)) { err.textContent = "كود الفصل حروف إنجليزي وأرقام بس (من ٤ لـ ١٢)."; codeEl.focus(); return; }
+    if (code && !consent) { err.textContent = "علشان نبعت للمعلمة، محتاجين موافقة ولي أمرك. علّم على المربع، أو سيب الكود فاضي."; return; }
+    var st = newStudent(name, av, gr);
+    if (code) { st.classCode = code; st.consent = true; st.consentAt = new Date().toISOString(); }
+    DB.list.push(st); setActive(st.id);
+    if (code) { st.syncDirty = true; runSync(st); }
+    toast("أهلًا يا " + name + "! نوّور مستنيك.");
+    go("home");
+  };
+}
+
+/* ================= الرئيسية ================= */
+var STAGES = ["لاحِظ", "توقّع", "افهم", "جرّب", "فسّر", "طبّق", "أتقِن"];
+function publishedFor(grade){ return C.lessons.filter(function(l){ return l.published && l.grade === grade; }); }
+function vHome(){
+  var due = dueList(), cont = S.lastLesson && lessonById(S.lastLesson), g = cont ? S.progress[cont.id] : null;
+  var showCont = cont && cont.published && g && !g.quizDone;
+  $app.innerHTML = '<div class="stack">' +
+    '<section class="card hero space"><div class="hero-in">' + mascot("happy", "bob") + '<div><p class="eyebrow">فضاء العلوم</p><h1>أهلًا يا ' + esc(S.name) + '</h1><p>نوّور مستنيك. هنلاحظ ونتوقع ونجرّب، لحد ما الفكرة تنوّر.</p></div></div></section>' +
+    (showCont ? '<button type="button" class="lesson-item continue" id="cont"><span class="grow"><span class="eyebrow">كمّل من مكانك</span><span class="t">' + esc(cont.title) + '</span><span class="meter"><i style="width:' + Math.round(g.done.length/7*100) + '%"></i></span><span class="small muted">المحطة الجاية: ' + STAGES[Math.min(g.stage, 6)] + '</span></span><span class="btn sm" aria-hidden="true">كمّل</span></button>' : "") +
+    (due.length ? '<section class="card" style="border-color:var(--orange)"><div class="row"><div style="flex:1;min-width:0"><p class="eyebrow">مراجعة اليوم</p><h3>' + n(due.length) + ' ' + (due.length === 1 ? "سؤال" : "أسئلة") + ' في دقيقتين</h3><p class="small muted">أسئلة شبه اللي اتلخبطت فيها، أو مفاهيم نتأكد إنك لسه فاكرها.</p></div><button class="btn" type="button" id="go-rev">ابدأ المراجعة</button></div></section>' : "") +
+    homeTiles() + installCard() +
+    '<section class="card"><h2>اختار صفك</h2><p class="muted small">المادة: <span class="chip info">العلوم</span></p><div class="grades">' +
+    C.grades.map(function(gr){ return '<button type="button" class="grade" data-g="' + esc(gr.id) + '" aria-pressed="' + (S.grade === gr.id) + '"><span class="n p' + esc(gr.id) + '">' + n(gr.id) + '</span><span>' + esc(gr.name) + '</span><span class="small muted">' + n(publishedFor(gr.id).length) + ' درس</span></button>'; }).join("") +
+    '</div></section></div>';
+  var r = document.getElementById("go-rev"); if (r) r.onclick = function(){ reviewSession = null; go("review"); };
+  var c = document.getElementById("cont"); if (c) c.onclick = function(){ curLessonId = cont.id; go("lesson"); };
+  bindHomeTiles();
+  $app.querySelectorAll("[data-g]").forEach(function(b){ b.onclick = function(){ S.grade = b.getAttribute("data-g"); save(); go("lessons"); }; });
+}
+
+function vLessons(){
+  var grId = S.grade || "5", list = publishedFor(grId);
+  var html = '<div class="stack"><div class="row"><button class="btn ghost" type="button" id="back">رجوع</button><h1 style="flex:1">' + esc(gradeName(grId)) + ' · العلوم</h1></div>';
+  if (!list.length) {
+    html += talk("hint", "think", '<span class="h">لسه مفيش دروس للصف ده</span><p>المعلمة هتضيف دروس ' + esc(gradeName(grId)) + ' قريب.</p>');
+  } else {
+    var groups = {}, order = [];
+    list.forEach(function(l){ var k = (l.term || "") + " · " + (l.unit || ""); if (!groups[k]) { groups[k] = []; order.push(k); } groups[k].push(l); });
+    order.forEach(function(k){
+      html += '<h2 class="unit-h">' + esc(k) + '</h2>';
+      groups[k].forEach(function(l){
+        var g = S.progress[l.id], pct = g ? Math.round(g.done.length / 7 * 100) : 0;
+        var chip = !g ? '<span class="chip">جديد</span>' : g.quizDone ? '<span class="chip ok">خلّصته</span>' : '<span class="chip go">شغّال فيه</span>';
+        html += '<button type="button" class="lesson-item" data-lid="' + esc(l.id) + '"><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="16" fill="var(--blue-soft)"/><ellipse cx="28" cy="34" rx="10" ry="7" fill="var(--seed-wet)"/><path d="M28 27c0-6 2-10 7-12" stroke="var(--leaf)" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 41v8" stroke="var(--root-line)" stroke-width="3" stroke-linecap="round"/></svg>' +
+          '<span class="grow"><span class="row" style="gap:6px"><span class="t">' + esc(l.title) + '</span>' + chip + '</span><span class="meter" aria-label="رحلة الإتقان ' + pct + '٪"><i style="width:' + pct + '%"></i></span><span class="small muted">رحلة الإتقان: ' + n(g ? g.done.length : 0) + ' من ٧ محطات</span></span></button>';
+      });
+    });
+  }
+  $app.innerHTML = html + '</div>';
+  document.getElementById("back").onclick = function(){ go("home"); };
+  $app.querySelectorAll("[data-lid]").forEach(function(b){ b.onclick = function(){ curLessonId = b.getAttribute("data-lid"); go("lesson"); }; });
+}
+
+function statusFlags(l){
+  var h = "";
+  if (!l.curriculumVerified) h += '<p class="flag"><span><b>لم يتم التحقق</b> من مطابقة هذا الدرس لمنهج السنة الحالية بعد.</span></p>';
+  if (!l.reviewed) h += '<p class="flag"><span><b>محتوى تجريبي</b> لم تراجعه المعلمة علميًا بعد.</span></p>';
+  return h;
+}
+
+/* ================= الدرس: رحلة محقق العلوم ================= */
+function markDone(i){ var g = G(); if (g.done.indexOf(i) < 0) { g.done.push(i); save(); } }
+function stageOpen(i){ var g = G(); return i === 0 || g.done.indexOf(i-1) >= 0 || g.done.indexOf(i) >= 0; }
+function vLesson(){
+  var l = L(), g = G(); curLessonId = l.id; S.lastLesson = l.id; g.last = now(); save();
+  var st = g.stage;
+  $app.innerHTML = '<div class="stack"><div class="row"><button class="btn ghost" type="button" id="back">الدروس</button><div style="flex:1;min-width:0"><p class="eyebrow">محقق العلوم · ' + esc(l.unit) + '</p><h1 style="font-size:25px">' + esc(l.title) + '</h1></div>' + ((l.flashcards || []).length ? '<button class="btn ghost sm" type="button" id="tocards">بطاقات المراجعة</button>' : '') + '</div>' +
+    (st === 0 ? statusFlags(l) : "") +
+    '<nav class="rail" aria-label="محطات الرحلة">' + STAGES.map(function(s, i){
+      var cls = (g.done.indexOf(i) >= 0 ? "done " : "") + (i === st ? "cur" : "");
+      return '<button type="button" class="' + cls + '" data-st="' + i + '"' + (stageOpen(i) ? "" : " disabled") + (i === st ? ' aria-current="step"' : "") + '><span class="dot">' + n(i+1) + '</span><span class="lb">' + s + '</span></button>';
+    }).join("") + '</nav><section class="card" id="stage"></section><div class="row" id="navrow"></div></div>';
+  document.getElementById("back").onclick = function(){ S.grade = l.grade; go("lessons"); };
+  var tc = document.getElementById("tocards"); if (tc) tc.onclick = function(){ cardsSession = null; go("cards"); };
+  $app.querySelectorAll("[data-st]").forEach(function(b){ b.onclick = function(){ if (b.disabled) return; g.stage = +b.getAttribute("data-st"); save(); go("lesson"); }; });
+  [stObserve, stPredict, stExplain, stTry, stInterpret, stApply, stMaster][st](document.getElementById("stage"));
+  navRow();
+}
+function navRow(){
+  var g = G(), st = g.stage, row = document.getElementById("navrow");
+  var canNext = g.done.indexOf(st) >= 0 && st < 6;
+  row.innerHTML = (st > 0 ? '<button class="btn ghost" type="button" id="prev">المحطة اللي فاتت</button>' : "") +
+    (st < 6 ? '<button class="btn" type="button" id="next" style="margin-inline-start:auto"' + (canNext ? "" : " disabled") + '>' + (canNext ? "المحطة الجاية: " + STAGES[st+1] : "خلّص المحطة دي الأول") + '</button>' : "");
+  var p = document.getElementById("prev"); if (p) p.onclick = function(){ g.stage--; save(); go("lesson"); };
+  var nx = document.getElementById("next"); if (nx) nx.onclick = function(){ if (nx.disabled) return; g.stage++; save(); go("lesson"); };
+}
+function stageDone(){ markDone(G().stage); navRow(); checkBadges(); }
+function choiceList(host, options, picked, onPick){
+  host.innerHTML = '<div class="opts">' + options.map(function(t, i){ return '<button type="button" class="opt' + (picked === i ? " picked" : "") + '" data-i="' + i + '"><span class="l">' + LET[i] + '</span><span>' + esc(t) + '</span></button>'; }).join("") + '</div>';
+  host.querySelectorAll(".opt").forEach(function(b){ b.onclick = function(){ onPick(+b.getAttribute("data-i")); }; });
+}
+
+function stObserve(el){
+  var ph = L().phenomenon, g = G();
+  el.innerHTML = '<p class="eyebrow">المحطة ١ · لاحِظ</p><h2>إيه اللي حصل؟</h2>' + (L().simulation && L().simulation.cups ? seedScene() : "") + '<p>' + esc(ph.text) + ' ' + sayBtn(ph.text) + '</p>' +
+    '<div class="q"><p class="stem">' + esc(ph.question) + '</p><div id="ch"></div><div class="fb" aria-live="polite" id="fb"></div></div>';
+  function draw(){
+    choiceList(document.getElementById("ch"), ph.options, g.explore, function(i){ g.explore = i; save(); draw(); stageDone(); });
+    document.getElementById("fb").innerHTML = g.explore == null ? "" : talk("hint", "think", '<span class="h">سجّلنا رأيك</span><p>مفيش صح وغلط في الرأي ده. هنختبره مع بعض في الرحلة ونشوف.</p>');
+  }
+  draw();
+}
+function seedScene(){
+  return '<svg viewBox="0 0 320 110" style="width:100%;max-width:420px;height:auto" role="img" aria-label="كيس فول ناشف على اليمين، وقطنة مبلولة عليها فول طالع منه جذير على الشمال">' +
+    '<rect x="200" y="20" width="90" height="80" rx="10" fill="var(--surface-2)" stroke="var(--cup-line)" stroke-width="2"/>' +
+    '<ellipse cx="225" cy="80" rx="9" ry="6" fill="var(--seed)"/><ellipse cx="248" cy="84" rx="9" ry="6" fill="var(--seed)"/><ellipse cx="268" cy="78" rx="9" ry="6" fill="var(--seed)"/>' +
+    '<text x="245" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="var(--muted)">كيس ناشف</text>' +
+    '<path d="M150 60h-30" stroke="var(--orange)" stroke-width="4" stroke-linecap="round"/><path d="M128 50l-10 10 10 10" stroke="var(--orange)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<ellipse cx="60" cy="88" rx="52" ry="14" fill="var(--cotton)" stroke="var(--cup-line)" stroke-width="2"/>' +
+    '<ellipse cx="45" cy="78" rx="11" ry="8" fill="var(--seed-wet)"/><path d="M45 85c-1 6-3 10-6 14" stroke="var(--root-line)" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="78" cy="80" rx="11" ry="8" fill="var(--seed-wet)"/><path d="M78 87c0 5 1 9 3 12" stroke="var(--root-line)" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '<text x="60" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="var(--muted)">قطنة مبلولة</text></svg>';
+}
+function stPredict(el){
+  var p = L().prediction, g = G();
+  el.innerHTML = '<p class="eyebrow">المحطة ٢ · توقّع</p><h2>قبل ما نجرّب: إيه توقعك؟</h2><p class="stem" style="font-weight:700">' + esc(p.question) + ' ' + sayBtn(p.question) + '</p><div id="ch"></div><div class="fb" id="fb" aria-live="polite"></div>';
+  function draw(){
+    choiceList(document.getElementById("ch"), p.options, g.predict, function(i){ g.predict = i; save(); draw(); stageDone(); });
+    document.getElementById("fb").innerHTML = g.predict == null ? "" : talk("hint", "think", '<span class="h">توقعك اتسجّل</span><p>العلماء بيكتبوا توقعهم قبل التجربة، وبعدين يقارنوه بالنتيجة. هنعمل كده في محطة «فسّر».</p>');
+  }
+  draw();
+}
+function stExplain(el){
+  var l = L(), ex = l.explanation, v = l.video || {}, g = G();
+  var hl = g.highlight; g.highlight = null;
+  el.innerHTML = '<p class="eyebrow">المحطة ٣ · افهم</p><div class="row"><h2 style="flex:1">الشرح خطوة بخطوة</h2>' + sayBtn(ex.steps.join(". ")) + '</div>' +
+    '<ol class="steps">' + ex.steps.map(function(s, i){ return '<li' + (hl === i ? ' class="hl" id="hl"' : "") + '><span class="k">' + n(i+1) + '</span><span>' + rich(s) + '</span></li>'; }).join("") + '</ol>' +
+    '<div id="alt"></div><div class="row"><button class="btn soft" type="button" id="nu">لسه مش فاهم</button></div>' +
+    '<h3>فيديو «فضاء العلوم»</h3>' + videoBlock(v) +
+    (v.summary ? '<div class="note"><b>ملخص:</b> ' + esc(v.summary) + '</div>' : "") +
+    '<h3>سؤال نتأكد بيه</h3>' + (ex.hint ? '<p class="small muted">تلميح قبل ما تجاوب: ' + esc(ex.hint) + '</p>' : "") + '<div id="cq"></div>';
+  var altHost = document.getElementById("alt");
+  function drawAlt(){
+    var a = g.alt, alts = ex.alternatives || [];
+    if (!a) { altHost.innerHTML = ""; return; }
+    if (a <= alts.length) altHost.innerHTML = talk("hint", "happy", '<span class="h">طريقة تانية: ' + esc(alts[a-1].title) + '</span><p>' + rich(alts[a-1].text) + '</p><p>' + sayBtn(alts[a-1].text) + '</p>');
+    else altHost.innerHTML = talk("think", "think", '<span class="h">ولا يهمك، ده طبيعي</span><p>جرّبنا ' + n(alts.length) + ' طرق شرح. شوف الفيديو، أو جرّب التجربة في المحطة الجاية، أو اسأل المعلمة سؤالك بالظبط. مفيش ذكاء اصطناعي متصل هنا يقدر يرد على سؤال جديد.</p>');
+  }
+  drawAlt();
+  document.getElementById("nu").onclick = function(){ var alts = ex.alternatives || []; g.alt = g.alt > alts.length ? 1 : g.alt + 1; save(); drawAlt(); };
+  if (hl != null) { var h = document.getElementById("hl"); if (h) setTimeout(function(){ h.scrollIntoView({block: "center"}); }, 30); }
+  var cq = document.getElementById("cq");
+  if (g.done.indexOf(2) >= 0) { cq.innerHTML = talk("good", "happy", '<b class="h">جاوبت السؤال ده قبل كده.</b><p>تقدر تكمّل للمحطة الجاية.</p>'); return; }
+  mountQuestion(cq, ex.checkQuestion, {onDone: function(){ stageDone(); }});
+}
+function videoBlock(v){
+  var id = ytId(v.url);
+  if (!id) return '<div class="video"><div><p><b>الفيديو لسه ما اتضافش.</b></p><p class="small muted">المعلمة تضيف رابط فيديو الدرس من «لوحة المعلمة».</p></div></div>';
+  var title = esc(v.title || "فيديو الدرس");
+  var link = '<p><a class="btn ghost" href="https://www.youtube.com/watch?v=' + id + '" target="_blank" rel="noopener">افتح «' + title + '» على يوتيوب</a></p>';
+  if (inClaude()) return '<div class="video"><div><p><b>' + title + '</b></p><p class="small muted">الفيديو بيفتح في صفحة يوتيوب.</p>' + link + '</div></div>';
+  return '<div class="video has"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '?rel=0" title="' + title + '" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>' + link;
+}
+
+/* المحطة ٤: المحاكاة */
+function cupSVG(cup, day){
+  var s = cup.stages[Math.min(day, cup.stages.length-1)], rot = cup.rotFrom >= 0 && day >= cup.rotFrom;
+  var flooded = cup.id === "flooded", moist = cup.id === "moist";
+  var g = '<svg viewBox="0 0 120 150" role="img" aria-label="' + esc(cup.label) + '، اليوم ' + day + '">';
+  g += '<path d="M14 30h92l-10 112H24z" fill="var(--cup)" stroke="var(--cup-line)" stroke-width="2.5" stroke-linejoin="round"/>';
+  if (flooded) g += '<path d="M18.6 58h82.8L96 142H24z" fill="var(--water)" opacity=".75"/>';
+  g += '<ellipse cx="60" cy="128" rx="34" ry="10" fill="var(--cotton)" stroke="var(--cup-line)" stroke-width="1.5"/>';
+  if (moist) g += '<ellipse cx="60" cy="131" rx="30" ry="6" fill="var(--water)" opacity=".55"/>';
+  var sy = 118, fill = rot ? "var(--seed-rot)" : (s >= 1 ? "var(--seed-wet)" : "var(--seed)");
+  var rx = s >= 1 ? 14 : 10, ry = s >= 1 ? 9.5 : 7;
+  if (s >= 3) g += '<path d="M58 ' + (sy+7) + ' C 57 ' + (sy+11) + ', 56 ' + (sy+14) + ', ' + (s >= 4 ? "50 " + (sy+27) : "54 " + (sy+18)) + '" stroke="var(--root-line)" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
+  if (s >= 4) g += '<path d="M55 ' + (sy+15) + 'l-5 2M54 ' + (sy+18) + 'l5 2" stroke="var(--root-line)" stroke-width="1.5" stroke-linecap="round"/>';
+  if (s >= 5) g += '<path d="M62 ' + (sy-8) + ' C 63 ' + (sy-18) + ', 66 ' + (sy-26) + ', 65 ' + (s >= 6 ? sy-48 : sy-32) + '" stroke="var(--leaf)" stroke-width="3.5" fill="none" stroke-linecap="round"/>';
+  if (s >= 6) g += '<ellipse cx="56" cy="' + (sy-50) + '" rx="10" ry="5" transform="rotate(-25 56 ' + (sy-50) + ')" fill="var(--leaf)"/><ellipse cx="74" cy="' + (sy-52) + '" rx="10" ry="5" transform="rotate(25 74 ' + (sy-52) + ')" fill="var(--leaf)"/>';
+  g += '<ellipse cx="60" cy="' + sy + '" rx="' + rx + '" ry="' + ry + '" fill="' + fill + '" stroke="var(--root-line)" stroke-width="1"/>';
+  if (s >= 2) g += '<path d="M52 ' + (sy-3) + 'q8 5 16 0" stroke="var(--root-line)" stroke-width="1.5" fill="none"/>';
+  if (rot) g += '<circle cx="54" cy="' + (sy-2) + '" r="1.8" fill="var(--ink)"/><circle cx="64" cy="' + (sy+3) + '" r="1.5" fill="var(--ink)"/><circle cx="67" cy="' + (sy-4) + '" r="1.2" fill="var(--ink)"/>';
+  return g + '</svg>';
+}
+function cupObs(cup, day){
+  var sim = L().simulation, s = cup.stages[Math.min(day, cup.stages.length-1)];
+  if (cup.rotFrom >= 0 && day >= cup.rotFrom) return sim.rotText;
+  if (cup.id === "flooded" && day >= 2) return "انتفخت، بس ما طلعش جذير";
+  return sim.stageText[s];
+}
+function homeActivityBlock(ha, open){
+  if (!ha) return "";
+  return '<details class="card" style="background:var(--surface-2)"' + (open ? " open" : "") + '><summary style="cursor:pointer;font-weight:800">' + esc(ha.title) + '</summary>' +
+    '<p><b>هتحتاج:</b> ' + (ha.materials || []).map(esc).join("، ") + '</p><ol>' + (ha.steps || []).map(function(s){ return '<li>' + esc(s) + '</li>'; }).join("") + '</ol>' +
+    '<p class="flag"><span><b>أمان:</b> ' + esc(ha.safety) + '</span></p></details>';
+}
+function stTry(el){
+  var sim = L().simulation, ha = L().homeActivity, g = G();
+  if (!sim || !sim.cups) {
+    el.innerHTML = '<p class="eyebrow">المحطة ٤ · جرّب</p><h2>نشاط عملي</h2>' + homeActivityBlock(ha, true) + '<button class="btn" type="button" id="didit">' + (g.simDone ? "سجّلنا إنك عملته" : "عملت النشاط أو اتفرجت عليه") + '</button>';
+    document.getElementById("didit").onclick = function(){ g.simDone = true; save(); stageDone(); this.textContent = "سجّلنا إنك عملته"; };
+    return;
+  }
+  el.innerHTML = '<p class="eyebrow">المحطة ٤ · جرّب</p><h2>تجربة افتراضية: ٣ أكواب فول</h2>' +
+    '<p class="flag"><span><b>محاكاة</b>، مش نتيجة تجربة حقيقية. ' + esc(sim.disclaimer) + '</span></p>' +
+    '<p class="small muted">المتغير اللي غيّرناه حاجة واحدة بس: <b>كمية الماء</b>. كل حاجة تانية زي بعض.</p>' +
+    '<div class="cups" id="cups"></div>' +
+    '<div class="day"><label for="dayr" class="small" style="font-weight:700">حرّك الأيام</label><input type="range" id="dayr" min="0" max="7" step="1" value="' + g.simDay + '"><output id="dayo" for="dayr"></output><button class="btn" type="button" id="dayn">اليوم الجاي</button></div>' +
+    '<div id="res"></div>' + homeActivityBlock(ha, false);
+  var r = document.getElementById("dayr");
+  function draw(){
+    var d = g.simDay;
+    document.getElementById("cups").innerHTML = sim.cups.map(function(c){ return '<div class="cup">' + cupSVG(c, d) + '<span class="lab">' + esc(c.label) + '</span><span class="obs">' + esc(cupObs(c, d)) + '</span></div>'; }).join("");
+    document.getElementById("dayo").textContent = "اليوم " + n(d);
+    document.getElementById("dayn").disabled = d >= 7;
+    if (d >= 7 && !g.simDone) { g.simDone = true; save(); stageDone(); SND.ok(); }
+    document.getElementById("res").innerHTML = g.simDone ? resultsTable() : '<p class="note">وصّل الأيام لليوم ٧ علشان تشوف النتيجة كاملة.</p>';
+  }
+  r.oninput = function(){ g.simDay = +r.value; save(); draw(); };
+  document.getElementById("dayn").onclick = function(){ if (g.simDay < 7) { g.simDay++; r.value = g.simDay; save(); draw(); } };
+  draw();
+}
+function resultsTable(){
+  var sim = L().simulation, days = [1, 3, 5, 7];
+  return '<div class="tbl"><table><caption class="small muted" style="text-align:right;padding-bottom:4px">جدول الملاحظات (من المحاكاة)</caption><thead><tr><th>الكوب</th>' + days.map(function(d){ return '<th>اليوم ' + n(d) + '</th>'; }).join("") + '</tr></thead><tbody>' +
+    sim.cups.map(function(c){ return '<tr><th scope="row">' + esc(c.label) + '</th>' + days.map(function(d){ return '<td>' + esc(cupObs(c, d)) + '</td>'; }).join("") + '</tr>'; }).join("") + '</tbody></table></div>';
+}
+
+function stInterpret(el){
+  var l = L(), p = l.prediction, ph = l.phenomenon, g = G();
+  var match = g.predict === p.expected;
+  el.innerHTML = '<p class="eyebrow">المحطة ٥ · فسّر</p><h2>قارن توقعك بالنتيجة</h2>' +
+    '<div class="vs"><div style="background:var(--surface-2)"><div class="small muted">توقعك</div><b>' + esc(g.predict == null ? "ما سجّلتش توقع" : p.options[g.predict]) + '</b></div>' +
+    '<div style="background:var(--surface-2)"><div class="small muted">النتيجة</div><b>' + esc(p.options[p.expected]) + '</b></div></div>' +
+    '<p>' + (match ? "توقعك طابق النتيجة. برافو!" : "توقعك كان مختلف عن النتيجة، وده طبيعي جدًا. العلماء بيغيّروا رأيهم لما يشوفوا دليل جديد.") + '</p>' +
+    (g.explore != null ? '<p class="note">في الأول قلت: «' + esc(ph.options[g.explore]) + '». فكّر: التجربة بتأيد رأيك ده ولا لأ؟</p>' : "") +
+    '<div id="q1"></div><div id="q2"></div>';
+  var ids = l.interpretQuestions || [];
+  if (g.done.indexOf(4) >= 0) { document.getElementById("q1").innerHTML = talk("good", "happy", '<b class="h">خلّصت المحطة دي.</b><p>تقدر تكمّل، أو ترجع للتجربة تاني.</p>'); return; }
+  if (!ids.length) { stageDone(); return; }
+  mountQuestion(document.getElementById("q1"), ids[0], {onDone: function(s){
+    if (s >= 0.5 && g.simDone) award("explorer");
+    if (ids[1]) mountQuestion(document.getElementById("q2"), ids[1], {onDone: function(){ stageDone(); }});
+    else stageDone();
+  }});
+}
+function stApply(el){
+  var g = G();
+  el.innerHTML = '<p class="eyebrow">المحطة ٦ · طبّق</p><h2>موقف جديد</h2><p class="muted">نفس الفكرة، بس في مكان تاني.</p><div id="aq" class="stack"></div>';
+  if (g.done.indexOf(5) >= 0) { document.getElementById("aq").innerHTML = talk("good", "happy", '<b class="h">خلّصت المحطة دي.</b><p>يلا على الاختبار القصير.</p>'); return; }
+  var ids = L().applyQuestions || [], i = 0;
+  (function next(){ if (i >= ids.length) { stageDone(); return; } var h = document.createElement("div"); document.getElementById("aq").appendChild(h); mountQuestion(h, ids[i++], {onDone: next}); })();
+}
+function stMaster(el){
+  var l = L(), quiz = l.quiz || [], g = G();
+  if (g.quizDone || !quiz.length) { if (!g.quizDone) { g.quizDone = true; markDone(6); save(); } el.innerHTML = resultsView(); bindResults(); return; }
+  var idx = g.quizIdx;
+  el.innerHTML = '<p class="eyebrow">المحطة ٧ · أتقِن</p><h2>اختبار قصير</h2><div class="row"><span class="small muted">سؤال ' + n(idx+1) + ' من ' + n(quiz.length) + '</span><span class="meter" style="flex:1"><i style="width:' + Math.round(idx/quiz.length*100) + '%"></i></span></div><div id="qq"></div><div id="qn"></div>';
+  mountQuestion(document.getElementById("qq"), quiz[idx], {allowTwin: false, onDone: function(){
+    document.getElementById("qn").innerHTML = '<button class="btn block" type="button" id="qnext">' + (idx+1 < quiz.length ? "السؤال الجاي" : "شوف نتيجتك") + '</button>';
+    document.getElementById("qnext").onclick = function(){
+      g.quizIdx++;
+      if (g.quizIdx >= quiz.length) {
+        g.quizDone = true;
+        (l.recallQuestions || []).forEach(function(id){ schedule(id, 2, true, l.id); });
+        markDone(6);
+      }
+      save(); go("lesson");
+      checkBadges();
+    };
+  }});
+}
+function resultsView(){
+  var lid = L().id, mastered = [], review = [], few = [];
+  C.skills.forEach(function(s){ var st = skillStatus(s.id, S, lid); (st.k === "mastered" ? mastered : st.k === "few" ? few : review).push({s: s, st: st}); });
+  function li(x){ return '<li><b>' + esc(x.s.name) + '</b>' + (x.st.k !== "mastered" ? '<br><span class="small muted">' + esc(x.s.activity) + '</span>' : "") + '</li>'; }
+  return '<p class="eyebrow">المحطة ٧ · نتيجتك</p>' + talk("good", "cheer", '<h2>خلّصت رحلة الدرس يا ' + esc(S.name) + '!</h2><p>نوّور فخور بيك. شوف وصلت لفين:</p>', "glow") +
+    '<div class="box good"><span class="h">مهارات أتقنتها</span>' + (mastered.length ? '<ul style="margin:0;padding-inline-start:20px">' + mastered.map(li).join("") + '</ul>' : '<p>لسه، بس إنت في الطريق. كل محاولة بتقرّبك.</p>') + '</div>' +
+    (review.length ? '<div class="box hint"><span class="h">مهارات محتاجة تدريب كمان</span><ul style="margin:0;padding-inline-start:20px">' + review.map(li).join("") + '</ul></div>' : "") +
+    (few.length ? '<div class="box think"><span class="h">لسه محتاجين أدلة أكتر</span><ul style="margin:0;padding-inline-start:20px">' + few.map(function(x){ return '<li>' + esc(x.s.name) + ' <span class="small muted">(' + esc(x.st.label) + ')</span></li>'; }).join("") + '</ul></div>' : "") +
+    '<p class="note">هنسألك سؤالين تاني بعد يومين علشان نتأكد إنك لسه فاكر. هيظهروا في الرئيسية تحت «مراجعة اليوم».</p>' +
+    '<div class="row"><button class="btn" type="button" id="tocert">شهادتي</button><button class="btn ghost" type="button" id="toprof">افتح ملف فهمي</button>' + ((L().flashcards || []).length ? '<button class="btn ghost" type="button" id="rcards">بطاقات المراجعة</button>' : '') + '<button class="btn ghost" type="button" id="redo">أعيد الاختبار</button></div>';
+}
+function bindResults(){
+  document.getElementById("toprof").onclick = function(){ go("profile"); };
+  document.getElementById("tocert").onclick = function(){ go("cert"); };
+  var rc = document.getElementById("rcards"); if (rc) rc.onclick = function(){ cardsSession = null; go("cards"); };
+  document.getElementById("redo").onclick = function(){ var g = G(); g.quizDone = false; g.quizIdx = 0; save(); go("lesson"); };
+}
+
+/* ================= المراجعة ================= */
+function vReview(){
+  if (!reviewSession) reviewSession = {list: dueList(), i: 0};
+  var rs = reviewSession;
+  if (rs.i >= rs.list.length) {
+    $app.innerHTML = '<div class="card">' + talk("good", "cheer", '<p class="eyebrow">مراجعة اليوم</p><h2>خلّصت المراجعة!</h2><p>المراجعة الجاية هتظهر في الرئيسية لما يجي وقتها. مفيش إشعارات.</p>', "glow") + '<button class="btn" type="button" id="h">الرئيسية</button></div>';
+    reviewSession = null; document.getElementById("h").onclick = function(){ go("home"); }; return;
+  }
+  var qid = rs.list[rs.i], lid = (S.review[qid] && S.review[qid].lesson) || C.lessons[0].id;
+  $app.innerHTML = '<div class="card"><p class="eyebrow">مراجعة اليوم · ' + n(rs.i+1) + ' من ' + n(rs.list.length) + '</p><div id="rq"></div><div id="rn"></div></div>';
+  mountQuestion(document.getElementById("rq"), qid, {ctx: "review", allowTwin: false, lid: lid, onDone: function(score){
+    reviewAnswered(qid, score); save(); checkBadges();
+    document.getElementById("rn").innerHTML = '<button class="btn block" type="button" id="rnx">التالي</button>';
+    document.getElementById("rnx").onclick = function(){ rs.i++; vReview(); };
+  }});
+}
+
+/* ================= ملف فهمي العلمي ================= */
+function profileHTML(st, forTeacher){
+  var miscs = Object.keys(st.misc).filter(function(k){ return st.misc[k] >= 2 && C.misconceptions[k]; });
+  var pub = C.lessons.filter(function(l){ return l.published; });
+  var doneLessons = pub.filter(function(l){ return st.progress[l.id] && st.progress[l.id].quizDone; });
+  return '<div class="stack"><div class="person">' + avatar(st.avatar) + '<div style="min-width:0"><h1>' + (forTeacher ? "ملف " + esc(st.name) : "ملف فهمي العلمي") + '</h1><p class="muted">' + esc(st.name) + ' · ' + esc(gradeName(st.grade)) + ' · خلّص ' + n(doneLessons.length) + ' من ' + n(pub.length) + ' درس</p></div></div>' +
+    '<p class="muted">كل مهارة هنا بتتعلم وبتتحسن بالتدريب. الحكم مبني على أكتر من سؤال، مش على سؤال واحد.</p>' +
+    '<div class="skills">' + C.skills.map(function(s){
+      var r = skillStatus(s.id, st);
+      return '<div class="skill"><span class="nm">' + esc(s.name) + '</span><span class="chip ' + r.cls + '">' + esc(r.label) + '</span>' +
+        '<span class="mt meter" aria-hidden="true"><i style="width:' + Math.round(r.avg*100) + '%"></i></span>' +
+        '<span class="sg">عدد الأدلة: ' + n(r.count) + (r.k !== "mastered" ? " · اقتراح: " + esc(s.activity) : "") + '</span></div>';
+    }).join("") + '</div>' +
+    (miscs.length ? '<section class="card"><h2>أفكار نراجعها مع بعض</h2><p class="small muted">ظهرت أكتر من مرة في الإجابات. ده طبيعي، وكتير من الناس بيفكروا كده في الأول.</p>' +
+      miscs.map(function(k){ var m = C.misconceptions[k]; return '<div class="vs"><div style="background:var(--surface-2)"><div class="x">الفكرة</div>' + esc(m.idea) + '</div><div style="background:var(--surface-2)"><div class="y">العلم بيقول</div>' + esc(m.correct) + '</div></div>'; }).join("") + '</section>' : "") +
+    '<section class="card"><h2>المكافآت</h2><p class="small muted">المكافآت بتيجي من الإتقان والتحسن، مش من فتح التطبيق.</p><div class="badges">' +
+    C.badges.map(function(b){ var got = hasBadge(b.id, st); return '<div class="badge' + (got ? "" : " locked") + '">' + badgeSVG(b, !got) + '<span class="bn">' + esc(b.name) + '</span><span class="bd">' + esc(got ? b.desc : "لسه: " + b.desc) + '</span></div>'; }).join("") +
+    '</div>' + (st.discovery ? '<div class="box hint"><span class="h">' + esc(C.discovery.title) + '</span><p>' + esc(C.discovery.text) + '</p></div>' : "") + '</section></div>';
+}
+function vProfile(){
+  $app.innerHTML = profileHTML(S, false);
+  if (!syncUrl()) return;
+  var card = document.createElement("section"); card.className = "card"; card.id = "synccard";
+  $app.firstElementChild.appendChild(card);
+  drawSyncCard();
+}
+function drawSyncCard(){
+  var card = document.getElementById("synccard"); if (!card) return;
+  if (!S.classCode) {
+    card.innerHTML = '<h2>اربط تقدمك بالمعلمة</h2><p class="small muted">اكتب كود الفصل اللي المعلمة اديتهولك. هيتبعت اسمك الأول وملخص تقدمك بس.</p>' +
+      '<label class="f" for="sc-code">كود الفصل<input type="text" id="sc-code" maxlength="12" dir="ltr" autocomplete="off"></label>' +
+      '<label class="check"><input type="checkbox" id="sc-consent"> ولي أمري موافق إن اسمي الأول وتقدمي يتبعتوا للمعلمة</label>' +
+      '<div class="row"><button class="btn" type="button" id="sc-go">اربط</button><span class="msg" id="sc-msg" aria-live="polite"></span></div>';
+    document.getElementById("sc-go").onclick = function(){
+      var c = document.getElementById("sc-code").value.trim().toUpperCase(), m = document.getElementById("sc-msg");
+      if (!validCode(c)) { m.className = "msg err"; m.textContent = "الكود حروف إنجليزي وأرقام بس (من ٤ لـ ١٢)."; return; }
+      if (!document.getElementById("sc-consent").checked) { m.className = "msg err"; m.textContent = "محتاجين موافقة ولي الأمر الأول."; return; }
+      S.classCode = c; S.consent = true; S.consentAt = new Date().toISOString(); S.syncError = ""; S.syncDirty = true; store(KEY_DB, DB);
+      m.className = "msg"; m.textContent = "بنبعت...";
+      runSync(S, function(){ drawSyncCard(); });
+    };
+    return;
+  }
+  card.innerHTML = '<h2>مع المعلمة</h2><p>كود الفصل: <b dir="ltr">' + esc(S.classCode) + '</b></p><p class="small muted" aria-live="polite">' + esc(syncStatusText(S)) + '</p>' +
+    '<div class="row"><button class="btn" type="button" id="sc-now">ابعت دلوقتي</button><button class="btn ghost" type="button" id="sc-off">الغي الربط</button></div>';
+  document.getElementById("sc-now").onclick = function(){ S.syncDirty = true; if (S.syncError === "bad_code") { S.classCode = ""; drawSyncCard(); return; } this.textContent = "بنبعت..."; runSync(S, function(){ drawSyncCard(); }); };
+  twoStepEl(document.getElementById("sc-off"), "متأكد؟ اضغط تاني", function(){ S.classCode = ""; S.consent = false; S.consentAt = null; S.syncDirty = false; S.syncError = ""; store(KEY_DB, DB); drawSyncCard(); toast("اتلغى الربط. الاسم اللي اتبعت قبل كده المعلمة تقدر تمسحه من الجدول."); });
+}
+
+/* ================= ساعدني أساعده ================= */
+function vParent(){
+  var m = [], r = [], f = [];
+  C.skills.forEach(function(s){ var st = skillStatus(s.id); (st.k === "mastered" ? m : st.k === "few" ? f : r).push(s.name); });
+  var l = (S.lastLesson && lessonById(S.lastLesson)) || C.lessons[0], ha = l.homeActivity;
+  function list(a){ return a.length ? '<ul style="margin:0;padding-inline-start:20px">' + a.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join("") + '</ul>' : '<p class="muted">لسه مفيش.</p>'; }
+  $app.innerHTML = '<div class="stack"><div class="person">' + avatar(S.avatar) + '<div style="min-width:0"><h1>ساعدني أساعده</h1><p class="muted">لولي أمر ' + esc(S.name) + '. مفيش مقارنة بأي طفل تاني، والبيانات على الجهاز ده بس.</p></div></div>' +
+    '<section class="card"><h2>' + esc(S.name) + ' وصل لفين؟</h2><div class="box good"><span class="h">أتقن</span>' + list(m) + '</div><div class="box hint"><span class="h">محتاج يتدرب أكتر على</span>' + list(r) + '</div>' +
+    (f.length ? '<p class="small muted">لسه مفيش أسئلة كفاية للحكم على: ' + f.map(esc).join("، ") + '.</p>' : "") + '</section>' +
+    ((l.parentQuestions || []).length ? '<section class="card"><h2>أسئلة تسألها عن درس «' + esc(l.title) + '»</h2><ol style="margin:0;padding-inline-start:20px">' + l.parentQuestions.map(function(q){ return '<li>' + esc(q) + '</li>'; }).join("") + '</ol></section>' : "") +
+    '<section class="card"><h2>إزاي تساعده من غير ما تدّيله الحل</h2><ul style="margin:0;padding-inline-start:20px">' + (C.parentTips || []).map(function(q){ return '<li>' + esc(q) + '</li>'; }).join("") + '</ul></section>' +
+    (ha ? '<section class="card"><h2>' + esc(ha.title) + '</h2><p><b>هتحتاج:</b> ' + (ha.materials || []).map(esc).join("، ") + '</p><ol style="margin:0;padding-inline-start:20px">' + (ha.steps || []).map(function(s){ return '<li>' + esc(s) + '</li>'; }).join("") + '</ol><p class="flag"><span><b>أمان:</b> ' + esc(ha.safety) + '</span></p></section>' : "") + '</div>';
+}
+
+/* ================= لوحة المعلمة ================= */
+function vTeacher(){
+  if (!teacherOpen) { pinGate(load(KEY_PIN)); return; }
+  $app.innerHTML = '<div class="stack"><div class="row"><h1 style="flex:1">لوحة المعلمة</h1><button class="btn ghost sm" type="button" id="t-lock">اقفلي اللوحة</button></div>' +
+    '<p class="flag"><span><b>نسخة تجريبية:</b> كل حاجة هنا محفوظة على الجهاز ده بس. علشان المعلمة تشوف طلاب من أجهزة مختلفة، محتاجين خطوة جاية فيها حسابات وتخزين آمن وموافقة أولياء الأمور.</span></p>' +
+    '<div class="tabs" role="tablist">' + [["lessons","الدروس"],["students","الطلاب"],["share","رابط الطلاب"],["sync","ربط الجدول"],["adv","متقدم"]].map(function(t){ return '<button type="button" role="tab" data-tab="' + t[0] + '" aria-selected="' + (teacherTab === t[0]) + '">' + t[1] + '</button>'; }).join("") + '</div><div id="tpane" class="stack"></div></div>';
+  document.getElementById("t-lock").onclick = function(){ teacherOpen = false; go(S ? "home" : "who"); };
+  $app.querySelectorAll("[data-tab]").forEach(function(b){ b.onclick = function(){ teacherTab = b.getAttribute("data-tab"); teacherEdit = null; viewStudentId = null; vTeacher(); }; });
+  var pane = document.getElementById("tpane");
+  if (teacherTab === "students") tStudents(pane); else if (teacherTab === "share") tShare(pane); else if (teacherTab === "sync") tSync(pane); else if (teacherTab === "adv") tAdvanced(pane); else if (teacherEdit) tEditLesson(pane, lessonById(teacherEdit)); else tLessons(pane);
+}
+function pinGate(pinData){
+  var fresh = !pinData || !pinData.pin, fails = 0;
+  $app.innerHTML = '<form class="card" id="pinf" novalidate style="max-width:440px;margin:0 auto;align-items:center;text-align:center">' + sized(mascot("think"), 72) +
+    '<h2>' + (fresh ? "اعملي رقم سري للوحة" : "لوحة المعلمة") + '</h2><p class="muted small">' + (fresh ? "٤ أرقام علشان الأطفال ما يدخلوش اللوحة. ده قفل بسيط، مش حماية حقيقية." : "اكتبي الرقم السري.") + '</p>' +
+    '<label for="pin1" class="small" style="font-weight:700">الرقم السري</label><input type="password" inputmode="numeric" maxlength="4" id="pin1" class="pin" autocomplete="off">' +
+    (fresh ? '<label for="pin2" class="small" style="font-weight:700">اكتبيه تاني للتأكيد</label><input type="password" inputmode="numeric" maxlength="4" id="pin2" class="pin" autocomplete="off">' : "") +
+    '<span class="msg err" id="pinm" role="alert"></span><button class="btn block" type="submit">' + (fresh ? "احفظي وادخلي" : "ادخلي") + '</button><div id="forgot" class="stack" style="width:100%"></div></form>';
+  var p1 = document.getElementById("pin1");
+  document.getElementById("pinf").onsubmit = function(e){
+    e.preventDefault();
+    var v = p1.value, m = document.getElementById("pinm");
+    if (!/^[0-9]{4}$/.test(v)) { m.textContent = "الرقم لازم يكون ٤ أرقام إنجليزي (0-9)."; return; }
+    if (fresh) {
+      if (document.getElementById("pin2").value !== v) { m.textContent = "الرقمين مش زي بعض."; return; }
+      store(KEY_PIN, {pin: v}); teacherOpen = true; toast("اتحفظ الرقم السري"); vTeacher(); return;
+    }
+    if (v === pinData.pin) { teacherOpen = true; vTeacher(); return; }
+    fails++; m.textContent = "الرقم مش صح."; p1.value = ""; p1.focus();
+    if (fails >= 3 && !document.getElementById("unl")) {
+      document.getElementById("forgot").innerHTML = '<p class="small muted">نسيتي الرقم؟ اكتبي «امسحي القفل» واضغطي الزرار، وبعدين اعملي رقم جديد. ده بيمسح القفل بس، مش المحتوى ولا الطلاب.</p><input type="text" id="unl" aria-label="اكتبي: امسحي القفل"><button class="btn ghost sm" type="button" id="unlb">امسحي القفل</button>';
+      document.getElementById("unlb").onclick = function(){ if (document.getElementById("unl").value.trim() === "امسحي القفل") { drop(KEY_PIN); pinGate(null); } };
+    }
+  };
+}
+function tLessons(pane){
+  pane.innerHTML = '<div class="row"><p class="muted small" style="flex:1;min-width:200px">الطلاب بيشوفوا الدروس المنشورة بس. الدرس الجديد بيتعمل كنسخة من القالب، وبعدين تعدّلي محتواه وتنشريه.</p><button class="btn" type="button" id="t-new">درس جديد من القالب</button></div>' +
+    C.lessons.map(function(l){
+      return '<div class="lrow"><div class="row" style="gap:6px"><span class="t" style="flex:1;min-width:160px">' + esc(l.title) + '</span>' +
+        (l.published ? '<span class="chip ok">منشور</span>' : '<span class="chip">مسودة</span>') +
+        (l.reviewed ? '<span class="chip ok">اتراجع علميًا</span>' : '<span class="chip go">محتاج مراجعة</span>') +
+        (l.curriculumVerified ? '<span class="chip ok">مطابق للمنهج</span>' : '<span class="chip go">المنهج مش متأكد</span>') + '</div>' +
+        '<p class="small muted">' + esc(gradeName(l.grade)) + ' · ' + esc(l.term) + ' · ' + esc(l.unit) + (ytId(l.video && l.video.url) ? " · فيه فيديو" : " · من غير فيديو") + '</p>' +
+        '<div class="row"><button class="btn sm" type="button" data-edit="' + esc(l.id) + '">تعديل</button><button class="btn ghost sm" type="button" data-pub="' + esc(l.id) + '">' + (l.published ? "إخفاء عن الطلاب" : "نشر للطلاب") + '</button><button class="btn ghost sm" type="button" data-dup="' + esc(l.id) + '">نسخة</button><button class="btn danger sm" type="button" data-del="' + esc(l.id) + '">حذف</button></div></div>';
+    }).join("") + '<div class="msg" id="t-lmsg" aria-live="polite"></div>';
+  function lmsg(t){ var m = document.getElementById("t-lmsg"); m.className = "msg err"; m.textContent = t; }
+  document.getElementById("t-new").onclick = function(){ var c = cloneLesson(C.lessons[0]); teacherEdit = c.id; vTeacher(); toast("اتعمل درس جديد كمسودة"); };
+  pane.querySelectorAll("[data-edit]").forEach(function(b){ b.onclick = function(){ teacherEdit = b.getAttribute("data-edit"); vTeacher(); window.scrollTo(0,0); }; });
+  pane.querySelectorAll("[data-dup]").forEach(function(b){ b.onclick = function(){ cloneLesson(lessonById(b.getAttribute("data-dup"))); vTeacher(); toast("اتعملت نسخة كمسودة"); }; });
+  pane.querySelectorAll("[data-pub]").forEach(function(b){ b.onclick = function(){
+    var l = lessonById(b.getAttribute("data-pub"));
+    if (!l.published && !l.reviewed) { lmsg("علّمي على «راجعت المحتوى العلمي» في تعديل الدرس قبل النشر."); return; }
+    l.published = !l.published; saveContent(); vTeacher(); toast(l.published ? "الدرس اتنشر للطلاب" : "الدرس اتخفى عن الطلاب");
+  }; });
+  pane.querySelectorAll("[data-del]").forEach(function(b){ twoStepEl(b, "متأكدة؟ اضغطي تاني", function(){
+    if (C.lessons.length <= 1) { lmsg("لازم يفضل درس واحد على الأقل."); return; }
+    var id = b.getAttribute("data-del");
+    lessonQuestionIds(lessonById(id)).forEach(function(q){ if (q.indexOf(id + "_") === 0) delete C.questions[q]; });
+    C.lessons = C.lessons.filter(function(l){ return l.id !== id; }); saveContent(); vTeacher(); toast("اتحذف الدرس");
+  }); });
+}
+function cloneLesson(src){
+  var id = "L" + now().toString(36), c = clone(src), map = {};
+  lessonQuestionIds(src).forEach(function(q){ map[q] = id + "_" + q.replace(/^L[a-z0-9]+_/, ""); });
+  Object.keys(map).forEach(function(q){ var nq = clone(C.questions[q]); if (nq.twin) nq.twin = map[nq.twin] || nq.twin; C.questions[map[q]] = nq; });
+  function m(a){ return (a || []).map(function(q){ return map[q] || q; }); }
+  c.id = id; c.title = src.title + " (نسخة)"; c.published = false; c.reviewed = false; c.curriculumVerified = false; c.curriculumSource = "";
+  c.video = {url: "", title: "", summary: src.video ? src.video.summary : ""}; c.videoTimes = {};
+  c.explanation.checkQuestion = map[src.explanation.checkQuestion];
+  c.interpretQuestions = m(src.interpretQuestions); c.applyQuestions = m(src.applyQuestions); c.quiz = m(src.quiz); c.recallQuestions = m(src.recallQuestions);
+  C.lessons.push(c); saveContent(); return c;
+}
+function tEditLesson(pane, l){
+  if (!l) { teacherEdit = null; tLessons(pane); return; }
+  var v = l.video || (l.video = {url: "", title: "", summary: ""}); l.videoTimes = l.videoTimes || {};
+  var qn = lessonQuestionIds(l).length;
+  pane.innerHTML = '<div class="row"><button class="btn ghost sm" type="button" id="t-back">كل الدروس</button><h2 style="flex:1">تعديل: ' + esc(l.title) + '</h2></div>' +
+    '<section class="card"><h3>بيانات الدرس</h3>' +
+    '<label class="f" for="t-title">اسم الدرس<input type="text" id="t-title" value="' + esc(l.title) + '"></label>' +
+    '<div class="row"><label class="f" for="t-grade" style="flex:1;min-width:120px">الصف<select id="t-grade">' + C.grades.map(function(g){ return '<option value="' + esc(g.id) + '"' + (g.id === l.grade ? " selected" : "") + '>' + esc(g.name) + '</option>'; }).join("") + '</select></label>' +
+    '<label class="f" for="t-term" style="flex:1;min-width:140px">الفصل الدراسي<input type="text" id="t-term" value="' + esc(l.term) + '"></label><label class="f" for="t-unit" style="flex:1;min-width:140px">الوحدة<input type="text" id="t-unit" value="' + esc(l.unit) + '"></label></div></section>' +
+    '<section class="card"><h3>المراجعة والنشر</h3>' +
+    '<label class="check"><input type="checkbox" id="t-rev"' + (l.reviewed ? " checked" : "") + '> راجعت المحتوى العلمي وصححته</label>' +
+    '<label class="check"><input type="checkbox" id="t-cur"' + (l.curriculumVerified ? " checked" : "") + '> اتأكدت إن الدرس مطابق لمنهج السنة الحالية</label>' +
+    '<label class="f" for="t-src">مصدر التحقق (مثلًا: كتاب الطالب 2025/2026 صفحة …)<input type="text" id="t-src" value="' + esc(l.curriculumSource) + '"></label>' +
+    '<label class="check"><input type="checkbox" id="t-pub"' + (l.published ? " checked" : "") + '> منشور للطلاب</label></section>' +
+    '<section class="card"><h3>فيديو الدرس</h3><p class="small muted">حطي رابط فيديو حقيقي من قناة «فضاء العلوم». لازم يكون التضمين مسموح في إعدادات الفيديو على يوتيوب.</p>' +
+    '<label class="f" for="t-url">رابط يوتيوب<input type="url" id="t-url" dir="ltr" placeholder="https://www.youtube.com/watch?v=..." value="' + esc(v.url) + '"></label>' +
+    '<label class="f" for="t-vt">عنوان الفيديو<input type="text" id="t-vt" value="' + esc(v.title) + '"></label>' +
+    '<label class="f" for="t-sum">ملخص بعد الفيديو<textarea id="t-sum" rows="3">' + esc(v.summary) + '</textarea></label>' +
+    '<h3>توقيت كل فكرة خاطئة في الفيديو (بالثواني، اختياري)</h3><div class="stack">' +
+    Object.keys(C.misconceptions).map(function(k){ var m = C.misconceptions[k]; return '<label class="f" for="t-mt-' + k + '">' + esc(m.idea) + '<input type="number" min="0" id="t-mt-' + k + '" data-mk="' + k + '" value="' + esc(l.videoTimes[k] == null ? "" : l.videoTimes[k]) + '"></label>'; }).join("") +
+    '</div></section>' +
+    '<section class="card"><h3>خطوات الشرح</h3><p class="small muted">كل خطوة في خانة. علشان تميّزي كلمة اكتبيها كده: &lt;b&gt;الكلمة&lt;/b&gt;</p><div id="st-list" class="stack">' + l.explanation.steps.map(stepRow).join("") + '</div><div class="row"><button class="btn ghost sm" type="button" id="st-add">ضيفي خطوة</button></div></section>' +
+    '<section class="card"><h3>بطاقات المراجعة</h3><div id="fc-list" class="stack">' + (l.flashcards || []).map(fcRow).join("") + '</div><div class="row"><button class="btn ghost sm" type="button" id="fc-add">ضيفي بطاقة</button></div></section>' +
+    '<section class="card"><h3>الأسئلة (' + n(qn) + ')</h3><p class="small muted">تعديل السؤال بيتحفظ لوحده لما تدوسي «احفظي السؤال».</p><div id="q-list" class="stack"></div><div class="row"><button class="btn ghost sm" type="button" id="q-new">سؤال جديد للاختبار</button></div>' +
+    '<p class="small muted">الظاهرة والتوقع والتجربة لسه بيتعدّلوا من تبويب «متقدم». رقم الدرس هناك: <span dir="ltr">' + esc(l.id) + '</span></p></section>' +
+    '<p class="note">الخطوات والبطاقات وبيانات الدرس بتتحفظ بزرار «احفظي الدرس».</p>' +
+    '<div class="row"><button class="btn" type="button" id="t-save">احفظي الدرس</button><span class="msg" id="t-msg" aria-live="polite"></span></div>';
+  function msg(t, ok){ var m = document.getElementById("t-msg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  document.getElementById("t-back").onclick = function(){ teacherEdit = null; vTeacher(); };
+  document.getElementById("st-add").onclick = function(){ document.getElementById("st-list").insertAdjacentHTML("beforeend", stepRow("")); };
+  document.getElementById("fc-add").onclick = function(){ document.getElementById("fc-list").insertAdjacentHTML("beforeend", fcRow({f: "", b: ""})); };
+  pane.addEventListener("click", function(ev){
+    var d = ev.target.closest(".st-del,.fc-del"); if (d) { var row = d.closest(".st-row,.fc-row"); if (row) row.remove(); }
+  });
+  drawQList(l);
+  document.getElementById("q-new").onclick = function(){
+    var id = l.id + "_n" + now().toString(36);
+    C.questions[id] = {skill: "concept", stem: "", options: [{t: "", ok: true}, {t: ""}, {t: ""}, {t: ""}], hints: ["", ""], explain: ""};
+    l.quiz = l.quiz || []; l.quiz.push(id); saveContent(); drawQList(l); openQEditor(l, id, true);
+  };
+  document.getElementById("t-save").onclick = function(){
+    var url = document.getElementById("t-url").value.trim();
+    if (url && !ytId(url)) { msg("الرابط ده مش رابط فيديو يوتيوب. انسخي الرابط من زر «مشاركة» في الفيديو.", false); return; }
+    var rev = document.getElementById("t-rev").checked, cur = document.getElementById("t-cur").checked, src = document.getElementById("t-src").value.trim(), pub = document.getElementById("t-pub").checked;
+    if (cur && !src) { msg("اكتبي مصدر التحقق من المنهج قبل ما تعلّمي عليه.", false); return; }
+    if (pub && !rev && !l.published) { msg("راجعي المحتوى وعلّمي «راجعت المحتوى العلمي» قبل النشر.", false); return; }
+    var title = document.getElementById("t-title").value.trim(); if (!title) { msg("اكتبي اسم الدرس.", false); return; }
+    l.title = title; l.grade = document.getElementById("t-grade").value; l.term = document.getElementById("t-term").value.trim(); l.unit = document.getElementById("t-unit").value.trim();
+    l.reviewed = rev; l.curriculumVerified = cur; l.curriculumSource = src; l.published = pub;
+    v.url = url; v.title = document.getElementById("t-vt").value.trim(); v.summary = document.getElementById("t-sum").value.trim();
+    var steps = Array.prototype.map.call(pane.querySelectorAll(".st-t"), function(t){ return t.value.trim(); }).filter(Boolean);
+    if (!steps.length) { msg("لازم خطوة شرح واحدة على الأقل.", false); return; }
+    var cards = Array.prototype.map.call(pane.querySelectorAll(".fc-row"), function(r){ return {f: r.querySelector(".fc-f").value.trim(), b: r.querySelector(".fc-b").value.trim()}; }).filter(function(c){ return c.f && c.b; });
+    pane.querySelectorAll("[data-mk]").forEach(function(i){ var k = i.getAttribute("data-mk"); if (i.value === "") delete l.videoTimes[k]; else l.videoTimes[k] = String(Math.max(0, parseInt(i.value, 10) || 0)); });
+    l.explanation.steps = steps; l.flashcards = cards;
+    if (saveContent()) msg(pub && !rev ? "اتحفظ الدرس. لسه محتاج علامة «راجعت المحتوى العلمي»، والطلاب شايفين تنبيه «محتوى تجريبي»." : "اتحفظ الدرس.", true); else msg("ما اتحفظش: مساحة التخزين في المتصفح مش متاحة.", false);
+  };
+}
+function stepRow(t){ return '<div class="row st-row" style="flex-wrap:nowrap;align-items:flex-start"><textarea class="st-t" rows="2" style="flex:1;min-width:0" aria-label="خطوة شرح">' + esc(t) + '</textarea><button type="button" class="btn danger sm st-del">حذف</button></div>'; }
+function fcRow(c){ return '<div class="stack fc-row" style="gap:6px;border:1px solid var(--line);border-radius:var(--r-sm);padding:10px"><input type="text" class="fc-f" placeholder="وش البطاقة: سؤال أو مصطلح" aria-label="وش البطاقة" value="' + esc(c.f) + '"><input type="text" class="fc-b" placeholder="ضهر البطاقة: الإجابة" aria-label="ضهر البطاقة" value="' + esc(c.b) + '"><div class="row"><button type="button" class="btn danger sm fc-del">حذف البطاقة</button></div></div>'; }
+function drawQList(l){
+  var host = document.getElementById("q-list"); if (!host) return;
+  var groups = [["سؤال التأكد (افهم)", [l.explanation.checkQuestion], false], ["فسّر", l.interpretQuestions || [], false], ["طبّق", l.applyQuestions || [], false], ["الاختبار القصير", l.quiz || [], true]];
+  function row(id, label, canDel){
+    var q = C.questions[id]; if (!q) return "";
+    return '<div class="qrow"><span class="qs">' + (label ? '<b>' + label + '</b> ' : '') + esc(q.stem || "(سؤال فاضي)") + '</span><button class="btn sm" type="button" data-qe="' + esc(id) + '">تعديل</button>' + (canDel ? '<button class="btn danger sm" type="button" data-qd="' + esc(id) + '">حذف</button>' : '') + '</div>';
+  }
+  host.innerHTML = groups.map(function(gp){
+    return '<p class="grp-h">' + gp[0] + '</p>' + gp[1].map(function(id){ var q = C.questions[id]; return row(id, "", gp[2] && gp[1].length > 1) + (q && q.twin ? row(q.twin, "شبيه:", false) : ""); }).join("");
+  }).join("") + '<div id="qed-host"></div>';
+  host.querySelectorAll("[data-qe]").forEach(function(b){ b.onclick = function(){ openQEditor(l, b.getAttribute("data-qe"), false); }; });
+  host.querySelectorAll("[data-qd]").forEach(function(b){ twoStepEl(b, "متأكدة؟", function(){
+    var id = b.getAttribute("data-qd"); l.quiz = l.quiz.filter(function(x){ return x !== id; });
+    l.recallQuestions = (l.recallQuestions || []).filter(function(x){ return x !== id; });
+    if (id.indexOf(l.id + "_") === 0) delete C.questions[id];
+    saveContent(); drawQList(l); toast("اتحذف السؤال");
+  }); });
+}
+function openQEditor(l, id, isNew){
+  var q = C.questions[id], host = document.getElementById("qed-host"); if (!q || !host) return;
+  var opts = q.options.slice(); while (opts.length < 4) opts.push({t: ""});
+  var mOpts = '<option value="">مش مرتبط بفكرة غلط</option>' + Object.keys(C.misconceptions).map(function(k){ var t = C.misconceptions[k].idea; return '<option value="' + k + '">' + esc(t.length > 42 ? t.slice(0, 42) + "…" : t) + '</option>'; }).join("");
+  host.innerHTML = '<div class="card" id="qed" style="background:var(--surface-2)"><h3>' + (isNew ? "سؤال جديد" : "تعديل السؤال") + '</h3>' +
+    '<label class="f" for="qe-skill">المهارة اللي السؤال بيقيسها<select id="qe-skill">' + C.skills.filter(function(s){ return s.id !== "recall"; }).map(function(s){ return '<option value="' + s.id + '"' + (s.id === q.skill ? " selected" : "") + '>' + esc(s.name) + '</option>'; }).join("") + '</select></label>' +
+    '<label class="f" for="qe-stem">نص السؤال<textarea id="qe-stem" rows="2">' + esc(q.stem) + '</textarea></label>' +
+    '<fieldset style="border:0;padding:0;margin:0" class="stack"><legend class="small" style="font-weight:800;margin-bottom:6px">الاختيارات: علّمي الدايرة جنب الإجابة الصح، واربطي كل اختيار غلط بالفكرة اللي ممكن تكون وراه</legend>' +
+    opts.map(function(o, i){ return '<div class="optrow"><input type="radio" name="qe-ok" value="' + i + '"' + (o.ok ? " checked" : "") + ' aria-label="الاختيار ' + LET[i] + ' هو الصح"><input type="text" class="qe-o" aria-label="الاختيار ' + LET[i] + '" placeholder="الاختيار ' + LET[i] + '" value="' + esc(o.t) + '"><select class="qe-m" aria-label="الفكرة الغلط ورا الاختيار ' + LET[i] + '">' + mOpts.replace('value="' + (o.m || "") + '"', 'value="' + (o.m || "") + '" selected') + '</select></div>'; }).join("") + '</fieldset>' +
+    '<label class="f" for="qe-h1">تلميح ١ (بيظهر بعد أول غلطة)<input type="text" id="qe-h1" value="' + esc((q.hints || [])[0] || "") + '"></label>' +
+    '<label class="f" for="qe-h2">تلميح ٢ (أقرب للحل)<input type="text" id="qe-h2" value="' + esc((q.hints || [])[1] || "") + '"></label>' +
+    '<label class="f" for="qe-ex">التفسير اللي بيظهر بعد الإجابة<textarea id="qe-ex" rows="2">' + esc(q.explain) + '</textarea></label>' +
+    '<div class="row"><button class="btn" type="button" id="qe-save">احفظي السؤال</button><button class="btn ghost" type="button" id="qe-cancel">إلغاء</button><span class="msg" id="qe-msg" aria-live="polite"></span></div></div>';
+  document.getElementById("qe-stem").focus();
+  document.getElementById("qed").scrollIntoView({block: "start"});
+  function msg(t, ok){ var m = document.getElementById("qe-msg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  document.getElementById("qe-cancel").onclick = function(){
+    if (isNew && !q.stem) { l.quiz = l.quiz.filter(function(x){ return x !== id; }); delete C.questions[id]; saveContent(); }
+    drawQList(l);
+  };
+  document.getElementById("qe-save").onclick = function(){
+    var stem = document.getElementById("qe-stem").value.trim(); if (!stem) { msg("اكتبي نص السؤال.", false); return; }
+    var okSel = host.querySelector('input[name="qe-ok"]:checked'), okIdx = okSel ? +okSel.value : -1;
+    var texts = Array.prototype.map.call(host.querySelectorAll(".qe-o"), function(i){ return i.value.trim(); });
+    var ms = Array.prototype.map.call(host.querySelectorAll(".qe-m"), function(i){ return i.value; });
+    if (okIdx < 0 || !texts[okIdx]) { msg("علّمي على الإجابة الصح، ولازم تكون مكتوبة.", false); return; }
+    var options = []; texts.forEach(function(t, i){ if (!t) return; var o = {t: t}; if (i === okIdx) o.ok = true; else o.m = ms[i] || ""; options.push(o); });
+    if (options.length < 2) { msg("محتاجين اختيارين على الأقل.", false); return; }
+    var ex = document.getElementById("qe-ex").value.trim(); if (!ex) { msg("اكتبي تفسير قصير بيظهر بعد الإجابة.", false); return; }
+    q.skill = document.getElementById("qe-skill").value; q.stem = stem; q.options = options; q.explain = ex;
+    q.hints = [document.getElementById("qe-h1").value.trim(), document.getElementById("qe-h2").value.trim()].filter(Boolean);
+    if (saveContent()) { toast("اتحفظ السؤال"); drawQList(l); } else msg("ما اتحفظش: مساحة التخزين مش متاحة.", false);
+  };
+}
+function tStudents(pane){
+  if (viewStudentId) {
+    var st = DB.list.filter(function(s){ return s.id === viewStudentId; })[0];
+    if (st) { pane.innerHTML = '<div class="row"><button class="btn ghost sm" type="button" id="t-sb">كل الطلاب</button></div>' + profileHTML(st, true); document.getElementById("t-sb").onclick = function(){ viewStudentId = null; vTeacher(); }; return; }
+    viewStudentId = null;
+  }
+  if (!DB.list.length) { pane.innerHTML = '<p class="note">لسه مفيش طلاب على الجهاز ده.</p>'; return; }
+  var pubCount = C.lessons.filter(function(l){ return l.published; }).length;
+  pane.innerHTML = '<p class="muted small">الطلاب اللي ذاكروا على الجهاز ده. مفيش ترتيب ولا مقارنة بينهم قدام الطلاب.</p><div class="tbl"><table><thead><tr><th>الطالب</th><th>الصف</th><th>الدروس</th><th>مهارات متقنة</th><th>آخر مرة</th><th>مع المعلمة</th><th></th></tr></thead><tbody>' +
+    DB.list.map(function(s){
+      var done = C.lessons.filter(function(l){ return l.published && s.progress[l.id] && s.progress[l.id].quizDone; }).length;
+      return '<tr><th scope="row"><span class="row" style="gap:6px;flex-wrap:nowrap"><span class="mini-av">' + avatar(s.avatar) + '</span>' + esc(s.name) + '</span></th><td>' + esc(gradeName(s.grade)) + '</td><td>' + n(done) + ' / ' + n(pubCount) + '</td><td>' + n(countMastered(s)) + ' / ' + n(C.skills.length) + '</td><td>' + ago(s.last) + '</td><td>' + (s.classCode ? (s.syncedAt && !s.syncDirty ? '<span class="chip ok">اتبعت</span>' : '<span class="chip go">لسه</span>') : '<span class="chip">مش مربوط</span>') + '</td>' +
+        '<td><span class="row" style="flex-wrap:nowrap;gap:6px"><button class="btn sm" type="button" data-vs="' + esc(s.id) + '">الملف</button><button class="btn danger sm" type="button" data-ds="' + esc(s.id) + '">حذف</button></span></td></tr>';
+    }).join("") + '</tbody></table></div>';
+  pane.querySelectorAll("[data-vs]").forEach(function(b){ b.onclick = function(){ viewStudentId = b.getAttribute("data-vs"); vTeacher(); }; });
+  pane.querySelectorAll("[data-ds]").forEach(function(b){ twoStepEl(b, "متأكدة؟", function(){
+    var id = b.getAttribute("data-ds"); DB.list = DB.list.filter(function(s){ return s.id !== id; });
+    if (DB.active === id) { DB.active = null; S = null; } save(); renderMe(); vTeacher(); toast("اتحذف الطالب ومعاه تقدمه");
+  }); });
+}
+function tSync(pane){
+  var cur = syncUrl(), baked = !!SYNC_URL;
+  pane.innerHTML = '<section class="card"><h2>جدول الطلاب على Google Sheets</h2>' +
+    '<p class="small muted">كل طالب يكتب كود الفصل ويعلّم على موافقة ولي الأمر، اسمه الأول وملخص تقدمه بيتبعتوا لجدول في حسابك. الجدول بيستقبل بس، ومش بيعرض أسماء الطلاب لأي حد غيرك.</p>' +
+    '<p class="flag"><span><b>مهم:</b> الربط بيشتغل من رابط GitHub Pages. من جوه claude.ai الصفحة ممنوعة تكلّم أي موقع تاني.</span></p>' +
+    '<h3>خطوات الإعداد (مرة واحدة)</h3><ol style="margin:0;padding-inline-start:22px">' +
+    '<li>افتحي <a href="https://sheets.new" target="_blank" rel="noopener">جدول جديد</a> وسمّيه «فضاء العلوم - الطلاب».</li>' +
+    '<li>من القائمة: Extensions ثم Apps Script.</li>' +
+    '<li>امسحي اللي في الصفحة، والصقي كود الجدول (الزرار تحت).</li>' +
+    '<li>غيّري الكود FADAA5A في أول سطر لكود فصلك، واحفظي.</li>' +
+    '<li>Deploy ثم New deployment، النوع Web app. Execute as: Me. Who has access: Anyone. وبعدين Deploy ووافقي على الصلاحيات.</li>' +
+    '<li>انسخي رابط Web app (آخره <span dir="ltr">/exec</span>) وابعتيه لي علشان أحطه في نسخة الطلاب، أو حطيه تحت للتجربة على جهازك.</li></ol>' +
+    '<div class="row"><button class="btn ghost" type="button" id="gs-copy">انسخي كود الجدول</button></div><textarea class="json" id="gs-text" readonly style="min-height:120px" aria-label="كود الجدول"></textarea>' +
+    '<label class="f" for="t-surl">رابط Web app (للتجربة على الجهاز ده)<input type="url" id="t-surl" dir="ltr" placeholder="https://script.google.com/macros/s/.../exec" value="' + esc(load(KEY_SYNC) ? load(KEY_SYNC).url : "") + '"></label>' +
+    '<div class="row"><button class="btn" type="button" id="t-ssave">احفظي واختبري</button><span class="msg" id="t-smsg" aria-live="polite"></span></div>' +
+    '<p class="small muted">' + (baked ? "نسخة الطلاب مربوطة بجدول." : "نسخة الطلاب لسه مش مربوطة بجدول.") + (cur ? " الجهاز ده بيبعت لـ: " + esc(cur.slice(0, 60)) + "…" : "") + '</p></section>';
+  var gsText = document.getElementById("gs-text"); gsText.value = document.getElementById("gs-code").textContent.trim();
+  function msg(t, ok){ var m = document.getElementById("t-smsg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  document.getElementById("gs-copy").onclick = function(){
+    var fb = function(){ gsText.focus(); gsText.select(); msg("حددت الكود، اضغطي نسخ.", true); };
+    try { navigator.clipboard.writeText(gsText.value).then(function(){ msg("اتنسخ الكود.", true); }, fb); } catch(e){ fb(); }
+  };
+  document.getElementById("t-ssave").onclick = function(){
+    var u = document.getElementById("t-surl").value.trim();
+    if (!u) { drop(KEY_SYNC); msg("اتشال الرابط من الجهاز ده.", true); return; }
+    if (!/^https:\/\/script\.google(usercontent)?\.com\/.+/.test(u)) { msg("ده مش رابط Web app من Google Apps Script.", false); return; }
+    store(KEY_SYNC, {url: u}); msg("بنختبر...", true);
+    fetch(u).then(function(r){ return r.json(); }).then(function(res){ aiStatus = null; msg(res && res.app === "fadaa" ? "الجدول شغال ومربوط. «صوّر سؤال»: " + (res.ai ? "شغال." : "مقفول (شغّليه من Script Properties).") : "الرابط رد، بس مش كود فضاء العلوم.", !!(res && res.app === "fadaa")); })
+      .catch(function(){ msg("ما قدرناش نوصل للرابط من هنا. لو إنتِ جوه claude.ai ده طبيعي؛ جرّبي من رابط GitHub Pages.", false); });
+  };
+}
+/* ================= QR لرابط الطلاب ================= */
+var KEY_SHARE = "fadaa.share.v1";
+var QR_LIB = "https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js";
+function loadQR(cb){
+  if (window.qrcode) { cb(true); return; }
+  var sc = document.createElement("script"); sc.src = QR_LIB;
+  sc.onload = function(){ cb(!!window.qrcode); }; sc.onerror = function(){ cb(false); };
+  document.head.appendChild(sc);
+}
+function qrSVG(text){
+  var qr = window.qrcode(0, "H"); qr.addData(text); qr.make();
+  var n = qr.getModuleCount(), q = 4, size = n + q*2, d = "";
+  for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (qr.isDark(r, c)) d += "M" + (c+q) + " " + (r+q) + "h1v1h-1z";
+  /* لمبة صغيرة في النص؛ مستوى تصحيح الأخطاء H بيستحمل الجزء ده */
+  var lw = Math.round(n * 0.22), lx = (size - lw) / 2, cx = size / 2, k = lw / 32;
+  var logo = '<rect x="' + lx + '" y="' + lx + '" width="' + lw + '" height="' + lw + '" rx="' + (lw*0.22) + '" fill="#ffffff"/>' +
+    '<g transform="translate(' + (cx - 16*k) + ' ' + (cx - 16*k) + ') scale(' + k + ')"><circle cx="16" cy="16" r="15" fill="#1d2a42"/><path d="M16 7a6.5 6.5 0 0 0-3.8 11.8c.6.5 1 1.2 1 2V22h5.6v-1.2c0-.8.4-1.5 1-2A6.5 6.5 0 0 0 16 7z" fill="#f08a2e"/><rect x="13" y="23.2" width="6" height="2.4" rx="1.2" fill="#f08a2e"/></g>';
+  return '<svg class="qr" viewBox="0 0 ' + size + ' ' + size + '" role="img" aria-label="رمز QR لرابط التطبيق" shape-rendering="crispEdges"><rect width="' + size + '" height="' + size + '" fill="#ffffff"/><path d="' + d + '" fill="#1d2a42"/>' + logo + '</svg>';
+}
+function tShare(pane){
+  var saved = load(KEY_SHARE) || {};
+  var here = (!inClaude() && /^https?:/.test(location.protocol)) ? location.origin + location.pathname : "";
+  pane.innerHTML = '<section class="card"><h2>رابط الطلاب و QR</h2><p class="small muted">اعملي كارت فيه QR وكود الفصل. صوّريه سكرين شوت وابعتيه في جروب الفصل، أو اطبعيه وعلّقيه في الفصل.</p>' +
+    '<label class="f" for="sh-link">رابط التطبيق<input type="url" id="sh-link" dir="ltr" placeholder="https://….github.io/fadaa-eloloum/" value="' + esc(saved.link || here) + '"></label>' +
+    '<label class="f" for="sh-code">كود الفصل (اختياري)<input type="text" id="sh-code" dir="ltr" maxlength="12" value="' + esc(saved.code || "") + '"></label>' +
+    '<div class="row"><button class="btn" type="button" id="sh-make">اعملي الـ QR</button><span class="msg" id="sh-msg" aria-live="polite"></span></div></section><div id="sh-out" class="stack"></div>' +
+    '<section class="card"><h2>الشهادة</h2><p class="small muted">الطالب بياخد شهادة باسمه لما يخلّص رحلة الدرس. اسمك بيظهر عليها لو كتبتيه هنا.</p><label class="f" for="ce-t">اسمك على الشهادة (اختياري)<input type="text" id="ce-t" maxlength="40" value="' + esc((C.certificate || {}).teacher || "") + '"></label><div class="row"><button class="btn ghost" type="button" id="ce-save">احفظي</button></div></section>';
+  function msg(t, ok){ var m = document.getElementById("sh-msg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  document.getElementById("sh-make").onclick = function(){
+    var link = document.getElementById("sh-link").value.trim(), code = document.getElementById("sh-code").value.trim().toUpperCase();
+    if (!/^https:\/\/[^\s]+\.[^\s]+/.test(link)) { msg("اكتبي رابط كامل يبدأ بـ https://", false); return; }
+    if (code && !validCode(code)) { msg("الكود حروف إنجليزي وأرقام بس (من ٤ لـ ١٢).", false); return; }
+    store(KEY_SHARE, {link: link, code: code});
+    msg("بنجهّز الـ QR...", true);
+    loadQR(function(ok){
+      if (!ok) { msg("محتاجين إنترنت علشان نعمل الـ QR أول مرة. اتصلي بالنت وجرّبي تاني.", false); return; }
+      var warn = /claude\.ai/.test(link) ? '<p class="flag"><span><b>تنبيه:</b> رابط claude.ai ده خاص بيكِ. الطلاب مش هيقدروا يفتحوه إلا لو شاركتيه، والربط بالجدول مش هيشتغل منه. الأفضل رابط GitHub Pages.</span></p>' : "";
+      document.getElementById("sh-out").innerHTML = warn +
+        '<div class="poster" id="poster"><div class="pt"><span>فضاء</span> العلوم</div><p class="cap">صوّر الكود بكاميرا الموبايل</p>' + qrSVG(link) +
+        '<ol><li>افتح الرابط واعدّي شاشة الترحيب.</li><li>اكتب اسمك الأول.</li>' + (code ? '<li>اكتب كود الفصل:</li></ol><div class="code">' + esc(code) + '</div>' : '</ol>') +
+        '<p class="lnk">' + esc(link) + '</p></div>' +
+        '<div class="row" style="justify-content:center">' + (inClaude() ? '<p class="small muted">اعملي سكرين شوت للكارت وابعتيه للطلاب.</p>' : '<button class="btn ghost" type="button" id="sh-print">اطبعي الكارت</button><p class="small muted">أو اعملي سكرين شوت وابعتيه للطلاب.</p>') + '</div>';
+      var pr = document.getElementById("sh-print"); if (pr) pr.onclick = function(){ window.print(); };
+      msg("الـ QR جاهز. جرّبيه بكاميرا موبايلك قبل ما تبعتيه.", true);
+    });
+  };
+  document.getElementById("ce-save").onclick = function(){ C.certificate = C.certificate || {}; C.certificate.teacher = document.getElementById("ce-t").value.trim(); saveContent(); toast("اتحفظ"); };
+  if (saved.link) document.getElementById("sh-make").click();
+}
+function tAdvanced(pane){
+  pane.innerHTML = '<section class="card"><h2>كل المحتوى</h2><p class="small muted">هنا الدروس والأسئلة والإجابات والتلميحات والتفسيرات والمهارات والمكافآت. عدّلي واضغطي «تحقق واحفظ». لو فيه غلط، هيظهر قبل الحفظ.</p>' +
+    '<textarea class="json" id="t-json" spellcheck="false" aria-label="المحتوى بصيغة JSON"></textarea>' +
+    '<div class="row"><button class="btn" type="button" id="t-jsave">تحقق واحفظ</button><button class="btn ghost" type="button" id="t-copy">انسخي المحتوى</button><button class="btn ghost" type="button" id="t-reset">رجّعي المحتوى الأصلي</button></div><div class="msg" id="t-jmsg" aria-live="polite"></div></section>' +
+    '<section class="card"><h2>أدوات التجربة</h2><div class="row"><button class="btn ghost" type="button" id="t-due">خلّي مراجعات الطالب الحالي مستحقة دلوقتي</button><button class="btn ghost" type="button" id="t-pinr">غيّري الرقم السري</button><button class="btn danger" type="button" id="t-wipe">امسحي كل الطلاب</button></div><div class="msg" id="t-tmsg" aria-live="polite"></div></section>';
+  var J = document.getElementById("t-json"); J.value = JSON.stringify(C, null, 2);
+  function msg(id, t, ok){ var m = document.getElementById(id); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+  document.getElementById("t-jsave").onclick = function(){
+    var obj; try { obj = JSON.parse(J.value); } catch(e){ msg("t-jmsg", "فيه غلط في الكتابة (JSON): " + e.message, false); return; }
+    var errs = contentErrors(obj);
+    if (errs.length) { msg("t-jmsg", "ما اتحفظش. صلّحي: " + errs.slice(0, 4).join(" · "), false); return; }
+    C = obj; saveContent(); msg("t-jmsg", "اتحفظ المحتوى كله.", true);
+  };
+  document.getElementById("t-copy").onclick = function(){
+    var done = function(){ msg("t-jmsg", "اتنسخ. احفظيه في ملف عندك كنسخة احتياطية.", true); };
+    var fallback = function(){ J.focus(); J.select(); msg("t-jmsg", "حددت النص، اضغطي Ctrl+C.", true); };
+    try { navigator.clipboard.writeText(J.value).then(done, fallback); } catch(e){ fallback(); }
+  };
+  twoStepEl(document.getElementById("t-reset"), "متأكدة؟ اضغطي تاني للاسترجاع", function(){ C = clone(DEFAULT_CONTENT); saveContent(); vTeacher(); toast("رجع المحتوى الأصلي"); });
+  document.getElementById("t-due").onclick = function(){
+    if (!S) { msg("t-tmsg", "اختاري طالب الأول من «مين بيذاكر».", false); return; }
+    var c = 0; for (var id in S.review) { S.review[id].due = now() - 1; c++; }
+    for (var q in S.lastSeen) S.lastSeen[q] -= DAY;
+    save(); msg("t-tmsg", c ? "بقى فيه " + n(c) + " مراجعة مستحقة لـ " + S.name + " في الرئيسية." : "مفيش مراجعات متسجلة لسه. خلّصي الدرس الأول.", !!c);
+  };
+  document.getElementById("t-pinr").onclick = function(){ drop(KEY_PIN); teacherOpen = false; vTeacher(); };
+  twoStepEl(document.getElementById("t-wipe"), "متأكدة؟ ده بيمسح كل الأسماء والتقدم", function(){ DB = {active: null, list: []}; S = null; save(); renderMe(); msg("t-tmsg", "اتمسح كل الطلاب على الجهاز ده.", true); });
+}
+function twoStepEl(b, confirmText, fn){
+  var orig = b.textContent, armed = false, t;
+  b.onclick = function(){
+    if (!armed) { armed = true; b.textContent = confirmText; t = setTimeout(function(){ armed = false; b.textContent = orig; }, 4000); return; }
+    clearTimeout(t); armed = false; b.textContent = orig; fn();
+  };
+}
+
+/* ================= البداية ================= */
+if (DB.active) S = DB.list.filter(function(s){ return s.id === DB.active; })[0] || null;
+render();
+setTimeout(syncAllDirty, 1500);
+showOnboarding();
+})();
+</script>
+
+</html>
